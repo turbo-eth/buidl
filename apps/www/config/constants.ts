@@ -1,0 +1,5 @@
+export const ADDRESS_ZERO =
+  "0x0000000000000000000000000000000000000000" as `0x${string}`
+
+export const ADDRESS_EXAMPLE =
+  "0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31" as `0x${string}`

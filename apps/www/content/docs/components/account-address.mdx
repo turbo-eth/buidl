@@ -1,0 +1,59 @@
+---
+title: Address
+description: Display connected account address.
+component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useNetwork
+---
+
+<ComponentPreview
+  name="account-address-demo"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
+/>
+
+## Installation
+
+<Tabs defaultValue="manual">
+
+<TabsList>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+  <TabsTrigger disabled={true} value="cli">
+    CLI (Coming Soon)
+  </TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Coming soon...</Step>
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="address" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AccountAddress } from "@/components/buidl/account-address"
+```
+
+```tsx
+<AccountAddress />
+```
