@@ -54,7 +54,7 @@ export const Erc20Symbol = ({
 
   if (!tokenSymbol) {
     const Comp = unavailable
-    if(!Comp) return null
+    if (!Comp) return null
     return <Comp />
   }
 

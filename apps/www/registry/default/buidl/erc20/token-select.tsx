@@ -1,5 +1,3 @@
-
-
 import { Erc20Selector } from "./erc20-selector"
 import { Token, TokenList } from "./types"
 

@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react"
 import Image from "next/image"
 
 import { cn } from "@/lib/utils"
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -11,9 +12,8 @@ import {
   CommandItem,
   CommandList,
 } from "../../ui/command"
-
-import { Token, TokenList } from "./types"
 import { ImageIpfs } from "../image-ipfs"
+import { Token, TokenList } from "./types"
 
 interface Erc20SelectorProps {
   disabled?: boolean
@@ -67,7 +67,7 @@ export function Erc20Selector({
         onClick={() => (!disabled ? setOpen(true) : undefined)}
       >
         {selectedToken && (
-          <div className='flex items-center gap-x-2'>
+          <div className="flex items-center gap-x-2">
             <ImageIpfs
               alt={`${selectedToken?.name} logo`}
               className="h-6 w-6 rounded-full"

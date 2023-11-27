@@ -32,8 +32,11 @@ export const Erc20Image = ({
     }
     if (token) {
       let tokenImage = token.logoURI
-      if(tokenImage?.startsWith("ipfs://")) {
-        tokenImage= tokenImage.replace("ipfs://", "https://gateway.ipfs.io/ipfs/")
+      if (tokenImage?.startsWith("ipfs://")) {
+        tokenImage = tokenImage.replace(
+          "ipfs://",
+          "https://gateway.ipfs.io/ipfs/"
+        )
       }
       setTokenImage(tokenImage)
       setTokenName(token.name)

@@ -54,7 +54,7 @@ export const Erc20Name = ({
 
   if (!tokenName) {
     const Comp = unavailable
-    if(!Comp) return null 
+    if (!Comp) return null
     return <Comp />
   }
 

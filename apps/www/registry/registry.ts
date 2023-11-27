@@ -85,12 +85,12 @@ const ui: Registry = [
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-select-and-amount.tsx"],
   },
-  {
-    name: "accordion",
-    type: "components:ui",
-    dependencies: ["wagmi"],
-    files: ["ui/accordion.tsx"],
-  },
+  // {
+  //   name: "accordion",
+  //   type: "components:ui",
+  //   dependencies: ["wagmi"],
+  //   files: ["ui/accordion.tsx"],
+  // },
 ]
 
 const example: Registry = [
@@ -196,12 +196,12 @@ const example: Registry = [
     registryDependencies: ["erc20-select-and-amount"],
     files: ["example/erc20-select-and-amount-demo.tsx"],
   },
-  {
-    name: "accordion-demo",
-    type: "components:example",
-    registryDependencies: ["accordion"],
-    files: ["example/accordion-demo.tsx"],
-  },
+  // {
+  //   name: "accordion-demo",
+  //   type: "components:example",
+  //   registryDependencies: ["accordion"],
+  //   files: ["example/accordion-demo.tsx"],
+  // },
 ]
 
 export const registry: Registry = [...ui, ...example]

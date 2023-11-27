@@ -1,9 +1,12 @@
+"use client"
+
 import * as React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { connect } from "@wagmi/core"
 import { CoinbaseWalletConnector } from "@wagmi/core/dist/connectors/coinbaseWallet"
 import { MetaMaskConnector } from "@wagmi/core/dist/connectors/metaMask"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, RefreshCcw, Rewind } from "lucide-react"
 
 import { connectors } from "@/config/connectors"
 import { cn } from "@/lib/utils"
@@ -21,10 +24,9 @@ import {
 type WalletConnect = React.HTMLAttributes<HTMLElement>
 
 export const WalletConnect = ({ children, className }: WalletConnect) => {
-  console.log(connectors, "connectors")
   const classes = cn(className)
-  const [isError, setIsError] = React.useState()
-  const [selectedConnectorId, setSelectedConnectorId] = React.useState<
+  const [isError, setIsError] = useState()
+  const [selectedConnectorId, setSelectedConnectorId] = useState<
     string | undefined
   >()
 
@@ -50,8 +52,8 @@ export const WalletConnect = ({ children, className }: WalletConnect) => {
             <hr className="my-6 mb-10" />
             {selectedConnectorId && (
               <>
-                <div className="flex items-center gap-x-2">
-                  <ChevronRight />
+                <div className="flex cursor-pointer items-center gap-x-1" onClick={handleBack}>
+                  <ChevronRight size={18} className="rotate-180" />
                   <span className="text-xs">Back</span>
                 </div>
                 <WalletConnectionStatus
@@ -181,7 +183,7 @@ export const WalletConnectionStatus = ({
       )}
       <p className="text-xs">Accept the connection request in your wallet</p>
       <Button size="sm" rounded="xl" className="mt-2" onClick={handleConnect}>
-        <Icons.retry className="mr-2" />
+        <RefreshCcw size={12} className="mr-2" />
         <span className="">Try Again</span>
       </Button>
     </div>

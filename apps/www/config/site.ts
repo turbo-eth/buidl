@@ -1,12 +1,12 @@
 export const siteConfig = {
   name: "turboeth/buidl",
   url: "https://buidl.turboeth.com",
-  ogImage: "https://buidl.turboeth.com/og.jpg",
+  ogImage: "https://buidl.turboeth.com/og.png",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "Collection of essential components for any modern Web3 applications ⚡️ copy and paste in minutes.",
   links: {
     twitter: "https://twitter.com/districtfi",
-    github: "https://github.com/turboeth/buidl",
+    github: "https://github.com/turbo-eth/buidl",
   },
 }
 

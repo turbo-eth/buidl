@@ -96,13 +96,6 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/buidl/erc20/erc20-select-and-amount")),
       files: ["registry/default/buidl/erc20/erc20-select-and-amount.tsx"],
     },
-    "accordion": {
-      name: "accordion",
-      type: "components:ui",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/ui/accordion")),
-      files: ["registry/default/ui/accordion.tsx"],
-    },
     "address-demo": {
       name: "address-demo",
       type: "components:example",
@@ -221,13 +214,6 @@ export const Index: Record<string, any> = {
       registryDependencies: ["erc20-select-and-amount"],
       component: React.lazy(() => import("@/registry/default/example/erc20-select-and-amount-demo")),
       files: ["registry/default/example/erc20-select-and-amount-demo.tsx"],
-    },
-    "accordion-demo": {
-      name: "accordion-demo",
-      type: "components:example",
-      registryDependencies: ["accordion"],
-      component: React.lazy(() => import("@/registry/default/example/accordion-demo")),
-      files: ["registry/default/example/accordion-demo.tsx"],
     },
   },
 }

@@ -31,7 +31,7 @@ export function MainNav() {
           Documentation
         </Link>
         <Link
-          href="/docs/components"
+          href="/docs/components/wallet-connect"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/docs/components")
@@ -41,28 +41,6 @@ export function MainNav() {
         >
           Components
         </Link>
-        {/* <Link
-          href="/themes"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/themes")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Themes
-        </Link>
-        <Link
-          href="/examples"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/examples")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Examples
-        </Link> */}
         <Link
           href={siteConfig.links.github}
           className={cn(

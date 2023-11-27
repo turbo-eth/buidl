@@ -3,8 +3,14 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/registry/default/ui/button"
-import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"
+import { AccountAddress } from "@/registry/default/buidl/account-address"
+import { AccountBlockie } from "@/registry/default/buidl/account-blockie"
+import { Address } from "@/registry/default/buidl/address"
+import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
+import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
+import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
+import { WalletDisconnect } from "@/registry/default/buidl/wallet-disconnect"
+import { Button, buttonVariants } from "@/registry/default/ui/button"
 
 export const metadata: Metadata = {
   title: "Authentication",
@@ -14,21 +20,8 @@ export const metadata: Metadata = {
 export default function AuthenticationPage() {
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/authentication-light.png"
-          width={1280}
-          height={843}
-          alt="Authentication"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/authentication-dark.png"
-          width={1280}
-          height={843}
-          alt="Authentication"
-          className="hidden dark:block"
-        />
+      <div className="p-10 md:hidden">
+        View this page on a larger screen to see the full example.
       </div>
       <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
@@ -55,47 +48,56 @@ export default function AuthenticationPage() {
             >
               <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
             </svg>
-            Acme Inc
+            Degen Inc
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
-                &ldquo;This library has saved me countless hours of work and
-                helped me deliver stunning designs to my clients faster than
-                ever before.&rdquo;
+                &ldquo;I always degenerate to chocolate and coffee.&rdquo;
               </p>
-              <footer className="text-sm">Sofia Davis</footer>
+              <footer className="text-sm">Mandy Ingber</footer>
             </blockquote>
           </div>
         </div>
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">
-                Create an account
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
+            <IsWalletDisconnected>
+              <div className="flex flex-col space-y-2 text-center">
+                <h1 className="text-2xl font-semibold tracking-tight">
+                  Connect Wallet to Continue
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  Enter your email below to create your account
+                </p>
+              </div>
+              <WalletConnect />
+              <p className="px-8 text-center text-sm text-muted-foreground">
+                By clicking continue, you agree to our{" "}
+                <Link
+                  href="/terms"
+                  className="underline underline-offset-4 hover:text-primary"
+                >
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="/privacy"
+                  className="underline underline-offset-4 hover:text-primary"
+                >
+                  Privacy Policy
+                </Link>
+                .
               </p>
-            </div>
-            <UserAuthForm />
-            <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{" "}
-              <Link
-                href="/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p>
+            </IsWalletDisconnected>
+            <IsWalletConnected>
+              <div className="flex items-center justify-center gap-x-2">
+                <AccountBlockie />
+                <Button size={"sm"} className="rounded-full">
+                  <AccountAddress truncate linkEnabled />
+                </Button>
+                <WalletDisconnect variant={"ghost"} size={"sm"} />
+              </div>
+            </IsWalletConnected>
           </div>
         </div>
       </div>

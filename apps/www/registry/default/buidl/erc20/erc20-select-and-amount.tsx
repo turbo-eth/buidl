@@ -1,11 +1,12 @@
-import { type Dispatch, type SetStateAction } from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
+import defaultTokenList from "@/data/uniswap-default.tokenlist.json"
+import { useChainId } from "wagmi"
+
+import { cn } from "@/lib/utils"
+
 import { Erc20Selector } from "./erc20-selector"
 import { Token, TokenList } from "./types"
-import { useChainId } from "wagmi"
 import { filterTokenListByChainId } from "./utils/filter-token-list-by-chain-id"
-import defaultTokenList from "@/data/uniswap-default.tokenlist.json"
-import { cn } from "@/lib/utils"
 
 type Erc20SelectAndAmountProps = React.HTMLAttributes<HTMLElement> & {
   chainId?: number
@@ -23,7 +24,10 @@ export function Erc20SelectAndAmount({
   onAmountUpdate,
   onTokenSelectUpdate,
 }: Erc20SelectAndAmountProps) {
-  const classes = cn('group relative flex items-center justify-between gap-2 rounded-md border p-2', className)
+  const classes = cn(
+    "group relative flex items-center justify-between gap-2 rounded-md border p-2",
+    className
+  )
   const chainIdDefault = useChainId()
 
   // Select Token
@@ -33,7 +37,7 @@ export function Erc20SelectAndAmount({
       onTokenSelectUpdate?.(selectedToken)
     }
   }, [selectedToken, onTokenSelectUpdate])
-  
+
   // Amount Update
   const [amount, setAmount] = useState<string | undefined>()
   useEffect(() => {

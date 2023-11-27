@@ -1,31 +1,31 @@
+"use client"
+
 import * as React from "react"
 import { useAccount } from "wagmi"
 
 import { BlockieProps } from "./blockie"
-import { EnsAvatar } from "./ens-avatar"
+import { EnsName } from "./ens-name"
 
-export interface AccountEnNameProps
+export interface AccountEnsNameProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "children">,
     Omit<BlockieProps, "address"> {
   unavailable?: any
 }
 
-export const AccountEnName = ({
+export const AccountEnsName = ({
   className,
   unavailable,
   variant,
   size,
   ...props
-}: AccountEnNameProps) => {
+}: AccountEnsNameProps) => {
   const { address } = useAccount()
   const Comp = unavailable || null
   if (!address) return Comp
 
   return (
-    <EnsAvatar
+    <EnsName
       address={address}
-      variant={variant}
-      size={size}
       className={className}
     />
   )

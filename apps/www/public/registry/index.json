@@ -1,12 +1,1 @@
-[
-  {
-    "name": "accordion",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "ui/accordion.tsx"
-    ],
-    "type": "components:ui"
-  }
-]
+[]

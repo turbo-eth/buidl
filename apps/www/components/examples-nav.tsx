@@ -11,7 +11,7 @@ const examples = [
   {
     name: "Authentication",
     href: "/examples/authentication",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/authentication",
+    code: "https://github.com/turbo-eth/buidl/tree/main/apps/www/app/examples/authentication",
   },
 ]
 

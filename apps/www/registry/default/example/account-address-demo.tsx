@@ -8,10 +8,7 @@ export default function AddressDemo() {
   return (
     <div className="flex flex-col items-center gap-4 text-center">
       <IsWalletDisconnected>
-        <h3 className="text-lg font-normal">BUIDL</h3>
         <WalletConnect />
-        <h3 className="text-lg font-normal">RainbowKit</h3>
-        <RainbowKitWalletConnect />
       </IsWalletDisconnected>
       <IsWalletConnected>
         <h3 className="text-lg font-bold">Default</h3>

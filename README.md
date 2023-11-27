@@ -1,6 +1,6 @@
-# TurboETH BUIDL
+# TurboETH ⚡️ BUIDL
 
-Handcrafted Web3 components that you can copy and paste into your WAGMI apps. Free. Open Source. **Use this to build your own component library**.
+Collection of essential components for any modern Web3 applications. Save time and BUIDL faster. Free. Open Source. **Use this to build your own component library**.
 
 ## Documentation
 

@@ -21,7 +21,7 @@ export default function IndexPage() {
     <div className="container relative">
       <PageHeader className="pb-8">
         <Link
-          href="/docs/changelog"
+          href="/docs/components"
           className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
         >
           ⚡️ <Separator className="mx-2 h-4" orientation="vertical" />{" "}
@@ -31,8 +31,7 @@ export default function IndexPage() {
         </Link>
         <PageHeaderHeading>A Flexible Web3 Component Library</PageHeaderHeading>
         <PageHeaderDescription>
-          Handcrafted Web3 components that you can copy and paste into your
-          WAGMI apps.{" "}
+          Collection of essential components for any modern Web3 applications.{" "}
           <span className="font-bold">Save time and BUIDL faster.</span>
         </PageHeaderDescription>
         <div className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">

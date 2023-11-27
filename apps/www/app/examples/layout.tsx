@@ -26,24 +26,21 @@ export default function ExamplesLayout({ children }: ExamplesLayoutProps) {
     <>
       <div className="container relative">
         <PageHeader className="page-header pb-8">
-          <Link
-            href="/docs/changelog"
-            className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-          >
-            🎉 <Separator className="mx-2 h-4" orientation="vertical" />{" "}
-            <span className="sm:hidden">Style, a new CLI and more.</span>
-            <span className="hidden sm:inline">
-              Introducing Style, a new CLI and more.
-            </span>
-            <ArrowRightIcon className="ml-1 h-4 w-4" />
-          </Link>
+        <Link
+          href="/docs/components/wallet-connect"
+          className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
+        >
+          ⚡️ <Separator className="mx-2 h-4" orientation="vertical" />{" "}
+          <span className="sm:hidden">Build Web3 in Turbo Mode.</span>
+          <span className="hidden sm:inline">Build Web3 in Turbo Mode</span>
+          <ArrowRightIcon className="ml-1 h-4 w-4" />
+        </Link>
           <PageHeaderHeading className="hidden md:block">
             Check out some examples.
           </PageHeaderHeading>
           <PageHeaderHeading className="md:hidden">Examples</PageHeaderHeading>
           <PageHeaderDescription>
-            Dashboard, cards, authentication. Some examples built using the
-            components. Use this as a guide to build your own.
+            More examples coming soon!
           </PageHeaderDescription>
           <section className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
             <Link
@@ -53,7 +50,7 @@ export default function ExamplesLayout({ children }: ExamplesLayoutProps) {
               Get Started
             </Link>
             <Link
-              href="/components"
+              href="/docs/components/wallet-connect"
               className={cn(
                 buttonVariants({ variant: "outline" }),
                 "rounded-[6px]"

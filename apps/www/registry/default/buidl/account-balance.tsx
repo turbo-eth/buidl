@@ -1,3 +1,5 @@
+"use client"
+
 import { HTMLAttributes } from "react"
 import { useAccount, useBalance } from "wagmi"
 
