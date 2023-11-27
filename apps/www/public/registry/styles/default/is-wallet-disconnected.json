@@ -1,0 +1,13 @@
+{
+  "name": "is-wallet-disconnected",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "is-wallet-disconnected.tsx",
+      "content": "\"use client\"\n\nimport { type ReactNode } from \"react\"\nimport { useAccount } from \"wagmi\"\n\ninterface IsWalletDisconnectedProps {\n  children: ReactNode\n}\n\nexport const IsWalletDisconnected = ({\n  children,\n}: IsWalletDisconnectedProps) => {\n  const { address } = useAccount()\n\n  if (!address) return <>{children}</>\n\n  return null\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

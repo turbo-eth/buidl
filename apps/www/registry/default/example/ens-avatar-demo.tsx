@@ -1,8 +1,7 @@
 import { ADDRESS_EXAMPLE } from "@/config/constants"
+import { EnsAvatar } from "@/registry/default/buidl/ens-avatar"
 
-import { EnsAvatar } from "../buidl/ens-avatar"
-
-export default function BlockieDemo() {
+export default function EnsAvatarDemo() {
   return (
     <div className="flex flex-col items-center gap-4 text-center">
       <h3 className="text-lg font-bold">Default</h3>

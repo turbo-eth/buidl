@@ -1,0 +1,13 @@
+{
+  "name": "network-manage",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "network-manage.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype NetworkManage = React.HTMLAttributes<HTMLElement>\n\nexport const NetworkManage = ({ children, className }: NetworkManage) => {\n  const classes = cn(className)\n\n  return <div className={classes}>{children}</div>\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

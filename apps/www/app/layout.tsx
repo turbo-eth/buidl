@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Radix UI",
     "WAGMI",
     "Web3",
-    "Ethereum"
+    "Ethereum",
   ],
   authors: [
     {

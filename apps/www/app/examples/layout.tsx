@@ -26,15 +26,15 @@ export default function ExamplesLayout({ children }: ExamplesLayoutProps) {
     <>
       <div className="container relative">
         <PageHeader className="page-header pb-8">
-        <Link
-          href="/docs/components/wallet-connect"
-          className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-        >
-          ⚡️ <Separator className="mx-2 h-4" orientation="vertical" />{" "}
-          <span className="sm:hidden">Build Web3 in Turbo Mode.</span>
-          <span className="hidden sm:inline">Build Web3 in Turbo Mode</span>
-          <ArrowRightIcon className="ml-1 h-4 w-4" />
-        </Link>
+          <Link
+            href="/docs/components/wallet-connect"
+            className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
+          >
+            ⚡️ <Separator className="mx-2 h-4" orientation="vertical" />{" "}
+            <span className="sm:hidden">Build Web3 in Turbo Mode.</span>
+            <span className="hidden sm:inline">Build Web3 in Turbo Mode</span>
+            <ArrowRightIcon className="ml-1 h-4 w-4" />
+          </Link>
           <PageHeaderHeading className="hidden md:block">
             Check out some examples.
           </PageHeaderHeading>

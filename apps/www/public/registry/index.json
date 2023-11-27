@@ -1,1 +1,248 @@
-[]
+[
+  {
+    "name": "account-address",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/account-address.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "account-balance",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/account-balance.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "account-blockie",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/account-blockie.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "account-ens-avatar",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/account-ens-avatar.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "account-ens-name",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/account-ens-name.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "account-nonce",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/account-nonce.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "address",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/address.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "block-explorer-link",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/block-explorer-link.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "blockie",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/blockie.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "ens-avatar",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/ens-avatar.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "ens-name",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/ens-name.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "image-ipfs",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/image-ipfs.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "is-wallet-connected",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/is-wallet-connected.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "is-wallet-disconnected",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/is-wallet-disconnected.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "network-manage",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/network-manage.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "wallet-connect",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/wallet-connect.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "wallet-disconnect",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/wallet-disconnect.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "wallet-manage",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/wallet-manage.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-balance",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-balance.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-image",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-image.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-name",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-name.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-select-and-amount",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-select-and-amount.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-select",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-select.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-symbol",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-symbol.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  }
+]

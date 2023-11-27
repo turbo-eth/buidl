@@ -1,0 +1,14 @@
+{
+  "name": "erc20-name",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "erc20-name.tsx",
+      "content": "import { useEffect, useState } from \"react\"\nimport defaultTokenList from \"@/data/uniswap-default.tokenlist.json\"\nimport { useChainId } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { useErc20Name } from \"./erc20-wagmi\"\nimport { TokenList } from \"./types\"\nimport { findTokenByAddressFromList } from \"./utils/find-token-by-address-from-list\"\n\nexport type Erc20NameProps = React.HTMLAttributes<HTMLElement> & {\n  address: `0x${string}`\n  tokenList?: TokenList\n  chainId?: number\n  unavailable?: any\n}\n\nexport const Erc20Name = ({\n  className,\n  chainId,\n  address,\n  tokenList = defaultTokenList,\n  unavailable,\n}: Erc20NameProps) => {\n  const classes = cn(className)\n  const chainIdDefault = useChainId()\n\n  const [tokenName, setTokenName] = useState<string | undefined>()\n  const [tokenNotInList, setTokenNotInList] = useState<boolean>()\n  useEffect(() => {\n    const token = findTokenByAddressFromList(tokenList, address)\n    if (!token) {\n      setTokenNotInList(true)\n    }\n    if (token) {\n      setTokenName(token.name)\n    }\n  }, [address, tokenList])\n\n  useEffect(() => {}, [])\n\n  const { data, isSuccess } = useErc20Name({\n    chainId: chainId || chainIdDefault,\n    address,\n    watch: true,\n    enabled: !!tokenNotInList,\n  })\n\n  useEffect(() => {\n    if (data && isSuccess) {\n      setTokenName(data)\n    }\n  }, [data, isSuccess])\n\n  if (!tokenName) {\n    const Comp = unavailable\n    if (!Comp) return null\n    return <Comp />\n  }\n\n  return <span className={classes}>{tokenName}</span>\n}\n"
+    }
+  ],
+  "folder": "erc20",
+  "type": "components:buidl"
+}

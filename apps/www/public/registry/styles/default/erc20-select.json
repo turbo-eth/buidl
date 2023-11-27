@@ -1,0 +1,14 @@
+{
+  "name": "erc20-select",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "erc20-select.tsx",
+      "content": "import * as React from \"react\"\nimport { useEffect, useState } from \"react\"\nimport defaultTokenList from \"@/data/uniswap-default.tokenlist.json\"\nimport { useChainId } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { Erc20Selector } from \"./erc20-selector\"\nimport { Token, TokenList } from \"./types\"\nimport { filterTokenListByChainId } from \"./utils/filter-token-list-by-chain-id\"\n\ntype Erc20SelectProps = React.HTMLAttributes<HTMLElement> & {\n  tokenList?: TokenList\n  chainId?: number\n  onTokenSelect?: (token: Token) => void\n}\n\nexport const Erc20Select = ({\n  className,\n  chainId,\n  tokenList = defaultTokenList,\n  onTokenSelect,\n}: Erc20SelectProps) => {\n  const classes = cn(className)\n  const chainIdDefault = useChainId()\n\n  const [selectedToken, setSelectedToken] = useState<Token | undefined>()\n  useEffect(() => {\n    if (selectedToken) {\n      onTokenSelect?.(selectedToken)\n    }\n  }, [selectedToken, onTokenSelect])\n\n  const [tokenListFiltered, setTokenListFiltered] = useState<\n    TokenList | undefined\n  >()\n  useEffect(() => {\n    const tokenListFilteredByChainId = filterTokenListByChainId(\n      tokenList,\n      chainId || chainIdDefault\n    )\n    setTokenListFiltered(tokenListFilteredByChainId)\n  }, [chainId, chainIdDefault, tokenList])\n\n  return (\n    <div className={classes}>\n      <div className=\"group relative flex items-center gap-2 rounded-md border p-2\">\n        <Erc20Selector\n          tokenList={tokenListFiltered}\n          selectedToken={selectedToken}\n          setSelectedToken={setSelectedToken}\n          className=\"\"\n        />\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "folder": "erc20",
+  "type": "components:buidl"
+}

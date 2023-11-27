@@ -1,4 +1,4 @@
-import { Erc20Symbol } from "../buidl/erc20/erc20-symbol"
+import { Erc20Symbol } from "@/registry/default/buidl/erc20/erc20-symbol"
 
 export default function Erc20SymbolDemo() {
   // WETH Name

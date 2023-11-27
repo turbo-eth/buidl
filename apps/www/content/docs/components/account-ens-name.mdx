@@ -2,8 +2,8 @@
 title: Account ENS Name
 description: Display the connected account ENS name.
 component: true
-radix:
-  link: https://wagmi.sh/react/hooks/useEnsAvatar
+wagmi:
+  link: https://wagmi.sh/react/hooks/useAccount
 ---
 
 <ComponentPreview
@@ -36,6 +36,10 @@ radix:
 
 <Steps>
 
+<Step>Install the following components:</Step>
+
+- [EnsName](/docs/components/ens-name)
+
 <Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="account-ens-name" />
@@ -49,9 +53,9 @@ radix:
 ## Usage
 
 ```tsx
-import { AccountEnsAvatar } from "@/components/buidl/account-ens-name"
+import { AccountEnsName } from "@/components/buidl/account-ens-name"
 ```
 
 ```tsx
-<AccountEnsAvatar />
+<AccountEnsName />
 ```

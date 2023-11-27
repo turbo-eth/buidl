@@ -1,0 +1,14 @@
+{
+  "name": "erc20-select-and-amount",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "erc20-select-and-amount.tsx",
+      "content": "import { useEffect, useState, type Dispatch, type SetStateAction } from \"react\"\nimport defaultTokenList from \"@/data/uniswap-default.tokenlist.json\"\nimport { useChainId } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { Erc20Selector } from \"./erc20-selector\"\nimport { Token, TokenList } from \"./types\"\nimport { filterTokenListByChainId } from \"./utils/filter-token-list-by-chain-id\"\n\ntype Erc20SelectAndAmountProps = React.HTMLAttributes<HTMLElement> & {\n  chainId?: number\n  disabled?: boolean\n  tokenList: TokenList\n  onTokenSelectUpdate?: (token: Token) => void\n  onAmountUpdate?: (token: Token) => void\n}\n\nexport function Erc20SelectAndAmount({\n  className,\n  chainId,\n  disabled,\n  tokenList = defaultTokenList,\n  onAmountUpdate,\n  onTokenSelectUpdate,\n}: Erc20SelectAndAmountProps) {\n  const classes = cn(\n    \"group relative flex items-center justify-between gap-2 rounded-md border p-2\",\n    className\n  )\n  const chainIdDefault = useChainId()\n\n  // Select Token\n  const [selectedToken, setSelectedToken] = useState<Token | undefined>()\n  useEffect(() => {\n    if (selectedToken) {\n      onTokenSelectUpdate?.(selectedToken)\n    }\n  }, [selectedToken, onTokenSelectUpdate])\n\n  // Amount Update\n  const [amount, setAmount] = useState<string | undefined>()\n  useEffect(() => {\n    if (selectedToken) {\n      onTokenSelectUpdate?.(selectedToken)\n    }\n  }, [selectedToken, onTokenSelectUpdate])\n\n  // Filter Token List\n  const [tokenListFiltered, setTokenListFiltered] = useState<\n    TokenList | undefined\n  >()\n  useEffect(() => {\n    const tokenListFilteredByChainId = filterTokenListByChainId(\n      tokenList,\n      chainId || chainIdDefault\n    )\n    setTokenListFiltered(tokenListFilteredByChainId)\n  }, [chainId, chainIdDefault, tokenList])\n\n  return (\n    <div className={classes}>\n      <div className=\"flex items-center gap-x-2\">\n        <Erc20Selector\n          disabled={disabled}\n          tokenList={tokenListFiltered}\n          selectedToken={selectedToken}\n          setSelectedToken={setSelectedToken}\n        />\n      </div>\n      <input\n        disabled={disabled}\n        id=\"amount\"\n        type=\"number\"\n        className=\"block w-full flex-1 bg-transparent px-3 py-1 text-right text-sm font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-transparent\"\n        placeholder=\"0.0\"\n        value={amount}\n        onChange={(e) => setAmount(e.target.value)}\n      />\n    </div>\n  )\n}\n"
+    }
+  ],
+  "folder": "erc20",
+  "type": "components:buidl"
+}

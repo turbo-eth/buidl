@@ -1,0 +1,13 @@
+{
+  "name": "is-wallet-connected-demo",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "is-wallet-connected-demo.tsx",
+      "content": "import { IsWalletConnected } from \"@/registry/default/buidl/is-wallet-connected\"\nimport { IsWalletDisconnected } from \"@/registry/default/buidl/is-wallet-disconnected\"\nimport { WalletConnect } from \"@/registry/default/buidl/wallet-connect\"\n\nexport default function IsWalletConnectedDemo() {\n  return (\n    <div className=\"flex flex-col items-center gap-4 text-center\">\n      <IsWalletDisconnected>\n        <WalletConnect />\n      </IsWalletDisconnected>\n      <IsWalletConnected>\n        Wallet is connected\n      </IsWalletConnected>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

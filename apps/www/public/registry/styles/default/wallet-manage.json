@@ -1,0 +1,13 @@
+{
+  "name": "wallet-manage",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "wallet-manage.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype WalletManage = React.HTMLAttributes<HTMLElement>\n\nexport const WalletManage = ({ children, className }: WalletManage) => {\n  const classes = cn(className)\n\n  return <div className={classes}>{children}</div>\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

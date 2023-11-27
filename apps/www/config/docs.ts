@@ -56,12 +56,27 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "Wallet Manage",
+          title: "Wallet Disconnect",
+          href: "/docs/components/wallet-disconnect",
+          items: [],
+        },
+        {
+          title: "Is Wallet Connected",
+          href: "/docs/components/is-wallet-connected",
+          items: [],
+        },
+        {
+          title: "Is Wallet Disconnected",
+          href: "/docs/components/is-wallet-disconnected",
+          items: [],
+        },
+        {
+          title: "(WIP) Wallet Manage",
           href: "/docs/components/wallet-manage",
           items: [],
         },
         {
-          title: "Network Manage",
+          title: "(WIP) Network Manage",
           href: "/docs/components/network-manage",
           items: [],
         },
@@ -73,6 +88,11 @@ export const docsConfig: DocsConfig = {
         {
           title: "Address",
           href: "/docs/components/address",
+          items: [],
+        },
+        {
+          title: "Block Explorer Link",
+          href: "/docs/components/block-explorer-link",
           items: [],
         },
         {
@@ -90,6 +110,11 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/ens-name",
           items: [],
         },
+        {
+          title: "Image IPFS",
+          href: "/docs/components/image-ipfs",
+          items: [],
+        },
       ],
     },
     {
@@ -98,6 +123,11 @@ export const docsConfig: DocsConfig = {
         {
           title: "Account Address",
           href: "/docs/components/account-address",
+          items: [],
+        },
+        {
+          title: "Account Balance",
+          href: "/docs/components/account-balance",
           items: [],
         },
         {
@@ -113,6 +143,11 @@ export const docsConfig: DocsConfig = {
         {
           title: "Account ENS Name",
           href: "/docs/components/account-ens-name",
+          items: [],
+        },
+        {
+          title: "Account Nonce",
+          href: "/docs/components/account-nonce",
           items: [],
         },
       ],
@@ -152,15 +187,5 @@ export const docsConfig: DocsConfig = {
         },
       ],
     },
-    // {
-    //   title: "ERC721",
-    //   items: [
-    //     {
-    //       title: "ERC721 Name",
-    //       href: "/docs/components/erc721-name",
-    //       items: [],
-    //     },
-    //   ],
-    // },
   ],
 }

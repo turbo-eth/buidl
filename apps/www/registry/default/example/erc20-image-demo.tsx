@@ -1,4 +1,4 @@
-import { Erc20Image } from "../buidl/erc20/erc20-image"
+import { Erc20Image } from "@/registry/default/buidl/erc20/erc20-image"
 
 export default function Erc20ImageDemo() {
   // WETH Name

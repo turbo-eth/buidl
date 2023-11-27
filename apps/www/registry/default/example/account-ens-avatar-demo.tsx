@@ -1,7 +1,7 @@
-import { AccountEnsAvatar } from "../buidl/account-ens-avatar"
-import { IsWalletConnected } from "../buidl/is-wallet-connected"
-import { IsWalletDisconnected } from "../buidl/is-wallet-disconnected"
-import { WalletConnect } from "../buidl/wallet-connect"
+import { AccountEnsAvatar } from "@/registry/default/buidl/account-ens-avatar"
+import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
+import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
+import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
 
 export default function AccountEnsAvatarDemo() {
   return (
@@ -10,17 +10,17 @@ export default function AccountEnsAvatarDemo() {
         <WalletConnect />
       </IsWalletDisconnected>
       <IsWalletConnected>
-      <h3 className="text-lg font-bold">Default</h3>
-      <AccountEnsAvatar />
+        <h3 className="text-lg font-bold">Default</h3>
+        <AccountEnsAvatar />
 
-      <h3 className="text-lg font-bold">Small</h3>
-      <AccountEnsAvatar size={"sm"} />
+        <h3 className="text-lg font-bold">Small</h3>
+        <AccountEnsAvatar size={"sm"} />
 
-      <h3 className="text-lg font-bold">Large</h3>
-      <AccountEnsAvatar size={"lg"} />
+        <h3 className="text-lg font-bold">Large</h3>
+        <AccountEnsAvatar size={"lg"} />
 
-      <h3 className="text-lg font-bold">Curved</h3>
-      <AccountEnsAvatar variant={"curved"} />
+        <h3 className="text-lg font-bold">Curved</h3>
+        <AccountEnsAvatar variant={"curved"} />
       </IsWalletConnected>
     </div>
   )

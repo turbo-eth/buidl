@@ -6,7 +6,7 @@ import Image from "next/image"
 import { connect } from "@wagmi/core"
 import { CoinbaseWalletConnector } from "@wagmi/core/dist/connectors/coinbaseWallet"
 import { MetaMaskConnector } from "@wagmi/core/dist/connectors/metaMask"
-import { ChevronRight, RefreshCcw, Rewind } from "lucide-react"
+import { ChevronRight, RefreshCcw } from "lucide-react"
 
 import { connectors } from "@/config/connectors"
 import { cn } from "@/lib/utils"
@@ -21,10 +21,9 @@ import {
   DialogTrigger,
 } from "../ui/dialog"
 
-type WalletConnect = React.HTMLAttributes<HTMLElement>
+type WalletConnect = React.HTMLAttributes<HTMLButtonElement>
 
 export const WalletConnect = ({ children, className }: WalletConnect) => {
-  const classes = cn(className)
   const [isError, setIsError] = useState()
   const [selectedConnectorId, setSelectedConnectorId] = useState<
     string | undefined
@@ -43,7 +42,9 @@ export const WalletConnect = ({ children, className }: WalletConnect) => {
   return (
     <Dialog onOpenChange={handleReset}>
       <DialogTrigger>
-        <Button className={classes}>Connect Wallet</Button>
+        <Button className={cn(className)}>
+          {children ?? "Connect Wallet"}
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <WagmiProvider>
@@ -52,7 +53,10 @@ export const WalletConnect = ({ children, className }: WalletConnect) => {
             <hr className="my-6 mb-10" />
             {selectedConnectorId && (
               <>
-                <div className="flex cursor-pointer items-center gap-x-1" onClick={handleBack}>
+                <div
+                  className="flex cursor-pointer items-center gap-x-1"
+                  onClick={handleBack}
+                >
                   <ChevronRight size={18} className="rotate-180" />
                   <span className="text-xs">Back</span>
                 </div>
@@ -182,7 +186,7 @@ export const WalletConnectionStatus = ({
         </div>
       )}
       <p className="text-xs">Accept the connection request in your wallet</p>
-      <Button size="sm" rounded="xl" className="mt-2" onClick={handleConnect}>
+      <Button size="sm" className="mt-2" onClick={handleConnect}>
         <RefreshCcw size={12} className="mr-2" />
         <span className="">Try Again</span>
       </Button>

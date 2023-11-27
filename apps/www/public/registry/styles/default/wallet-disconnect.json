@@ -1,0 +1,13 @@
+{
+  "name": "wallet-disconnect",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "wallet-disconnect.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useDisconnect } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { Button, type ButtonProps } from \"../ui/button\"\n\nexport interface WalletDisconnectProps extends ButtonProps {\n  label?: string\n}\n\nexport const WalletDisconnect = ({\n  children,\n  className,\n  size,\n  variant,\n  label = \"Disconnect\",\n}: WalletDisconnectProps) => {\n  const classes = cn(className)\n  const { disconnect } = useDisconnect()\n  return (\n    <Button\n      className={classes}\n      onClick={() => disconnect()}\n      size={size}\n      variant={variant}\n    >\n      {label}\n    </Button>\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

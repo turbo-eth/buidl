@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import { Button, type ButtonProps } from "../ui/button"
 
 export interface WalletDisconnectProps extends ButtonProps {
-    label?: string
+  label?: string
 }
 
 export const WalletDisconnect = ({

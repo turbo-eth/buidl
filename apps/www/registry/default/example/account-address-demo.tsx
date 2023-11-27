@@ -1,10 +1,9 @@
-import { AccountAddress } from "../buidl/account-address"
-import { IsWalletConnected } from "../buidl/is-wallet-connected"
-import { IsWalletDisconnected } from "../buidl/is-wallet-disconnected"
-import { RainbowKitWalletConnect } from "../buidl/rainbowkit-wallet-connect"
-import { WalletConnect } from "../buidl/wallet-connect"
+import { AccountAddress } from "@/registry/default/buidl/account-address"
+import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
+import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
+import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
 
-export default function AddressDemo() {
+export default function AccountAddressDemo() {
   return (
     <div className="flex flex-col items-center gap-4 text-center">
       <IsWalletDisconnected>

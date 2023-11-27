@@ -2,8 +2,8 @@
 title: Wallet Connect
 description: Connect to a wallet provider or service.
 component: true
-radix:
-  link: https://wagmi.sh/react/hooks/useEnsAvatar
+wagmi:
+  link: https://wagmi.sh/react/hooks/useConnect
 ---
 
 <ComponentPreview
@@ -36,6 +36,11 @@ radix:
 
 <Steps>
 
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Button](https://ui.shadcn.com/docs/components/button)
+- [Dialog](https://ui.shadcn.com/docs/components/dialog)
+
 <Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="wallet-connect" />
@@ -54,4 +59,5 @@ import { WalletConnect } from "@/components/buidl/wallet-connect"
 
 ```tsx
 <WalletConnect />
+<WalletConnect>Custom Text</WalletConnect>
 ```

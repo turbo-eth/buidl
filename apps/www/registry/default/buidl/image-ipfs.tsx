@@ -1,28 +1,40 @@
-import { useEffect, useState } from "react"
+import { useMemo } from "react"
 
 import { cn } from "@/lib/utils"
 
 type ImageIpfs = React.HTMLAttributes<HTMLElement> & {
   src: string
   alt: string
+  width?: string
+  height?: string
 }
 
-export const ImageIpfs = ({ className, src, alt }: ImageIpfs) => {
+export const ImageIpfs = ({
+  className,
+  src,
+  alt,
+  width,
+  height,
+}: ImageIpfs) => {
   const classes = cn(className)
 
-  const [imgSrc, setImgSrc] = useState<string | undefined>()
-  useEffect(() => {
-    if (src?.startsWith("ipfs://")) {
-      setImgSrc(src.replace("ipfs://", "https://gateway.ipfs.io/ipfs/"))
-    } else {
-      setImgSrc(src)
-    }
-  }, [src])
+  const imgSrc = useMemo(
+    () =>
+      src?.startsWith("ipfs://")
+        ? src.replace("ipfs://", "https://gateway.ipfs.io/ipfs/")
+        : src,
+    [src]
+  )
 
   if (!imgSrc) return null
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={imgSrc} alt={alt} className={classes} />
+    <img
+      src={imgSrc}
+      width={width}
+      height={height}
+      alt={alt}
+      className={classes}
+    />
   )
 }

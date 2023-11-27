@@ -1,0 +1,13 @@
+{
+  "name": "ens-avatar",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "ens-avatar.tsx",
+      "content": "import * as React from \"react\"\nimport Image from \"next/image\"\nimport { VariantProps, cva } from \"class-variance-authority\"\nimport { useEnsAvatar, useEnsName } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst ensAvatarVariants = cva(\"inline-block\", {\n  variants: {\n    variant: {\n      default:\n        \"rounded-full border-2 border-primary-foreground shadow-sm hover:shadow-md\",\n      curved:\n        \"rounded-md border-2 border-primary-foreground shadow-sm hover:shadow-md\",\n    },\n    size: {\n      default: \"h-10 w-10\",\n      sm: \"h-7 w-7\",\n      lg: \"h-12 w-12\",\n    },\n  },\n  defaultVariants: {\n    variant: \"default\",\n    size: \"default\",\n  },\n})\n\ntype EnsAvatar = React.HTMLAttributes<HTMLElement> &\n  VariantProps<typeof ensAvatarVariants> & {\n    address: `0x${string}`\n  }\n\nexport const EnsAvatar = ({ className, address, variant, size }: EnsAvatar) => {\n  const {\n    data: dataEnsName,\n    isError: isErrorEnsName,\n    isLoading: isLoadingEnsName,\n    isSuccess: isSuccessEnsName,\n  } = useEnsName({\n    address: address,\n  })\n\n  const {\n    data: dataEnsAvatar,\n    isError: isErrorEnsAvatar,\n    isLoading: isLoadingEnsAvatar,\n    isSuccess: isSuccessEnsAvatar,\n  } = useEnsAvatar({\n    name: dataEnsName,\n  })\n\n  if (!isSuccessEnsName || !isSuccessEnsAvatar || !dataEnsAvatar) {\n    return <span className=\"\">😀</span>\n  }\n\n  return (\n    <Image\n      width={32}\n      height={32}\n      alt={`${address} EnsAvatar`}\n      className={cn(ensAvatarVariants({ variant, size, className }))}\n      src={dataEnsAvatar}\n    />\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

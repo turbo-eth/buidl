@@ -1,0 +1,13 @@
+{
+  "name": "image-ipfs",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "image-ipfs.tsx",
+      "content": "import { useMemo } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype ImageIpfs = React.HTMLAttributes<HTMLElement> & {\n  src: string\n  alt: string\n  width?: string\n  height?: string\n}\n\nexport const ImageIpfs = ({\n  className,\n  src,\n  alt,\n  width,\n  height,\n}: ImageIpfs) => {\n  const classes = cn(className)\n\n  const imgSrc = useMemo(\n    () =>\n      src?.startsWith(\"ipfs://\")\n        ? src.replace(\"ipfs://\", \"https://gateway.ipfs.io/ipfs/\")\n        : src,\n    [src]\n  )\n\n  if (!imgSrc) return null\n\n  return (\n    <img\n      src={imgSrc}\n      width={width}\n      height={height}\n      alt={alt}\n      className={classes}\n    />\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

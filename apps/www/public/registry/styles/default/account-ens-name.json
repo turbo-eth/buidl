@@ -1,0 +1,13 @@
+{
+  "name": "account-ens-name",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "account-ens-name.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useAccount } from \"wagmi\"\n\nimport { BlockieProps } from \"./blockie\"\nimport { EnsName } from \"./ens-name\"\n\nexport interface AccountEnsNameProps\n  extends Omit<React.HTMLAttributes<HTMLElement>, \"children\">,\n    Omit<BlockieProps, \"address\"> {\n  unavailable?: any\n}\n\nexport const AccountEnsName = ({\n  className,\n  unavailable,\n  variant,\n  size,\n  ...props\n}: AccountEnsNameProps) => {\n  const { address } = useAccount()\n  const Comp = unavailable || null\n  if (!address) return Comp\n\n  return <EnsName address={address} className={className} />\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

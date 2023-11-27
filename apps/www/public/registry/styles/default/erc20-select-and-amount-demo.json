@@ -1,0 +1,14 @@
+{
+  "name": "erc20-select-and-amount-demo",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "erc20-select-and-amount-demo.tsx",
+      "content": "import { Erc20SelectAndAmount } from \"@/registry/default/buidl/erc20/erc20-select-and-amount\"\n\nexport default function Erc20SelectAndAmountDemo() {\n  return <Erc20SelectAndAmount className=\"w-full\" chainId={1} />\n}\n"
+    }
+  ],
+  "folder": "erc20",
+  "type": "components:buidl"
+}

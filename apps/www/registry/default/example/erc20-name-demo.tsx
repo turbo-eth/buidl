@@ -1,4 +1,4 @@
-import { Erc20Name } from "../buidl/erc20/erc20-name"
+import { Erc20Name } from "@/registry/default/buidl/erc20/erc20-name"
 
 export default function Erc20NameDemo() {
   // WETH Name
