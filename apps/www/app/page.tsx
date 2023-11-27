@@ -31,7 +31,7 @@ export default function IndexPage() {
         </Link>
         <PageHeaderHeading>A Flexible Web3 Component Library</PageHeaderHeading>
         <PageHeaderDescription>
-          Collection of essential components for any modern Web3 applications.{" "}
+          Collection of essential components for modern Web3 applications.{" "}
           <span className="font-bold">Save time and BUIDL faster.</span>
         </PageHeaderDescription>
         <div className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
