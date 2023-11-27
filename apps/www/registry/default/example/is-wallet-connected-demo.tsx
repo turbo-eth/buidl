@@ -8,9 +8,7 @@ export default function IsWalletConnectedDemo() {
       <IsWalletDisconnected>
         <WalletConnect />
       </IsWalletDisconnected>
-      <IsWalletConnected>
-        Wallet is connected
-      </IsWalletConnected>
+      <IsWalletConnected>Wallet is connected</IsWalletConnected>
     </div>
   )
 }

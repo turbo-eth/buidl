@@ -10,17 +10,17 @@ export default function AccountEnsAvatarDemo() {
         <WalletConnect />
       </IsWalletDisconnected>
       <IsWalletConnected>
-      <h3 className="text-lg font-bold">Default</h3>
-      <AccountEnsAvatar />
+        <h3 className="text-lg font-bold">Default</h3>
+        <AccountEnsAvatar />
 
-      <h3 className="text-lg font-bold">Small</h3>
-      <AccountEnsAvatar size={"sm"} />
+        <h3 className="text-lg font-bold">Small</h3>
+        <AccountEnsAvatar size={"sm"} />
 
-      <h3 className="text-lg font-bold">Large</h3>
-      <AccountEnsAvatar size={"lg"} />
+        <h3 className="text-lg font-bold">Large</h3>
+        <AccountEnsAvatar size={"lg"} />
 
-      <h3 className="text-lg font-bold">Curved</h3>
-      <AccountEnsAvatar variant={"curved"} />
+        <h3 className="text-lg font-bold">Curved</h3>
+        <AccountEnsAvatar variant={"curved"} />
       </IsWalletConnected>
     </div>
   )

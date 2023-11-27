@@ -71,12 +71,12 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "Wallet Manage",
+          title: "(WIP) Wallet Manage",
           href: "/docs/components/wallet-manage",
           items: [],
         },
         {
-          title: "Network Manage",
+          title: "(WIP) Network Manage",
           href: "/docs/components/network-manage",
           items: [],
         },

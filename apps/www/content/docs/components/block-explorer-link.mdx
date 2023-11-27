@@ -1,11 +1,13 @@
 ---
-title: (WIP) Wallet Manage
-description: Manage your wallet connection and display basic details.
+title: Block Explorer Link
+description: Link to an address or transaction to the block explorer of a given network.
 component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useNetwork
 ---
 
 <ComponentPreview
-  name="wallet-manage-demo"
+  name="block-explorer-link-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -36,7 +38,7 @@ component: true
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="wallet-manage" />
+<ComponentSource name="block-explorer-link" />
 
 </Steps>
 
@@ -47,9 +49,10 @@ component: true
 ## Usage
 
 ```tsx
-import { WalletManage } from "@/components/buidl/wallet-manage"
+import { WalletConnect } from "@/components/buidl/wallet-connect"
 ```
 
 ```tsx
-<WalletManage />
+<WalletConnect />
+<WalletConnect>Custom Text</WalletConnect>
 ```

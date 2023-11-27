@@ -1,5 +1,4 @@
 import { ADDRESS_EXAMPLE } from "@/config/constants"
-
 import { Blockie } from "@/registry/default/buidl/blockie"
 
 export default function BlockieDemo() {

@@ -1,11 +1,13 @@
 ---
-title: (WIP) Wallet Manage
-description: Manage your wallet connection and display basic details.
+title: Account Balance
+description: Display the balance of the connected account.
 component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useAccount
 ---
 
 <ComponentPreview
-  name="wallet-manage-demo"
+  name="account-balance-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -36,7 +38,7 @@ component: true
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="wallet-manage" />
+<ComponentSource name="account-balance" />
 
 </Steps>
 
@@ -47,9 +49,9 @@ component: true
 ## Usage
 
 ```tsx
-import { WalletManage } from "@/components/buidl/wallet-manage"
+import { AccountBalance } from "@/components/buidl/account-balance"
 ```
 
 ```tsx
-<WalletManage />
+<AccountBalance />
 ```

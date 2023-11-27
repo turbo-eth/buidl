@@ -1,11 +1,13 @@
 ---
-title: (WIP) Wallet Manage
-description: Manage your wallet connection and display basic details.
+title: Image IPFS
+description: Display an image from IPFS
 component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useConnect
 ---
 
 <ComponentPreview
-  name="wallet-manage-demo"
+  name="image-ipfs-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -36,7 +38,7 @@ component: true
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="wallet-manage" />
+<ComponentSource name="image-ipfs" />
 
 </Steps>
 
@@ -47,9 +49,12 @@ component: true
 ## Usage
 
 ```tsx
-import { WalletManage } from "@/components/buidl/wallet-manage"
+import { ImageIpfs } from "@/components/buidl/image-ipfs"
 ```
 
 ```tsx
-<WalletManage />
+<ImageIpfs
+  src="ipfs://QmPbxeGcXhYQQNgsC6a36dDyYUcHgMLnGKnF8pVFmGsvqi"
+  alt="ipfs"
+/>
 ```

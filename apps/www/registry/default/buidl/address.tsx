@@ -34,7 +34,7 @@ export const Address = ({
     : address
 
   if (linkEnabled && blockExplorerUrl) {
-    const classes = cn("text-link", className)
+    const classes = cn(className)
 
     if (copyEnabled) {
       return (

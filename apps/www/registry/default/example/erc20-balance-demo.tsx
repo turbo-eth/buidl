@@ -1,5 +1,4 @@
 import { ADDRESS_EXAMPLE } from "@/config/constants"
-
 import { Erc20Balance } from "@/registry/default/buidl/erc20/erc20-balance"
 
 export default function Erc20BalanceDemo() {

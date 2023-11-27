@@ -23,10 +23,5 @@ export const AccountEnsName = ({
   const Comp = unavailable || null
   if (!address) return Comp
 
-  return (
-    <EnsName
-      address={address}
-      className={className}
-    />
-  )
+  return <EnsName address={address} className={className} />
 }

@@ -1,16 +1,16 @@
 "use client"
 
+import * as React from "react"
+import { useState } from "react"
+import Image from "next/image"
 import { connect } from "@wagmi/core"
 import { CoinbaseWalletConnector } from "@wagmi/core/dist/connectors/coinbaseWallet"
 import { MetaMaskConnector } from "@wagmi/core/dist/connectors/metaMask"
 import { ChevronRight, RefreshCcw } from "lucide-react"
-import Image from "next/image"
-import * as React from "react"
-import { useState } from "react"
 
-import { WagmiProvider } from "@/components/providers/wagmi-provider"
 import { connectors } from "@/config/connectors"
 import { cn } from "@/lib/utils"
+import { WagmiProvider } from "@/components/providers/wagmi-provider"
 
 import { Button } from "../ui/button"
 import {
@@ -53,7 +53,10 @@ export const WalletConnect = ({ children, className }: WalletConnect) => {
             <hr className="my-6 mb-10" />
             {selectedConnectorId && (
               <>
-                <div className="flex cursor-pointer items-center gap-x-1" onClick={handleBack}>
+                <div
+                  className="flex cursor-pointer items-center gap-x-1"
+                  onClick={handleBack}
+                >
                   <ChevronRight size={18} className="rotate-180" />
                   <span className="text-xs">Back</span>
                 </div>

@@ -1,6 +1,7 @@
 import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
 import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
 import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
+
 import { WalletDisconnect } from "../buidl/wallet-disconnect"
 
 export default function IsWalletDisconnectedDemo() {

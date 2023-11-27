@@ -10,7 +10,7 @@ export default function AccountNonceDemo() {
         <WalletConnect />
       </IsWalletDisconnected>
       <IsWalletConnected>
-        <AccountNonce/>
+        <AccountNonce />
       </IsWalletConnected>
     </div>
   )

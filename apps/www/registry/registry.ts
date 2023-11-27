@@ -122,21 +122,21 @@ const buidl: Registry = [
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-image.tsx"],
-  },  
+  },
   {
     name: "erc20-name",
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-name.tsx"],
-  },  
+  },
   {
     name: "erc20-select-and-amount",
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-select-and-amount.tsx"],
-  },  
+  },
   {
     name: "erc20-select",
     type: "components:buidl",
@@ -150,7 +150,7 @@ const buidl: Registry = [
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-symbol.tsx"],
-  }
+  },
 ]
 
 const example: Registry = [
@@ -280,7 +280,7 @@ const example: Registry = [
     registryDependencies: ["erc20-name"],
     files: ["example/erc20-name-demo.tsx"],
   },
-    {
+  {
     name: "erc20-select-and-amount-demo",
     type: "components:example",
     dependencies: ["wagmi"],
@@ -291,13 +291,13 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["erc20-select"],
     files: ["example/erc20-select-demo.tsx"],
-  },  
+  },
   {
     name: "erc20-symbol-demo",
     type: "components:example",
     registryDependencies: ["erc20-symbol"],
     files: ["example/erc20-symbol-demo.tsx"],
-  }
+  },
 ]
 
 export const registry: Registry = [...buidl, ...example]

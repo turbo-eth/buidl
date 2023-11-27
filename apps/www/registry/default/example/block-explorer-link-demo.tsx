@@ -11,7 +11,13 @@ export default function BlockExploreLinkDemo() {
         <WalletConnect />
       </IsWalletDisconnected>
       <IsWalletConnected>
+        <h3 className="text-lg font-bold">Address Link</h3>
         <BlockExplorerLink address={ADDRESS_EXAMPLE} />
+        <h3 className="text-lg font-bold">Transaction Link</h3>
+        <BlockExplorerLink
+          type="tx"
+          address="0x827069d50d3a5ec0d19327f4b1bb1ecfbe939ef26bc3b6cc2dae5a1574f1e6f8"
+        />
       </IsWalletConnected>
     </div>
   )

@@ -1,8 +1,7 @@
-import { AccountEnsName } from "@/registry/default/buidl/account-ens-name";
-
-import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected";
-import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected";
-import { WalletConnect } from "@/registry/default/buidl/wallet-connect";
+import { AccountEnsName } from "@/registry/default/buidl/account-ens-name"
+import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
+import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
+import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
 
 export default function AccountEnsNameDemo() {
   return (

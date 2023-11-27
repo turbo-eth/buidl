@@ -1,7 +1,7 @@
 // @ts-nocheck
 import fs from "fs"
-import template from "lodash.template"
 import path, { basename } from "path"
+import template from "lodash.template"
 import { rimraf } from "rimraf"
 
 import { colorMapping, colors } from "../registry/colors"
