@@ -1,7 +1,7 @@
-import { AccountBlockie } from "../buidl/account-blockie"
-import { IsWalletConnected } from "../buidl/is-wallet-connected"
-import { IsWalletDisconnected } from "../buidl/is-wallet-disconnected"
-import { WalletConnect } from "../buidl/wallet-connect"
+import { AccountBlockie } from "@/registry/default/buidl/account-blockie"
+import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
+import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
+import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
 
 export default function AccountBlockieDemo() {
   return (

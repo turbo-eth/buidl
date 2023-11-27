@@ -1,7 +1,7 @@
 // @ts-nocheck
 import fs from "fs"
-import path, { basename } from "path"
 import template from "lodash.template"
+import path, { basename } from "path"
 import { rimraf } from "rimraf"
 
 import { colorMapping, colors } from "../registry/colors"
@@ -80,7 +80,7 @@ for (const style of styles) {
   }
 
   for (const item of result.data) {
-    if (item.type !== "components:ui") {
+    if (item.type !== "components:buidl") {
       continue
     }
 
@@ -122,7 +122,7 @@ fs.writeFileSync(
 // ----------------------------------------------------------------------------
 // Build registry/index.json.
 // ----------------------------------------------------------------------------
-const names = result.data.filter((item) => item.type === "components:ui")
+const names = result.data.filter((item) => item.type === "components:buidl")
 const registryJson = JSON.stringify(names, null, 2)
 rimraf.sync(path.join(REGISTRY_PATH, "index.json"))
 fs.writeFileSync(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf8")

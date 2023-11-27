@@ -1,6 +1,6 @@
 import { ADDRESS_EXAMPLE } from "@/config/constants"
 
-import { EnsAvatar } from "../buidl/ens-avatar"
+import { EnsAvatar } from "@/registry/default/buidl/ens-avatar"
 
 export default function BlockieDemo() {
   return (

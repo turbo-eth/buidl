@@ -1,0 +1,13 @@
+{
+  "name": "block-explorer-link",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "block-explorer-link.tsx",
+      "content": "import { HTMLAttributes } from \"react\"\nimport { Address, useNetwork } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\ninterface BlockExplorerLinkProps extends HTMLAttributes<HTMLSpanElement> {\n  address: Address | undefined\n  showExplorerName?: boolean\n  type?: \"address\" | \"tx\"\n}\n\nexport const BlockExplorerLink = ({\n  address,\n  children,\n  className,\n  showExplorerName,\n  type = \"address\",\n  ...props\n}: BlockExplorerLinkProps) => {\n  const { chain } = useNetwork()\n  const blockExplorer = chain?.blockExplorers?.default\n\n  if (!address) return null\n\n  return (\n    <span\n      className={cn(\"overflow-x-auto font-medium underline\", className)}\n      {...props}\n    >\n      {blockExplorer && (\n        <a\n          href={`${blockExplorer.url}/${type}/${address}`}\n          rel=\"noreferrer\"\n          target=\"_blank\"\n        >\n          {showExplorerName ? blockExplorer.name : children ?? address}\n        </a>\n      )}\n    </span>\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

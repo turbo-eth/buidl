@@ -1,11 +1,53 @@
 import { Registry } from "@/registry/schema"
 
-const ui: Registry = [
+const buidl: Registry = [
+  {
+    name: "account-address",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/account-address.tsx"],
+  },
+  {
+    name: "account-balance",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/account-balance.tsx"],
+  },
+  {
+    name: "account-blockie",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/account-blockie.tsx"],
+  },
+  {
+    name: "account-ens-avatar",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/account-ens-avatar.tsx"],
+  },
+  {
+    name: "account-ens-name",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/account-ens-name.tsx"],
+  },
+  {
+    name: "account-nonce",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/account-nonce.tsx"],
+  },
   {
     name: "address",
     type: "components:buidl",
     dependencies: ["wagmi"],
     files: ["buidl/address.tsx"],
+  },
+  {
+    name: "block-explorer-link",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/block-explorer-link.tsx"],
   },
   {
     name: "blockie",
@@ -26,22 +68,46 @@ const ui: Registry = [
     files: ["buidl/ens-name.tsx"],
   },
   {
-    name: "wallet-connect",
+    name: "image-ipfs",
     type: "components:buidl",
     dependencies: ["wagmi"],
-    files: ["buidl/wallet-connect.tsx"],
+    files: ["buidl/image-ipfs.tsx"],
   },
   {
-    name: "wallet-manage",
+    name: "is-wallet-connected",
     type: "components:buidl",
     dependencies: ["wagmi"],
-    files: ["buidl/wallet-manage.tsx"],
+    files: ["buidl/is-wallet-connected.tsx"],
+  },
+  {
+    name: "is-wallet-disconnected",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/is-wallet-disconnected.tsx"],
   },
   {
     name: "network-manage",
     type: "components:buidl",
     dependencies: ["wagmi"],
     files: ["buidl/network-manage.tsx"],
+  },
+  {
+    name: "wallet-connect",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/wallet-connect.tsx"],
+  },
+  {
+    name: "wallet-disconnect",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/wallet-disconnect.tsx"],
+  },
+  {
+    name: "wallet-manage",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/wallet-manage.tsx"],
   },
   {
     name: "erc20-balance",
@@ -56,21 +122,21 @@ const ui: Registry = [
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-image.tsx"],
-  },
+  },  
   {
     name: "erc20-name",
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-name.tsx"],
-  },
+  },  
   {
-    name: "erc20-symbol",
+    name: "erc20-select-and-amount",
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
-    files: ["buidl/erc20/erc20-symbol.tsx"],
-  },
+    files: ["buidl/erc20/erc20-select-and-amount.tsx"],
+  },  
   {
     name: "erc20-select",
     type: "components:buidl",
@@ -79,26 +145,62 @@ const ui: Registry = [
     files: ["buidl/erc20/erc20-select.tsx"],
   },
   {
-    name: "erc20-select-and-amount",
+    name: "erc20-symbol",
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
-    files: ["buidl/erc20/erc20-select-and-amount.tsx"],
-  },
-  // {
-  //   name: "accordion",
-  //   type: "components:ui",
-  //   dependencies: ["wagmi"],
-  //   files: ["ui/accordion.tsx"],
-  // },
+    files: ["buidl/erc20/erc20-symbol.tsx"],
+  }
 ]
 
 const example: Registry = [
+  {
+    name: "account-address-demo",
+    type: "components:example",
+    registryDependencies: ["account-address"],
+    files: ["example/account-address-demo.tsx"],
+  },
+  {
+    name: "account-balance-demo",
+    type: "components:example",
+    registryDependencies: ["account-address"],
+    files: ["example/account-balance-demo.tsx"],
+  },
+  {
+    name: "account-blockie-demo",
+    type: "components:example",
+    registryDependencies: ["account-address"],
+    files: ["example/account-blockie-demo.tsx"],
+  },
+  {
+    name: "account-ens-avatar-demo",
+    type: "components:example",
+    registryDependencies: ["account-ens-avatar"],
+    files: ["example/account-ens-avatar-demo.tsx"],
+  },
+  {
+    name: "account-ens-name-demo",
+    type: "components:example",
+    registryDependencies: ["account-ens-name"],
+    files: ["example/account-ens-name-demo.tsx"],
+  },
+  {
+    name: "account-nonce-demo",
+    type: "components:example",
+    registryDependencies: ["account-ens-name"],
+    files: ["example/account-nonce-demo.tsx"],
+  },
   {
     name: "address-demo",
     type: "components:example",
     registryDependencies: ["address"],
     files: ["example/address-demo.tsx"],
+  },
+  {
+    name: "block-explorer-link-demo",
+    type: "components:example",
+    registryDependencies: ["address"],
+    files: ["example/block-explorer-link-demo.tsx"],
   },
   {
     name: "blockie-demo",
@@ -119,28 +221,28 @@ const example: Registry = [
     files: ["example/ens-name-demo.tsx"],
   },
   {
-    name: "account-address-demo",
+    name: "image-ipfs-demo",
     type: "components:example",
-    registryDependencies: ["account-address"],
-    files: ["example/account-address-demo.tsx"],
+    registryDependencies: ["ens-name"],
+    files: ["example/image-ipfs-demo.tsx"],
   },
   {
-    name: "account-blockie-demo",
+    name: "is-wallet-connected-demo",
     type: "components:example",
-    registryDependencies: ["account-blockie"],
-    files: ["example/account-blockie-demo.tsx"],
+    dependencies: ["wagmi"],
+    files: ["example/is-wallet-connected-demo.tsx"],
   },
   {
-    name: "account-ens-avatar-demo",
+    name: "is-wallet-disconnected-demo",
     type: "components:example",
-    registryDependencies: ["account-ens-avatar"],
-    files: ["example/account-ens-avatar-demo.tsx"],
+    dependencies: ["wagmi"],
+    files: ["example/is-wallet-disconnected-demo.tsx"],
   },
   {
-    name: "account-ens-name-demo",
+    name: "network-manage-demo",
     type: "components:example",
-    registryDependencies: ["account-ens-name"],
-    files: ["example/account-ens-name-demo.tsx"],
+    registryDependencies: ["network-manage"],
+    files: ["example/network-manage-demo.tsx"],
   },
   {
     name: "wallet-connect-demo",
@@ -149,16 +251,16 @@ const example: Registry = [
     files: ["example/wallet-connect-demo.tsx"],
   },
   {
+    name: "wallet-disconnect-demo",
+    type: "components:example",
+    registryDependencies: ["wallet-connect"],
+    files: ["example/wallet-disconnect-demo.tsx"],
+  },
+  {
     name: "wallet-manage-demo",
     type: "components:example",
     registryDependencies: ["wallet-manage"],
     files: ["example/wallet-manage-demo.tsx"],
-  },
-  {
-    name: "network-manage-demo",
-    type: "components:example",
-    registryDependencies: ["network-manage"],
-    files: ["example/network-manage-demo.tsx"],
   },
   {
     name: "erc20-balance-demo",
@@ -178,30 +280,24 @@ const example: Registry = [
     registryDependencies: ["erc20-name"],
     files: ["example/erc20-name-demo.tsx"],
   },
-  {
-    name: "erc20-symbol-demo",
+    {
+    name: "erc20-select-and-amount-demo",
     type: "components:example",
-    registryDependencies: ["erc20-symbol"],
-    files: ["example/erc20-symbol-demo.tsx"],
+    dependencies: ["wagmi"],
+    files: ["example/erc20-select-and-amount-demo.tsx"],
   },
   {
     name: "erc20-select-demo",
     type: "components:example",
     registryDependencies: ["erc20-select"],
     files: ["example/erc20-select-demo.tsx"],
-  },
+  },  
   {
-    name: "erc20-select-and-amount-demo",
+    name: "erc20-symbol-demo",
     type: "components:example",
-    registryDependencies: ["erc20-select-and-amount"],
-    files: ["example/erc20-select-and-amount-demo.tsx"],
-  },
-  // {
-  //   name: "accordion-demo",
-  //   type: "components:example",
-  //   registryDependencies: ["accordion"],
-  //   files: ["example/accordion-demo.tsx"],
-  // },
+    registryDependencies: ["erc20-symbol"],
+    files: ["example/erc20-symbol-demo.tsx"],
+  }
 ]
 
-export const registry: Registry = [...ui, ...example]
+export const registry: Registry = [...buidl, ...example]

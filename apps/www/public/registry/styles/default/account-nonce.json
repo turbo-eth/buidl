@@ -1,0 +1,13 @@
+{
+  "name": "account-nonce",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "account-nonce.tsx",
+      "content": "import { HTMLAttributes } from \"react\"\nimport { useAccount, usePublicClient, useQuery } from \"wagmi\"\n\ntype AccountNonceProps = Omit<HTMLAttributes<HTMLSpanElement>, \"children\">\n\nexport const AccountNonce = ({ className, ...props }: AccountNonceProps) => {\n  const publicClient = usePublicClient()\n  const { address } = useAccount()\n\n  const { data: nonce } = useQuery([\"wallet-nonce\", address, publicClient], {\n    queryFn: async () => {\n      if (!publicClient || !address) return\n      return await publicClient.getTransactionCount({\n        address,\n      })\n    },\n    enabled: !!address && !!publicClient,\n  })\n\n  return (\n    <span className={className} {...props}>\n      {nonce}\n    </span>\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

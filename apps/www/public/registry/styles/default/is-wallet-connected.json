@@ -1,0 +1,13 @@
+{
+  "name": "is-wallet-connected",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "is-wallet-connected.tsx",
+      "content": "\"use client\"\n\nimport { type ReactNode } from \"react\"\nimport { useAccount } from \"wagmi\"\n\ninterface IsWalletConnectedProps {\n  children: ReactNode\n}\n\nexport const IsWalletConnected = ({ children }: IsWalletConnectedProps) => {\n  const { address } = useAccount()\n\n  if (address) return <>{children}</>\n\n  return null\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "account-address",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "account-address.tsx",
+      "content": "\"use client\"\n\nimport { HTMLAttributes } from \"react\"\nimport { useAccount } from \"wagmi\"\n\nimport { Address, AddressProps } from \"./address\"\n\nexport interface AccountAddress\n  extends Omit<HTMLAttributes<HTMLElement>, \"children\">,\n    Omit<AddressProps, \"address\"> {\n  unavailable?: any\n}\n\nexport const AccountAddress = ({\n  className,\n  truncate,\n  truncateAmount,\n  linkEnabled,\n  unavailable,\n  ...props\n}: AccountAddress) => {\n  const { address } = useAccount()\n  const Comp = unavailable || null\n  if (!address) return Comp\n\n  return (\n    <Address\n      address={address}\n      className={className}\n      linkEnabled={linkEnabled}\n      truncate={truncate}\n      truncateAmount={truncateAmount}\n      {...props}\n    />\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

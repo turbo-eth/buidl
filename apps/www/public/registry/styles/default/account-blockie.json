@@ -1,0 +1,13 @@
+{
+  "name": "account-blockie",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "account-blockie.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useAccount } from \"wagmi\"\n\nimport { Blockie, BlockieProps } from \"./blockie\"\n\nexport interface AccountBlockie\n  extends Omit<React.HTMLAttributes<HTMLElement>, \"children\">,\n    Omit<BlockieProps, \"address\"> {\n  unavailable?: any\n}\n\nexport const AccountBlockie = ({\n  className,\n  unavailable,\n  variant,\n  size,\n  ...props\n}: AccountBlockie) => {\n  const { address } = useAccount()\n  const Comp = unavailable || null\n  if (!address) return Comp\n\n  return (\n    <Blockie\n      address={address}\n      variant={variant}\n      size={size}\n      className={className}\n    />\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

@@ -22,7 +22,6 @@ export const ImageIpfs = ({ className, src, alt }: ImageIpfs) => {
   if (!imgSrc) return null
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img src={imgSrc} alt={alt} className={classes} />
   )
 }

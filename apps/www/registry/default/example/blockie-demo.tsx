@@ -1,7 +1,6 @@
 import { ADDRESS_EXAMPLE } from "@/config/constants"
 
-import { Blockie } from "../buidl/blockie"
-import { Card } from "../ui/card"
+import { Blockie } from "@/registry/default/buidl/blockie"
 
 export default function BlockieDemo() {
   return (

@@ -1,6 +1,6 @@
 import { ADDRESS_EXAMPLE } from "@/config/constants"
 
-import { Address } from "../buidl/address"
+import { Address } from "@/registry/default/buidl/address"
 
 export default function AddressDemo() {
   return (
