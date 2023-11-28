@@ -7,10 +7,7 @@
     "zod",
     "react-hook-form"
   ],
-  "registryDependencies": [
-    "button",
-    "label"
-  ],
+  "registryDependencies": ["button", "label"],
   "files": [
     {
       "name": "form.tsx",

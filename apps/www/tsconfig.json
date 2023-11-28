@@ -18,12 +18,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/components/ui": ["./registry/default/ui"],
       "contentlayer/generated": ["./.contentlayer/generated"],
       "@tanstack/query-core": [
         "./node_modules/@tanstack/query-core",
         "../../node_modules/.pnpm/@tanstack+query-core@4.36.1/node_modules/@tanstack/query-core"
-      ],
+      ]
     },
     "plugins": [
       {

@@ -1,8 +1,6 @@
 {
   "name": "is-wallet-disconnected-demo",
-  "dependencies": [
-    "wagmi"
-  ],
+  "dependencies": ["wagmi"],
   "files": [
     {
       "name": "is-wallet-disconnected-demo.tsx",

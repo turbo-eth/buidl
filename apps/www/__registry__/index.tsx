@@ -61,6 +61,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/buidl/block-explorer-link")),
       files: ["registry/default/buidl/block-explorer-link.tsx"],
     },
+    "transaction-status": {
+      name: "transaction-status",
+      type: "components:buidl",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/buidl/transaction-status")),
+      files: ["registry/default/buidl/transaction-status.tsx"],
+    },
     "blockie": {
       name: "blockie",
       type: "components:buidl",
@@ -183,14 +190,14 @@ export const Index: Record<string, any> = {
     "account-balance-demo": {
       name: "account-balance-demo",
       type: "components:example",
-      registryDependencies: ["account-address"],
+      registryDependencies: ["account-balance"],
       component: React.lazy(() => import("@/registry/default/example/account-balance-demo")),
       files: ["registry/default/example/account-balance-demo.tsx"],
     },
     "account-blockie-demo": {
       name: "account-blockie-demo",
       type: "components:example",
-      registryDependencies: ["account-address"],
+      registryDependencies: ["account-blockie"],
       component: React.lazy(() => import("@/registry/default/example/account-blockie-demo")),
       files: ["registry/default/example/account-blockie-demo.tsx"],
     },
@@ -211,7 +218,7 @@ export const Index: Record<string, any> = {
     "account-nonce-demo": {
       name: "account-nonce-demo",
       type: "components:example",
-      registryDependencies: ["account-ens-name"],
+      registryDependencies: ["account-nonce"],
       component: React.lazy(() => import("@/registry/default/example/account-nonce-demo")),
       files: ["registry/default/example/account-nonce-demo.tsx"],
     },
@@ -225,9 +232,16 @@ export const Index: Record<string, any> = {
     "block-explorer-link-demo": {
       name: "block-explorer-link-demo",
       type: "components:example",
-      registryDependencies: ["address"],
+      registryDependencies: ["block-explorer-link"],
       component: React.lazy(() => import("@/registry/default/example/block-explorer-link-demo")),
       files: ["registry/default/example/block-explorer-link-demo.tsx"],
+    },
+    "transaction-status-demo": {
+      name: "transaction-status-demo",
+      type: "components:example",
+      registryDependencies: ["transaction-status"],
+      component: React.lazy(() => import("@/registry/default/example/transaction-status-demo")),
+      files: ["registry/default/example/transaction-status-demo.tsx"],
     },
     "blockie-demo": {
       name: "blockie-demo",
@@ -253,21 +267,21 @@ export const Index: Record<string, any> = {
     "image-ipfs-demo": {
       name: "image-ipfs-demo",
       type: "components:example",
-      registryDependencies: ["ens-name"],
+      registryDependencies: ["image-ipfs"],
       component: React.lazy(() => import("@/registry/default/example/image-ipfs-demo")),
       files: ["registry/default/example/image-ipfs-demo.tsx"],
     },
     "is-wallet-connected-demo": {
       name: "is-wallet-connected-demo",
       type: "components:example",
-      registryDependencies: undefined,
+      registryDependencies: ["is-wallet-connected"],
       component: React.lazy(() => import("@/registry/default/example/is-wallet-connected-demo")),
       files: ["registry/default/example/is-wallet-connected-demo.tsx"],
     },
     "is-wallet-disconnected-demo": {
       name: "is-wallet-disconnected-demo",
       type: "components:example",
-      registryDependencies: undefined,
+      registryDependencies: ["is-wallet-disconnected"],
       component: React.lazy(() => import("@/registry/default/example/is-wallet-disconnected-demo")),
       files: ["registry/default/example/is-wallet-disconnected-demo.tsx"],
     },
@@ -288,7 +302,7 @@ export const Index: Record<string, any> = {
     "wallet-disconnect-demo": {
       name: "wallet-disconnect-demo",
       type: "components:example",
-      registryDependencies: ["wallet-connect"],
+      registryDependencies: ["wallet-disconnect"],
       component: React.lazy(() => import("@/registry/default/example/wallet-disconnect-demo")),
       files: ["registry/default/example/wallet-disconnect-demo.tsx"],
     },
@@ -323,7 +337,7 @@ export const Index: Record<string, any> = {
     "erc20-select-and-amount-demo": {
       name: "erc20-select-and-amount-demo",
       type: "components:example",
-      registryDependencies: undefined,
+      registryDependencies: ["erc20-select-and-amount"],
       component: React.lazy(() => import("@/registry/default/example/erc20-select-and-amount-demo")),
       files: ["registry/default/example/erc20-select-and-amount-demo.tsx"],
     },

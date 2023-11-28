@@ -1,8 +1,6 @@
 {
   "name": "erc20-select-and-amount-demo",
-  "dependencies": [
-    "wagmi"
-  ],
+  "dependencies": ["wagmi"],
   "files": [
     {
       "name": "erc20-select-and-amount-demo.tsx",

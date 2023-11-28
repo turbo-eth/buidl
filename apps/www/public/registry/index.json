@@ -80,6 +80,16 @@
     "type": "components:buidl"
   },
   {
+    "name": "transaction-status",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/transaction-status.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
     "name": "blockie",
     "dependencies": [
       "wagmi"

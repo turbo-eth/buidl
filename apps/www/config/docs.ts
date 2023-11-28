@@ -96,6 +96,11 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "Transaction Status",
+          href: "/docs/components/transaction-status",
+          items: [],
+        },
+        {
           title: "Blockie",
           href: "/docs/components/blockie",
           items: [],

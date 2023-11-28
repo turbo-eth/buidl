@@ -6,7 +6,7 @@
   "files": [
     {
       "name": "is-wallet-connected.tsx",
-      "content": "\"use client\"\n\nimport { type ReactNode } from \"react\"\nimport { useAccount } from \"wagmi\"\n\ninterface IsWalletConnectedProps {\n  children: ReactNode\n}\n\nexport const IsWalletConnected = ({ children }: IsWalletConnectedProps) => {\n  const { address } = useAccount()\n\n  if (address) return <>{children}</>\n\n  return null\n}\n"
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useAccount } from \"wagmi\"\n\nconst IsWalletConnected = ({ children }: { children: React.ReactNode }) => {\n  const { isConnected } = useAccount()\n\n  if (isConnected) return <>{children}</>\n\n  return null\n}\n\nexport { IsWalletConnected }\n"
     }
   ],
   "type": "components:buidl"
