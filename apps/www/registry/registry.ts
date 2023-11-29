@@ -8,12 +8,6 @@ const buidl: Registry = [
     files: ["buidl/account-address.tsx"],
   },
   {
-    name: "account-balance",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/account-balance.tsx"],
-  },
-  {
     name: "account-blockie",
     type: "components:buidl",
     dependencies: ["wagmi"],
@@ -44,16 +38,46 @@ const buidl: Registry = [
     files: ["buidl/address.tsx"],
   },
   {
+    name: "balance",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/balance.tsx"],
+  },
+  {
     name: "block-explorer-link",
     type: "components:buidl",
     dependencies: ["wagmi"],
     files: ["buidl/block-explorer-link.tsx"],
   },
   {
+    name: "block-number",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/block-number.tsx"],
+  },
+  {
+    name: "transaction",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/transaction.tsx"],
+  },
+  {
     name: "transaction-status",
     type: "components:buidl",
     dependencies: ["wagmi"],
     files: ["buidl/transaction-status.tsx"],
+  },
+  {
+    name: "sign-message-button",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/sign-message-button.tsx"],
+  },
+  {
+    name: "fee-data",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/fee-data.tsx"],
   },
   {
     name: "blockie",
@@ -167,12 +191,6 @@ const example: Registry = [
     files: ["example/account-address-demo.tsx"],
   },
   {
-    name: "account-balance-demo",
-    type: "components:example",
-    registryDependencies: ["account-balance"],
-    files: ["example/account-balance-demo.tsx"],
-  },
-  {
     name: "account-blockie-demo",
     type: "components:example",
     registryDependencies: ["account-blockie"],
@@ -203,16 +221,46 @@ const example: Registry = [
     files: ["example/address-demo.tsx"],
   },
   {
+    name: "balance-demo",
+    type: "components:example",
+    registryDependencies: ["balance"],
+    files: ["example/balance-demo.tsx"],
+  },
+  {
     name: "block-explorer-link-demo",
     type: "components:example",
     registryDependencies: ["block-explorer-link"],
     files: ["example/block-explorer-link-demo.tsx"],
   },
   {
+    name: "block-number-demo",
+    type: "components:example",
+    registryDependencies: ["block-number"],
+    files: ["example/block-number-demo.tsx"],
+  },
+  {
+    name: "transaction-demo",
+    type: "components:example",
+    registryDependencies: ["transaction"],
+    files: ["example/transaction-demo.tsx"],
+  },
+  {
     name: "transaction-status-demo",
     type: "components:example",
     registryDependencies: ["transaction-status"],
     files: ["example/transaction-status-demo.tsx"],
+  },
+  {
+    name: "sign-message-button-demo",
+    type: "components:example",
+    registryDependencies: ["sign-message-button"],
+    files: ["example/sign-message-button-demo.tsx"],
+  },
+  {
+    name: "fee-data-demo",
+    type: "components:example",
+    registryDependencies: ["fee-data"],
+    files: ["example/fee-data-demo.tsx"],
   },
   {
     name: "blockie-demo",

@@ -91,13 +91,38 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "Balance",
+          href: "/docs/components/balance",
+          items: [],
+        },
+        {
           title: "Block Explorer Link",
           href: "/docs/components/block-explorer-link",
           items: [],
         },
         {
+          title: "Block Number",
+          href: "/docs/components/block-number",
+          items: [],
+        },
+        {
+          title: "Transaction",
+          href: "/docs/components/transaction",
+          items: [],
+        },
+        {
           title: "Transaction Status",
           href: "/docs/components/transaction-status",
+          items: [],
+        },
+        {
+          title: "Fee Data",
+          href: "/docs/components/fee-data",
+          items: [],
+        },
+        {
+          title: "Sign Message Button",
+          href: "/docs/components/sign-message-button",
           items: [],
         },
         {
@@ -128,11 +153,6 @@ export const docsConfig: DocsConfig = {
         {
           title: "Account Address",
           href: "/docs/components/account-address",
-          items: [],
-        },
-        {
-          title: "Account Balance",
-          href: "/docs/components/account-balance",
           items: [],
         },
         {

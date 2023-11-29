@@ -10,16 +10,6 @@
     "type": "components:buidl"
   },
   {
-    "name": "account-balance",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/account-balance.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
     "name": "account-blockie",
     "dependencies": [
       "wagmi"
@@ -70,6 +60,16 @@
     "type": "components:buidl"
   },
   {
+    "name": "balance",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/balance.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
     "name": "block-explorer-link",
     "dependencies": [
       "wagmi"
@@ -80,12 +80,52 @@
     "type": "components:buidl"
   },
   {
+    "name": "block-number",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/block-number.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "transaction",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/transaction.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
     "name": "transaction-status",
     "dependencies": [
       "wagmi"
     ],
     "files": [
       "buidl/transaction-status.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "sign-message-button",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/sign-message-button.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "fee-data",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/fee-data.tsx"
     ],
     "type": "components:buidl"
   },

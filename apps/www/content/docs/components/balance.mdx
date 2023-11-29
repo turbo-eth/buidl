@@ -1,13 +1,13 @@
 ---
-title: Account Balance
-description: Display the balance of the connected account.
+title: Balance
+description: Displays the balance of an address.
 component: true
 wagmi:
-  link: https://wagmi.sh/react/hooks/useAccount
+  link: https://wagmi.sh/react/hooks/useBalance
 ---
 
 <ComponentPreview
-  name="account-balance-demo"
+  name="balance-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -36,9 +36,13 @@ wagmi:
 
 <Steps>
 
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Skeleton](https://ui.shadcn.com/docs/components/skeleton)
+
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="account-balance" />
+<ComponentSource name="balance" />
 
 </Steps>
 
@@ -49,9 +53,15 @@ wagmi:
 ## Usage
 
 ```tsx
-import { AccountBalance } from "@/components/buidl/account-balance"
+import {
+  GasPrice,
+  MaxFeePerGas,
+  MaxPriorityFeePerGas,
+} from "@/registry/default/buidl/balance"
 ```
 
 ```tsx
-<AccountBalance />
+<GasPrice />
+<MaxFeePerGas />
+<MaxPriorityFeePerGas />
 ```
