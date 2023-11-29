@@ -9,7 +9,7 @@ import {
 } from "@/registry/default/buidl/transaction"
 
 const hash =
-  "0x31728b7fe0f374ad886b9d46494de33e87da24ced34f6c28b7225e18bb4b8b1b"
+  "0xd68e5ad4a286fd7665cc43cb1d69ad485d761f8c1810fef54284af265edefe57"
 export default function TransactionStatusDemo() {
   return (
     <div className="flex flex-col gap-y-3">
