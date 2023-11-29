@@ -1,9 +1,12 @@
+"useClient"
+
 import * as React from "react"
-import Image from "next/image"
 import { VariantProps, cva } from "class-variance-authority"
-import { useEnsAvatar, useEnsName } from "wagmi"
+import { useAccount, useEnsAvatar, useEnsName } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { Blockie } from "@/registry/default/buidl/blockie"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const ensAvatarVariants = cva("inline-block", {
   variants: {
@@ -25,41 +28,82 @@ const ensAvatarVariants = cva("inline-block", {
   },
 })
 
-type EnsAvatar = React.HTMLAttributes<HTMLElement> &
-  VariantProps<typeof ensAvatarVariants> & {
-    address: `0x${string}`
-  }
-
-export const EnsAvatar = ({ className, address, variant, size }: EnsAvatar) => {
-  const {
-    data: dataEnsName,
-    isError: isErrorEnsName,
-    isLoading: isLoadingEnsName,
-    isSuccess: isSuccessEnsName,
-  } = useEnsName({
-    address: address,
-  })
-
-  const {
-    data: dataEnsAvatar,
-    isError: isErrorEnsAvatar,
-    isLoading: isLoadingEnsAvatar,
-    isSuccess: isSuccessEnsAvatar,
-  } = useEnsAvatar({
-    name: dataEnsName,
-  })
-
-  if (!isSuccessEnsName || !isSuccessEnsAvatar || !dataEnsAvatar) {
-    return <span className="">😀</span>
-  }
-
-  return (
-    <Image
-      width={32}
-      height={32}
-      alt={`${address} EnsAvatar`}
-      className={cn(ensAvatarVariants({ variant, size, className }))}
-      src={dataEnsAvatar}
-    />
-  )
+interface EnsAvatarProps
+  extends React.HTMLAttributes<HTMLImageElement>,
+    VariantProps<typeof ensAvatarVariants> {
+  address?: `0x${string}`
+  name?: string
+  displayLoading?: boolean
 }
+
+const EnsAvatar = React.forwardRef<HTMLImageElement, EnsAvatarProps>(
+  (
+    {
+      className,
+      address,
+      name,
+      variant,
+      size,
+      displayLoading = true,
+      ...props
+    },
+    ref
+  ) => {
+    const { address: connectedAddress } = useAccount()
+    const selectedAddress = address ?? connectedAddress
+
+    const { data: dataEnsName, isLoading: isLoadingEnsName } = useEnsName({
+      chainId: 1,
+      address: selectedAddress,
+      enabled: !name && !!selectedAddress,
+    })
+
+    const ensName = name ?? dataEnsName
+
+    const { data: dataEnsAvatar, isLoading: isLoadingEnsAvatar } = useEnsAvatar(
+      {
+        chainId: 1,
+        name: ensName,
+        enabled: !!ensName,
+      }
+    )
+
+    if (
+      displayLoading &&
+      (isLoadingEnsName || isLoadingEnsAvatar || !selectedAddress)
+    ) {
+      return (
+        <Skeleton
+          className={cn(
+            "h-10 w-10",
+            ensAvatarVariants({ variant, size }),
+            className
+          )}
+        />
+      )
+    }
+
+    if (dataEnsAvatar) {
+      return (
+        <img
+          ref={ref}
+          alt={`${selectedAddress} EnsAvatar`}
+          className={cn(ensAvatarVariants({ variant, size }), className)}
+          src={dataEnsAvatar}
+          {...props}
+        />
+      )
+    }
+
+    return (
+      <Blockie
+        address={selectedAddress}
+        className={cn("w-10", ensAvatarVariants({ variant, size }), className)}
+      />
+    )
+  }
+)
+
+EnsAvatar.displayName = "EnsAvatar"
+
+export { EnsAvatar }

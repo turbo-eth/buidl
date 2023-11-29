@@ -2,36 +2,6 @@ import { Registry } from "@/registry/schema"
 
 const buidl: Registry = [
   {
-    name: "account-address",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/account-address.tsx"],
-  },
-  {
-    name: "account-blockie",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/account-blockie.tsx"],
-  },
-  {
-    name: "account-ens-avatar",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/account-ens-avatar.tsx"],
-  },
-  {
-    name: "account-ens-name",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/account-ens-name.tsx"],
-  },
-  {
-    name: "account-nonce",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/account-nonce.tsx"],
-  },
-  {
     name: "address",
     type: "components:buidl",
     dependencies: ["wagmi"],
@@ -54,6 +24,12 @@ const buidl: Registry = [
     type: "components:buidl",
     dependencies: ["wagmi"],
     files: ["buidl/block-number.tsx"],
+  },
+  {
+    name: "nonce",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/nonce.tsx"],
   },
   {
     name: "transaction",
@@ -96,6 +72,12 @@ const buidl: Registry = [
     type: "components:buidl",
     dependencies: ["wagmi"],
     files: ["buidl/ens-name.tsx"],
+  },
+  {
+    name: "ens-address",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/ens-address.tsx"],
   },
   {
     name: "image-ipfs",
@@ -185,34 +167,10 @@ const buidl: Registry = [
 
 const example: Registry = [
   {
-    name: "account-address-demo",
+    name: "nonce-demo",
     type: "components:example",
-    registryDependencies: ["account-address"],
-    files: ["example/account-address-demo.tsx"],
-  },
-  {
-    name: "account-blockie-demo",
-    type: "components:example",
-    registryDependencies: ["account-blockie"],
-    files: ["example/account-blockie-demo.tsx"],
-  },
-  {
-    name: "account-ens-avatar-demo",
-    type: "components:example",
-    registryDependencies: ["account-ens-avatar"],
-    files: ["example/account-ens-avatar-demo.tsx"],
-  },
-  {
-    name: "account-ens-name-demo",
-    type: "components:example",
-    registryDependencies: ["account-ens-name"],
-    files: ["example/account-ens-name-demo.tsx"],
-  },
-  {
-    name: "account-nonce-demo",
-    type: "components:example",
-    registryDependencies: ["account-nonce"],
-    files: ["example/account-nonce-demo.tsx"],
+    registryDependencies: ["nonce"],
+    files: ["example/nonce-demo.tsx"],
   },
   {
     name: "address-demo",
@@ -279,6 +237,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["ens-name"],
     files: ["example/ens-name-demo.tsx"],
+  },
+  {
+    name: "ens-address-demo",
+    type: "components:example",
+    registryDependencies: ["ens-address"],
+    files: ["example/ens-address-demo.tsx"],
   },
   {
     name: "image-ipfs-demo",

@@ -1,55 +1,5 @@
 [
   {
-    "name": "account-address",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/account-address.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
-    "name": "account-blockie",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/account-blockie.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
-    "name": "account-ens-avatar",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/account-ens-avatar.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
-    "name": "account-ens-name",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/account-ens-name.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
-    "name": "account-nonce",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/account-nonce.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
     "name": "address",
     "dependencies": [
       "wagmi"
@@ -86,6 +36,16 @@
     ],
     "files": [
       "buidl/block-number.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "nonce",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/nonce.tsx"
     ],
     "type": "components:buidl"
   },
@@ -156,6 +116,16 @@
     ],
     "files": [
       "buidl/ens-name.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "ens-address",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/ens-address.tsx"
     ],
     "type": "components:buidl"
   },

@@ -1,37 +1,46 @@
+"use client"
+
 import * as React from "react"
-import { useEnsName } from "wagmi"
+import { useAccount, useEnsName } from "wagmi"
 
-import { ADDRESS_ZERO } from "@/config/constants"
 import { cn } from "@/lib/utils"
+import { Address } from "@/registry/default/buidl/address"
 
-import { Address } from "./address"
+import { Skeleton } from "../ui/skeleton"
 
-type EnsName = React.HTMLAttributes<HTMLElement> & {
-  address: `0x${string}`
-  classNameEnsName?: string
-  classNameAddress?: string
+interface EnsNameProps extends React.HTMLAttributes<HTMLSpanElement> {
+  address?: `0x${string}`
 }
 
-export const EnsName = ({
-  classNameEnsName,
-  classNameAddress,
-  address,
-}: EnsName) => {
-  const classesEnsName = cn(classNameEnsName)
-  const classesAddress = cn(classNameAddress)
-  const {
-    data: dataEnsName,
-    isError: isErrorEnsName,
-    isLoading: isLoadingEnsName,
-    isSuccess: isSuccessEnsName,
-  } = useEnsName({
-    address: address as `0x${string}`,
-  })
+const EnsName = React.forwardRef<HTMLSpanElement, EnsNameProps>(
+  ({ address, className, ...props }, ref) => {
+    const { address: connectedAddress } = useAccount()
+    const selectedAddress = address ?? connectedAddress
 
-  if (!isSuccessEnsName)
+    const { data, isLoading, isSuccess } = useEnsName({
+      chainId: 1,
+      address: selectedAddress,
+      enabled: !!selectedAddress,
+    })
+
+    if (isSuccess && data) {
+      return (
+        <span ref={ref} className={className} {...props}>
+          {data}
+        </span>
+      )
+    }
+
+    if (isLoading) {
+      return <Skeleton className={cn("h-6 w-32", className)} {...props} />
+    }
+
     return (
-      <Address address={address || ADDRESS_ZERO} className={classesAddress} />
+      <Address address={selectedAddress} className={className} {...props} />
     )
+  }
+)
 
-  return <span className={classesEnsName}>{dataEnsName}</span>
-}
+EnsName.displayName = "EnsName"
+
+export { EnsName }

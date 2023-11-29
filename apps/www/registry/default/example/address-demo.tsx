@@ -1,15 +1,28 @@
-import { ADDRESS_EXAMPLE } from "@/config/constants"
 import {
   Address,
   AddressCopy,
   AddressLink,
 } from "@/registry/default/buidl/address"
 
+import { IsWalletConnected } from "../buidl/is-wallet-connected"
+import { IsWalletDisconnected } from "../buidl/is-wallet-disconnected"
+import { WalletConnect } from "../buidl/wallet-connect"
+
+export const ADDRESS_EXAMPLE = "0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"
+
 export default function AddressDemo() {
   return (
     <div className="flex flex-col items-center gap-4 text-center">
       <h3 className="text-lg font-bold">Default</h3>
       <Address address={ADDRESS_EXAMPLE} />
+
+      <h3 className="text-lg font-bold">Connected Address</h3>
+      <IsWalletConnected>
+        <Address />
+      </IsWalletConnected>
+      <IsWalletDisconnected>
+        <WalletConnect />
+      </IsWalletDisconnected>
 
       <h3 className="text-lg font-bold">Link</h3>
       <Address link address={ADDRESS_EXAMPLE} />

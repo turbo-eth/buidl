@@ -106,6 +106,11 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "Nonce",
+          href: "/docs/components/nonce",
+          items: [],
+        },
+        {
           title: "Transaction",
           href: "/docs/components/transaction",
           items: [],
@@ -141,38 +146,13 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "ENS Address",
+          href: "/docs/components/ens-address",
+          items: [],
+        },
+        {
           title: "Image IPFS",
           href: "/docs/components/image-ipfs",
-          items: [],
-        },
-      ],
-    },
-    {
-      title: "Account",
-      items: [
-        {
-          title: "Account Address",
-          href: "/docs/components/account-address",
-          items: [],
-        },
-        {
-          title: "Account Blockie",
-          href: "/docs/components/account-blockie",
-          items: [],
-        },
-        {
-          title: "Account ENS Avatar",
-          href: "/docs/components/account-ens-avatar",
-          items: [],
-        },
-        {
-          title: "Account ENS Name",
-          href: "/docs/components/account-ens-name",
-          items: [],
-        },
-        {
-          title: "Account Nonce",
-          href: "/docs/components/account-nonce",
           items: [],
         },
       ],

@@ -1,4 +1,4 @@
-import { AccountAddress } from "@/registry/default/buidl/account-address"
+import { Address } from "@/registry/default/buidl/address"
 import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
 import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
 import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
@@ -9,7 +9,7 @@ export default function WalletDisconnectDemo() {
     <>
       <IsWalletConnected>
         <div className="flex flex-col gap-y-2">
-          <AccountAddress />
+          <Address />
           <WalletDisconnect />
         </div>
       </IsWalletConnected>

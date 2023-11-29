@@ -4,35 +4,25 @@
 import { env } from "@/env.mjs"
 import { Chain, ChainProviderFn, configureChains } from "wagmi"
 import {
-  goerli as goerliNoIcon,
+  arbitrum,
+  base,
+  gnosis,
   mainnet,
   optimism,
-  optimismGoerli,
-  sepolia as sepoliaNoIcon,
+  polygon,
 } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { infuraProvider } from "wagmi/providers/infura"
 import { publicProvider } from "wagmi/providers/public"
 
-const goerli = {
-  ...goerliNoIcon,
-  iconUrl: "/icons/NetworkEthereumTest.svg",
-}
-const sepolia = {
-  ...sepoliaNoIcon,
-  iconUrl: "/icons/NetworkEthereumTest.svg",
-}
-
-export const ETH_CHAINS_TEST = [goerli, sepolia, optimismGoerli]
-
-export const ETH_CHAINS_PROD = [mainnet, optimism]
-export const ETH_CHAINS_DEV =
-  env.NEXT_PUBLIC_PROD_NETWORKS_DEV === "true"
-    ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST]
-    : [...ETH_CHAINS_TEST]
-
-export const CHAINS: Chain[] =
-  process.env.NODE_ENV === "production" ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
+export const CHAINS: Chain[] = [
+  mainnet,
+  optimism,
+  polygon,
+  gnosis,
+  arbitrum,
+  base,
+]
 
 const PROVIDERS: ChainProviderFn<Chain>[] = []
 

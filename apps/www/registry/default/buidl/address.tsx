@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Copy } from "lucide-react"
-import { useNetwork, type Address as AddressType } from "wagmi"
+import { useAccount, useNetwork, type Address as AddressType } from "wagmi"
 import { mainnet } from "wagmi/chains"
 
 import { cn } from "@/lib/utils"
@@ -10,7 +10,7 @@ import { toast } from "@/registry/default/ui/use-toast"
 
 export interface AddressProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "children"> {
-  address: AddressType
+  address?: AddressType
   truncate?: boolean
   truncateAmount?: number
   link?: boolean
@@ -87,26 +87,37 @@ const Address = React.forwardRef<HTMLElement, AddressProps>(
     { address, className, truncate, truncateAmount = 4, link, copy, ...props },
     ref
   ) => {
+    const { address: connectedAddress } = useAccount()
+
+    const selectedAddress = address ?? connectedAddress
+
     const formattedAddress = React.useMemo(
       () =>
         truncate
-          ? `${address.slice(0, truncateAmount + 2)}...${address.slice(
-              -Number(truncateAmount)
-            )}`
-          : address,
-      [address, truncate, truncateAmount]
+          ? `${selectedAddress?.slice(
+              0,
+              truncateAmount + 2
+            )}...${selectedAddress?.slice(-Number(truncateAmount))}`
+          : selectedAddress,
+      [selectedAddress, truncate, truncateAmount]
     )
+
+    if (!selectedAddress) {
+      return null
+    }
 
     if (link) {
       return (
         <AddressLink
           ref={ref}
-          address={address}
+          address={selectedAddress}
           className={className}
           {...props}
         >
           {copy ? (
-            <AddressCopy address={address}>{formattedAddress}</AddressCopy>
+            <AddressCopy address={selectedAddress}>
+              {formattedAddress}
+            </AddressCopy>
           ) : (
             <>{formattedAddress}</>
           )}
@@ -116,7 +127,7 @@ const Address = React.forwardRef<HTMLElement, AddressProps>(
 
     if (copy) {
       return (
-        <AddressCopy ref={ref} address={address} {...props}>
+        <AddressCopy ref={ref} address={selectedAddress} {...props}>
           {formattedAddress}
         </AddressCopy>
       )

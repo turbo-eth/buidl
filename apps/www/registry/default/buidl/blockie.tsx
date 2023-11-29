@@ -1,9 +1,10 @@
+"use client"
+
 import * as React from "react"
-import Image from "next/image"
 import { VariantProps, cva } from "class-variance-authority"
 import makeBlockie from "ethereum-blockies-base64"
+import { useAccount } from "wagmi"
 
-import { ADDRESS_ZERO } from "@/config/constants"
 import { cn } from "@/lib/utils"
 
 const blockieVariants = cva("inline-block", {
@@ -26,9 +27,9 @@ const blockieVariants = cva("inline-block", {
   },
 })
 
-export type BlockieProps = React.HTMLAttributes<HTMLElement> &
+export type BlockieProps = React.HTMLAttributes<HTMLImageElement> &
   VariantProps<typeof blockieVariants> & {
-    address: `0x${string}`
+    address?: `0x${string}`
   }
 
 export const Blockie = ({
@@ -36,16 +37,19 @@ export const Blockie = ({
   address,
   variant,
   size,
+  ...props
 }: BlockieProps) => {
-  const classes = cn(className)
+  const { address: connectedAddress } = useAccount()
+  const selectedAddress = address ?? connectedAddress
+
+  if (!selectedAddress) return null
 
   return (
-    <Image
-      width={32}
-      height={32}
+    <img
       alt={`${address} blockie`}
       className={cn(blockieVariants({ variant, size, className }))}
-      src={makeBlockie(address || ADDRESS_ZERO)}
+      src={makeBlockie(selectedAddress)}
+      {...props}
     />
   )
 }

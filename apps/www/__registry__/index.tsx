@@ -5,41 +5,6 @@ import * as React from "react"
 
 export const Index: Record<string, any> = {
   "default": {
-    "account-address": {
-      name: "account-address",
-      type: "components:buidl",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/buidl/account-address")),
-      files: ["registry/default/buidl/account-address.tsx"],
-    },
-    "account-blockie": {
-      name: "account-blockie",
-      type: "components:buidl",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/buidl/account-blockie")),
-      files: ["registry/default/buidl/account-blockie.tsx"],
-    },
-    "account-ens-avatar": {
-      name: "account-ens-avatar",
-      type: "components:buidl",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/buidl/account-ens-avatar")),
-      files: ["registry/default/buidl/account-ens-avatar.tsx"],
-    },
-    "account-ens-name": {
-      name: "account-ens-name",
-      type: "components:buidl",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/buidl/account-ens-name")),
-      files: ["registry/default/buidl/account-ens-name.tsx"],
-    },
-    "account-nonce": {
-      name: "account-nonce",
-      type: "components:buidl",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/buidl/account-nonce")),
-      files: ["registry/default/buidl/account-nonce.tsx"],
-    },
     "address": {
       name: "address",
       type: "components:buidl",
@@ -67,6 +32,13 @@ export const Index: Record<string, any> = {
       registryDependencies: undefined,
       component: React.lazy(() => import("@/registry/default/buidl/block-number")),
       files: ["registry/default/buidl/block-number.tsx"],
+    },
+    "nonce": {
+      name: "nonce",
+      type: "components:buidl",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/buidl/nonce")),
+      files: ["registry/default/buidl/nonce.tsx"],
     },
     "transaction": {
       name: "transaction",
@@ -116,6 +88,13 @@ export const Index: Record<string, any> = {
       registryDependencies: undefined,
       component: React.lazy(() => import("@/registry/default/buidl/ens-name")),
       files: ["registry/default/buidl/ens-name.tsx"],
+    },
+    "ens-address": {
+      name: "ens-address",
+      type: "components:buidl",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/buidl/ens-address")),
+      files: ["registry/default/buidl/ens-address.tsx"],
     },
     "image-ipfs": {
       name: "image-ipfs",
@@ -208,40 +187,12 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/buidl/erc20/erc20-symbol")),
       files: ["registry/default/buidl/erc20/erc20-symbol.tsx"],
     },
-    "account-address-demo": {
-      name: "account-address-demo",
+    "nonce-demo": {
+      name: "nonce-demo",
       type: "components:example",
-      registryDependencies: ["account-address"],
-      component: React.lazy(() => import("@/registry/default/example/account-address-demo")),
-      files: ["registry/default/example/account-address-demo.tsx"],
-    },
-    "account-blockie-demo": {
-      name: "account-blockie-demo",
-      type: "components:example",
-      registryDependencies: ["account-blockie"],
-      component: React.lazy(() => import("@/registry/default/example/account-blockie-demo")),
-      files: ["registry/default/example/account-blockie-demo.tsx"],
-    },
-    "account-ens-avatar-demo": {
-      name: "account-ens-avatar-demo",
-      type: "components:example",
-      registryDependencies: ["account-ens-avatar"],
-      component: React.lazy(() => import("@/registry/default/example/account-ens-avatar-demo")),
-      files: ["registry/default/example/account-ens-avatar-demo.tsx"],
-    },
-    "account-ens-name-demo": {
-      name: "account-ens-name-demo",
-      type: "components:example",
-      registryDependencies: ["account-ens-name"],
-      component: React.lazy(() => import("@/registry/default/example/account-ens-name-demo")),
-      files: ["registry/default/example/account-ens-name-demo.tsx"],
-    },
-    "account-nonce-demo": {
-      name: "account-nonce-demo",
-      type: "components:example",
-      registryDependencies: ["account-nonce"],
-      component: React.lazy(() => import("@/registry/default/example/account-nonce-demo")),
-      files: ["registry/default/example/account-nonce-demo.tsx"],
+      registryDependencies: ["nonce"],
+      component: React.lazy(() => import("@/registry/default/example/nonce-demo")),
+      files: ["registry/default/example/nonce-demo.tsx"],
     },
     "address-demo": {
       name: "address-demo",
@@ -319,6 +270,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["ens-name"],
       component: React.lazy(() => import("@/registry/default/example/ens-name-demo")),
       files: ["registry/default/example/ens-name-demo.tsx"],
+    },
+    "ens-address-demo": {
+      name: "ens-address-demo",
+      type: "components:example",
+      registryDependencies: ["ens-address"],
+      component: React.lazy(() => import("@/registry/default/example/ens-address-demo")),
+      files: ["registry/default/example/ens-address-demo.tsx"],
     },
     "image-ipfs-demo": {
       name: "image-ipfs-demo",

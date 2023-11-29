@@ -1,13 +1,13 @@
 ---
-title: Account Blockie
-description: Display connected account blockie identicon.
+title: ENS Address
+description: Display the address from an ENS name.
 component: true
 wagmi:
-  link: https://wagmi.sh/react/hooks/useAccount
+  link: https://wagmi.sh/react/hooks/useEnsAddress
 ---
 
 <ComponentPreview
-  name="account-blockie-demo"
+  name="ens-address-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -38,11 +38,11 @@ wagmi:
 
 <Step>Install the following components:</Step>
 
-- [Blockie](/docs/components/blockie)
+- [Address](/docs/components/address)
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="account-blockie" />
+<ComponentSource name="ens-address" />
 
 </Steps>
 
@@ -53,9 +53,9 @@ wagmi:
 ## Usage
 
 ```tsx
-import { AccountBlockie } from "@/components/buidl/account-blockie"
+import { EnsName } from "@/components/buidl/ens-address"
 ```
 
 ```tsx
-<AccountBlockie />
+<EnsName address="0x0000000000000000000000000000000000000000" />
 ```
