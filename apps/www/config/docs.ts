@@ -175,12 +175,12 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/erc20-total-supply",
           items: [],
         },
-         {
+        {
           title: "ERC20 Select",
           href: "/docs/components/erc20-select",
           items: [],
         },
-         {
+        {
           title: "ERC20 Select and Amount",
           href: "/docs/components/erc20-select-and-amount",
           items: [],
