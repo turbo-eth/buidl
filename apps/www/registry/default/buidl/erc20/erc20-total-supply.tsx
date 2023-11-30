@@ -87,7 +87,7 @@ const Erc20TotalSupply = React.forwardRef<
   })
 
   if (isLoadingTotalSupply || isLoadingDecimals) {
-    return <Skeleton className="h-6 w-12" {...props} />
+    return <Skeleton className="h-6 w-20" {...props} />
   }
 
   if (isErrorTotalSupply || isErrorDecimals) {

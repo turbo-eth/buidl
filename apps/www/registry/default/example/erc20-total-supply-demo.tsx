@@ -1,6 +1,6 @@
 import { Erc20TotalSupply } from "@/registry/default/buidl/erc20/erc20-total-supply"
 
-export default function Erc20SymbolDemo() {
+export default function Erc20TotalSupplyDemo() {
   return (
     <div className="flex flex-col items-center gap-4 text-center">
       <h3 className="text-lg font-bold">Default (WETH)</h3>

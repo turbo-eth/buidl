@@ -53,15 +53,12 @@ wagmi:
 ## Usage
 
 ```tsx
-import {
-  GasPrice,
-  MaxFeePerGas,
-  MaxPriorityFeePerGas,
-} from "@/registry/default/buidl/balance"
+import { Balance } from "@/registry/default/buidl/balance"
 ```
 
 ```tsx
-<GasPrice />
-<MaxFeePerGas />
-<MaxPriorityFeePerGas />
+<Balance />
+<Balance
+  address="0x0000000000000000000000000000000000000000"
+/>
 ```

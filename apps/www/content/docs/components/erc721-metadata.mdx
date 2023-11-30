@@ -2,6 +2,8 @@
 title: ERC721 Metadata
 description: Display the metadata of an ERC721 token.
 component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useContractRead
 ---
 
 <ComponentPreview
@@ -34,6 +36,10 @@ component: true
 
 <Steps>
 
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Skeleton](https://ui.shadcn.com/docs/components/skeleton)
+
 <Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="erc721-metadata" />
@@ -46,10 +52,14 @@ component: true
 
 ## Usage
 
-```tsx
-import { Erc721Name } from "@/registry/default/buidl/erc721/erc721-metadata"
-```
+````tsx
+import { Erc721MetadataImage } from "@/registry/default/buidl/erc721/erc721-metadata"```
 
 ```tsx
-<Erc721Name address="0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB" chainId={1} />
-```
+<Erc721MetadataImage
+  className="mt-1 h-[250px] w-[250px]"
+  address="0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+  tokenId={1}
+  chainId={1}
+/>
+````

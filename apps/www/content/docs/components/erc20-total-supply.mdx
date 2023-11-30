@@ -1,7 +1,9 @@
 ---
-title: ENS Symbol
-description: Display the symbol of an ERC20 token
+title: ERC20 Total Supply
+description: Display the total supply of an ERC20 token.
 component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useContractRead
 ---
 
 <ComponentPreview
@@ -34,6 +36,10 @@ component: true
 
 <Steps>
 
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Skeleton](https://ui.shadcn.com/docs/components/skeleton)
+
 <Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="erc20-total-supply" />
@@ -51,5 +57,5 @@ import { Erc20Symbol } from "@/components/buidl/erc20-total-supply"
 ```
 
 ```tsx
-<Erc20Symbol address="0x0000000000000000000000000000000000000000" />
+<Erc20TotalSupply address="0x0000000000000000000000000000000000000000" />
 ```

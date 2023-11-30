@@ -32,7 +32,7 @@ const SignMessageButton = React.forwardRef<
     <>
       <Button
         ref={ref}
-        disabled={isLoading || disabled}
+        disabled={disabled || isLoading || message.length === 0}
         onClick={() => signMessage()}
         className={className}
         {...props}

@@ -2,6 +2,8 @@
 title: ERC721 Token URI
 description: Display the token uri of an ERC721 token
 component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useContractRead
 ---
 
 <ComponentPreview
@@ -34,6 +36,10 @@ component: true
 
 <Steps>
 
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Skeleton](https://ui.shadcn.com/docs/components/skeleton)
+
 <Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="erc721-token-uri" />
@@ -47,9 +53,13 @@ component: true
 ## Usage
 
 ```tsx
-import { Erc721Name } from "@/registry/default/buidl/erc721/erc721-token-uri"
+import { Erc721TokenUri } from "@/registry/default/buidl/erc721/erc721-token-uri"
 ```
 
 ```tsx
-<Erc721Name address="0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB" chainId={1} />
+<Erc721TokenUri
+  tokenId={1}
+  address="0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"
+  chainId={1}
+/>
 ```
