@@ -1,18 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { useState } from "react"
-import Image from "next/image"
-import { connect } from "@wagmi/core"
-import { CoinbaseWalletConnector } from "@wagmi/core/dist/connectors/coinbaseWallet"
-import { MetaMaskConnector } from "@wagmi/core/dist/connectors/metaMask"
-import { ChevronRight, RefreshCcw } from "lucide-react"
+import { useAccount, useConnect, type Connector } from "wagmi"
 
-import { connectors } from "@/config/connectors"
 import { cn } from "@/lib/utils"
-import { WagmiProvider } from "@/components/providers/wagmi-provider"
 
-import { Button } from "../ui/button"
+import { Button, ButtonProps } from "../ui/button"
 import {
   Dialog,
   DialogContent,
@@ -21,175 +14,76 @@ import {
   DialogTrigger,
 } from "../ui/dialog"
 
-type WalletConnect = React.HTMLAttributes<HTMLButtonElement>
+const WalletConnect = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, className, ...props }, ref) => {
+    const { address } = useAccount()
+    const { connectors } = useConnect()
 
-export const WalletConnect = ({ children, className }: WalletConnect) => {
-  const [isError, setIsError] = useState()
-  const [selectedConnectorId, setSelectedConnectorId] = useState<
-    string | undefined
-  >()
+    if (address) {
+      return <span>{address}</span>
+    }
 
-  const handleReset = () => {
-    setSelectedConnectorId(undefined)
-    setIsError(undefined)
-  }
-
-  const handleBack = () => {
-    setSelectedConnectorId(undefined)
-    setIsError(undefined)
-  }
-
-  return (
-    <Dialog onOpenChange={handleReset}>
-      <DialogTrigger>
-        <Button className={cn(className)}>
-          {children ?? "Connect Wallet"}
-        </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <WagmiProvider>
+    return (
+      <Dialog>
+        <DialogTrigger>
+          <Button ref={ref} className={className} {...props}>
+            {children ?? "Connect Wallet"}
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="flex w-full flex-col">
           <DialogHeader>
             <DialogTitle>Connect Wallet</DialogTitle>
-            <hr className="my-6 mb-10" />
-            {selectedConnectorId && (
-              <>
-                <div
-                  className="flex cursor-pointer items-center gap-x-1"
-                  onClick={handleBack}
-                >
-                  <ChevronRight size={18} className="rotate-180" />
-                  <span className="text-xs">Back</span>
-                </div>
-                <WalletConnectionStatus
-                  connector={connectors.find(
-                    (connector) => connector.id === selectedConnectorId
-                  )}
-                  selectedConnectorId={selectedConnectorId}
-                  isError={isError}
-                  setIsError={setIsError}
-                />
-              </>
-            )}
-            {!selectedConnectorId && (
-              <div className="mt-6 grid gap-y-3 py-3">
-                {connectors.map((connector, index) => (
-                  <WalletPreview
-                    key={index}
-                    connector={connector}
-                    selectConnector={() =>
-                      setSelectedConnectorId(connector?.id)
-                    }
-                    setIsError={setIsError}
-                  />
-                ))}
-              </div>
-            )}
+            <hr className="my-6" />
           </DialogHeader>
-        </WagmiProvider>
-      </DialogContent>
-    </Dialog>
-  )
-}
+          <div className="flex max-w-full flex-col items-center gap-y-3 py-3">
+            {connectors.map((connector, index) => (
+              <WalletPreview key={index} connector={connector} />
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+)
 
-const WalletIdToIcon = {
-  metaMask: "/images/wallets/metaMask.svg",
-  coinbaseWallet: "/images/wallets/coinbaseWallet.webp",
-} as {
-  [key: string]: string
-}
+WalletConnect.displayName = "WalletConnect"
 
-type WalletPreview = React.HTMLAttributes<HTMLElement> & {
-  connector: MetaMaskConnector | CoinbaseWalletConnector
-  selectConnector: () => void
-  setIsError: (error: any) => void
-}
+const WalletPreview = React.forwardRef<
+  HTMLButtonElement,
+  Omit<ButtonProps, "onClick"> & {
+    connector: Connector
+  }
+>(({ className, connector, ...props }, ref) => {
+  const { connect, isLoading, isError, error } = useConnect()
 
-export const WalletPreview = ({
-  className,
-  connector,
-  selectConnector,
-  setIsError,
-}: WalletPreview) => {
-  const classes = cn(
-    "flex cursor-pointer items-center gap-x-2 rounded-md border-2 p-2 hover:bg-neutral-100",
-    className
-  )
-  const WalletImage = WalletIdToIcon[connector.id]
-  const handleConnect = async () => {
-    selectConnector()
-    try {
-      await connect({
-        connector: connector,
-      })
-    } catch (error) {
-      console.log(error)
-      setIsError(error)
-    }
+  const handleConnect = () => {
+    connect({ connector })
   }
 
   return (
-    <div className={classes} onClick={handleConnect}>
-      <Image
-        alt={`${connector.name}`}
-        width={18}
-        height={18}
-        src={WalletImage}
-        className="h-8 w-8"
-      />
+    <Button
+      ref={ref}
+      className={cn("flex h-16 w-full flex-col justify-center", className)}
+      variant={"outline"}
+      disabled={isLoading}
+      onClick={handleConnect}
+      {...props}
+    >
       <h3 className="text-lg font-normal">{connector.name}</h3>
-    </div>
-  )
-}
-
-type WalletConnectionStatus = React.HTMLAttributes<HTMLElement> & {
-  connector?: MetaMaskConnector | CoinbaseWalletConnector
-  selectedConnectorId: string
-  isError?: boolean
-  setIsError: (error: any) => void
-}
-
-export const WalletConnectionStatus = ({
-  className,
-  connector,
-  selectedConnectorId,
-  isError,
-  setIsError,
-}: WalletConnectionStatus) => {
-  const classes = cn(className)
-  const WalletImage = WalletIdToIcon[connector?.id || "default"]
-
-  const handleConnect = async () => {
-    try {
-      if (!connector) return
-      await connect({
-        connector: connector,
-      })
-    } catch (error) {
-      console.log(error)
-      setIsError(error)
-    }
-  }
-
-  return (
-    <div className="flex flex-col items-center gap-y-2 py-10">
-      <Image
-        alt={`${selectedConnectorId}`}
-        width={48}
-        height={48}
-        src={WalletIdToIcon[selectedConnectorId]}
-        className="h-16 w-16"
-      />
-      <h3 className="text-lg font-medium uppercase">{selectedConnectorId}</h3>
+      {isLoading && (
+        <p className="text-sm text-neutral-400">
+          Accept the connection request in your wallet
+        </p>
+      )}
       {isError && (
-        <div className="flex items-center gap-x-2 text-red-500">
-          <span className="text-xs">Error connecting to wallet</span>
+        <div className="w-full items-center gap-x-2 overflow-auto break-words text-xs text-red-500">
+          {error?.message ?? "Error while connecting wallet"}
         </div>
       )}
-      <p className="text-xs">Accept the connection request in your wallet</p>
-      <Button size="sm" className="mt-2" onClick={handleConnect}>
-        <RefreshCcw size={12} className="mr-2" />
-        <span className="">Try Again</span>
-      </Button>
-    </div>
+    </Button>
   )
-}
+})
+
+WalletPreview.displayName = "WalletPreview"
+
+export { WalletConnect, WalletPreview }

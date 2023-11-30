@@ -1,8 +1,6 @@
 {
   "name": "accordion",
-  "dependencies": [
-    "wagmi"
-  ],
+  "dependencies": ["wagmi"],
   "files": [
     {
       "name": "accordion.tsx",

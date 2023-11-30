@@ -12,7 +12,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["avatars.githubusercontent.com", "images.unsplash.com", "euc.li", "ipfs.io"],
+    domains: [
+      "avatars.githubusercontent.com",
+      "images.unsplash.com",
+      "euc.li",
+      "ipfs.io",
+    ],
     remotePatterns: [
       {
         protocol: "https",

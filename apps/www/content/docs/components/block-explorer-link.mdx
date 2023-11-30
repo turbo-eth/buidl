@@ -49,10 +49,12 @@ wagmi:
 ## Usage
 
 ```tsx
-import { WalletConnect } from "@/components/buidl/wallet-connect"
+import { BlockExplorerLink } from "@/registry/default/buidl/block-explorer-link"
 ```
 
 ```tsx
-<WalletConnect />
-<WalletConnect>Custom Text</WalletConnect>
+<BlockExplorerLink data={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+<BlockExplorerLink data={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} showBlockExplorerName />
+<BlockExplorerLink data={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"}>Go to Block Explorer</BlockExplorerLink>
+<BlockExplorerLink type="tx" data="0x827069d50d3a5ec0d19327f4b1bb1ecfbe939ef26bc3b6cc2dae5a1574f1e6f8"/>
 ```

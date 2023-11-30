@@ -3,31 +3,27 @@
 import * as React from "react"
 import { useDisconnect } from "wagmi"
 
-import { cn } from "@/lib/utils"
-
 import { Button, type ButtonProps } from "../ui/button"
 
-export interface WalletDisconnectProps extends ButtonProps {
-  label?: string
-}
-
-export const WalletDisconnect = ({
-  children,
-  className,
-  size,
-  variant,
-  label = "Disconnect",
-}: WalletDisconnectProps) => {
-  const classes = cn(className)
+const WalletDisconnect = React.forwardRef<
+  HTMLButtonElement,
+  Omit<ButtonProps, "onClick">
+>(({ children, ...props }, ref) => {
   const { disconnect } = useDisconnect()
+
   return (
     <Button
-      className={classes}
-      onClick={() => disconnect()}
-      size={size}
-      variant={variant}
+      ref={ref}
+      onClick={() => {
+        disconnect()
+      }}
+      {...props}
     >
-      {label}
+      {children ?? "Disconnect"}
     </Button>
   )
-}
+})
+
+WalletDisconnect.displayName = "WalletDisconnect"
+
+export { WalletDisconnect }

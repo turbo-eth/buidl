@@ -1,0 +1,55 @@
+---
+title: ERC721 Symbol
+description: Display the symbol of an ERC721 token
+component: true
+---
+
+<ComponentPreview
+  name="erc721-symbol-demo"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
+/>
+
+## Installation
+
+<Tabs defaultValue="manual">
+
+<TabsList>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+  <TabsTrigger disabled={true} value="cli">
+    CLI (Coming Soon)
+  </TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Coming soon...</Step>
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="erc721-symbol" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Erc20Symbol } from "@/components/buidl/erc721-symbol"
+```
+
+```tsx
+<Erc20Symbol address="0x0000000000000000000000000000000000000000" />
+```

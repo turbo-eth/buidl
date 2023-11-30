@@ -1,104 +1,146 @@
-import { HTMLAttributes } from "react"
-import Link from "next/link"
+"use client"
+
+import * as React from "react"
 import { Copy } from "lucide-react"
-import { useNetwork, type Address as AddressType } from "wagmi"
+import { useAccount, useNetwork, type Address as AddressType } from "wagmi"
+import { mainnet } from "wagmi/chains"
 
 import { cn } from "@/lib/utils"
-
-import { toast } from "../ui/use-toast"
+import { toast } from "@/registry/default/ui/use-toast"
 
 export interface AddressProps
-  extends Omit<HTMLAttributes<HTMLElement>, "children"> {
-  address: AddressType
+  extends Omit<React.HTMLAttributes<HTMLElement>, "children"> {
+  address?: AddressType
   truncate?: boolean
   truncateAmount?: number
-  linkEnabled?: boolean
-  copyEnabled?: boolean
+  link?: boolean
+  copy?: boolean
 }
 
-export const Address = ({
-  address,
-  className,
-  truncate,
-  truncateAmount = 4,
-  linkEnabled,
-  copyEnabled,
-  ...props
-}: AddressProps) => {
-  const { chain } = useNetwork()
-  const blockExplorerUrl = chain?.blockExplorers?.default.url
-  const formattedAddress = truncate
-    ? `${address.slice(0, truncateAmount + 2)}...${address.slice(
-        -Number(truncateAmount)
-      )}`
-    : address
+const AddressCopy = React.forwardRef<
+  HTMLSpanElement,
+  React.HTMLAttributes<HTMLSpanElement> & {
+    address: AddressType
+  }
+>(({ address, className, children, ...props }, ref) => {
+  return (
+    <span
+      ref={ref}
+      className={cn("flex cursor-pointer items-center gap-x-2", className)}
+      onClick={async () => {
+        await navigator.clipboard.writeText(address)
+        toast({
+          title: "Copied address",
+          description: "The address has been copied to your clipboard.",
+        })
+      }}
+      {...props}
+    >
+      {children ?? address}
+      <span className="sr-only">Copy address</span>
+      <Copy size={12} />
+    </span>
+  )
+})
 
-  if (linkEnabled && blockExplorerUrl) {
-    const classes = cn(className)
+AddressCopy.displayName = "AddressCopy"
 
-    if (copyEnabled) {
+const AddressLink = React.forwardRef<
+  HTMLElement,
+  React.HTMLAttributes<HTMLElement> & {
+    address: AddressType
+  }
+>(({ address, className, children, ...props }, ref) => {
+  const { chain: currentChain } = useNetwork()
+
+  // Use mainnet as default chain
+  const chain = currentChain ?? mainnet
+
+  return (
+    <span
+      ref={ref}
+      className={cn(
+        "cursor-pointer underline-offset-2 hover:underline",
+        className
+      )}
+      {...props}
+    >
+      {chain.blockExplorers?.default.url ? (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`${chain.blockExplorers?.default.url}/address/${address}`}
+        >
+          {children ?? address}
+        </a>
+      ) : (
+        <>{children ?? address}</>
+      )}
+    </span>
+  )
+})
+
+AddressLink.displayName = "AddressLink"
+
+const Address = React.forwardRef<HTMLElement, AddressProps>(
+  (
+    { address, className, truncate, truncateAmount = 4, link, copy, ...props },
+    ref
+  ) => {
+    const { address: connectedAddress } = useAccount()
+
+    const selectedAddress = address ?? connectedAddress
+
+    const formattedAddress = React.useMemo(
+      () =>
+        truncate
+          ? `${selectedAddress?.slice(
+              0,
+              truncateAmount + 2
+            )}...${selectedAddress?.slice(-Number(truncateAmount))}`
+          : selectedAddress,
+      [selectedAddress, truncate, truncateAmount]
+    )
+
+    if (!selectedAddress) {
+      return null
+    }
+
+    if (link) {
       return (
-        <span className="flex items-center">
-          <Link
-            className={classes}
-            href={`${blockExplorerUrl}/address/${address}`}
-            {...props}
-          >
-            {formattedAddress}
-          </Link>
-          {copyEnabled && (
-            <button
-              className="ml-2 opacity-70 transition-opacity hover:opacity-100"
-              onClick={async () => {
-                await navigator.clipboard.writeText(address)
-                toast({
-                  title: "Copied address",
-                  description: "The address has been copied to your clipboard.",
-                })
-              }}
-            >
-              <span className="sr-only">Copy address</span>
-              <Copy size={12} />
-            </button>
+        <AddressLink
+          ref={ref}
+          address={selectedAddress}
+          className={className}
+          {...props}
+        >
+          {copy ? (
+            <AddressCopy address={selectedAddress}>
+              {formattedAddress}
+            </AddressCopy>
+          ) : (
+            <>{formattedAddress}</>
           )}
-        </span>
+        </AddressLink>
+      )
+    }
+
+    if (copy) {
+      return (
+        <AddressCopy ref={ref} address={selectedAddress} {...props}>
+          {formattedAddress}
+        </AddressCopy>
       )
     }
 
     return (
-      <Link
-        className={classes}
-        href={`${blockExplorerUrl}/address/${address}`}
-        {...props}
-      >
+      <span ref={ref} className={className} {...props}>
         {formattedAddress}
-      </Link>
-    )
-  }
-  const classes = cn(className)
-
-  if (copyEnabled) {
-    return (
-      <span className="">
-        <span className={classes}>{formattedAddress}</span>
-        {copyEnabled && (
-          <button
-            className="ml-2 opacity-70 transition-opacity hover:opacity-100"
-            onClick={async () => {
-              await navigator.clipboard.writeText(address)
-              toast({
-                title: "Copied address",
-                description: "The address has been copied to your clipboard.",
-              })
-            }}
-          >
-            <span className="sr-only">Copy address</span>
-            <Copy size={12} />
-          </button>
-        )}
       </span>
     )
   }
+)
 
-  return <span className={classes}>{formattedAddress}</span>
-}
+Address.displayName = "Address"
+
+export { Address, AddressCopy, AddressLink }

@@ -1,0 +1,57 @@
+---
+title: Nonce
+description: Display the nonce of an account.
+component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useAccount
+---
+
+<ComponentPreview
+  name="nonce-demo"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
+/>
+
+## Installation
+
+<Tabs defaultValue="manual">
+
+<TabsList>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+  <TabsTrigger disabled={true} value="cli">
+    CLI (Coming Soon)
+  </TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Coming soon...</Step>
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="nonce" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { AccountNonce } from "@/components/buidl/nonce"
+```
+
+```tsx
+<AccountNonce />
+```

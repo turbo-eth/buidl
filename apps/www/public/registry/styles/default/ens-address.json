@@ -1,0 +1,13 @@
+{
+  "name": "ens-address",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "ens-address.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useEnsAddress } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Address, AddressProps } from \"@/registry/default/buidl/address\"\nimport { Skeleton } from \"@/registry/default/ui/skeleton\"\n\nconst ErrorMessage = ({ error }: { error: Error | null }) => {\n  return (\n    <div className={cn(\"break-words text-sm font-medium text-red-500\")}>\n      {error?.message ?? \"Error while fetching fee data\"}\n    </div>\n  )\n}\n\ninterface EnsAddressProps extends Omit<AddressProps, \"address\"> {\n  name: string\n}\n\nconst EnsAddress = React.forwardRef<HTMLSpanElement, EnsAddressProps>(\n  ({ name, className, ...props }, ref) => {\n    const { data, isLoading, isSuccess, isError, error } = useEnsAddress({\n      chainId: 1,\n      name,\n    })\n\n    if (isLoading) {\n      return (\n        <Skeleton\n          className={cn(\n            \"h-6\",\n            props.truncate ? \"w-32\" : \"w-[420px]\",\n            className\n          )}\n          {...props}\n        />\n      )\n    }\n\n    if (isSuccess && data) {\n      return (\n        <Address ref={ref} address={data} className={className} {...props} />\n      )\n    }\n\n    if (isError) {\n      return <ErrorMessage error={error} />\n    }\n\n    return null\n  }\n)\n\nEnsAddress.displayName = \"EnsAddress\"\n\nexport { EnsAddress }\n"
+    }
+  ],
+  "type": "components:buidl"
+}

@@ -53,9 +53,23 @@ wagmi:
 ## Usage
 
 ```tsx
-import { Address } from "@/components/buidl/address"
+import {
+  Address,
+  AddressCopy,
+  AddressLink,
+} from "@/registry/default/buidl/address"
 ```
 
 ```tsx
-<Address />
+<Address address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+
+<Address link address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+<AddressLink address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+
+<Address copy address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+<AddressCopy address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+
+<Address truncate address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
+
+<Address link copy truncate address={"0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"} />
 ```

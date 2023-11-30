@@ -1,70 +1,125 @@
 import * as React from "react"
-import { useEffect, useState } from "react"
-import defaultTokenList from "@/data/uniswap-default.tokenlist.json"
 import { formatUnits } from "viem"
-import { useChainId } from "wagmi"
+import { useAccount, useContractRead } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
-import { useErc20BalanceOf, useErc20Decimals } from "./erc20-wagmi"
-import { TokenList } from "./types"
-import { findTokenByAddressFromList } from "./utils/find-token-by-address-from-list"
+const erc20BalanceOfAbi = [
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+    ],
+    name: "balanceOf",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "balance",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+] as const
 
-export type Erc20BalanceProps = React.HTMLAttributes<HTMLElement> & {
-  address: `0x${string}`
-  account: `0x${string}`
-  tokenList?: TokenList
-  chainId?: number
+const erc20DecimalsAbi = [
+  {
+    inputs: [],
+    name: "decimals",
+    outputs: [
+      {
+        internalType: "uint8",
+        name: "",
+        type: "uint8",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+] as const
+
+function trimFormattedBalance(balance: string | undefined, decimals = 4) {
+  if (!balance) {
+    return "0"
+  }
+  const [integer, decimal] = balance.split(".")
+  if (!decimal) return integer
+
+  const trimmedDecimal = decimal.slice(0, decimals)
+  return `${integer}.${trimmedDecimal}`
 }
 
-export const Erc20Balance = ({
-  className,
-  chainId,
-  address,
-  account,
-  tokenList = defaultTokenList,
-}: Erc20BalanceProps) => {
-  const classes = cn(className)
-  const chainIdDefault = useChainId()
+const ErrorMessage = ({ error }: { error: Error | null }) => {
+  return (
+    <div className={cn("break-words text-sm font-medium text-red-500")}>
+      {error?.message ?? "Error while fetching ERC20 data"}
+    </div>
+  )
+}
 
-  const [decimals, setDecimals] = React.useState<number | undefined>()
-  const [tokenNotInList, setTokenNotInList] = useState<boolean>()
-  React.useEffect(() => {
-    const token = findTokenByAddressFromList(tokenList, address)
-    if (!token) {
-      setTokenNotInList(true)
-    }
-    if (token) {
-      setDecimals(token.decimals)
-    }
-  }, [address, tokenList])
+export type Erc20BalanceProps = React.HTMLAttributes<HTMLSpanElement> & {
+  address: `0x${string}`
+  chainId?: number
+  account?: `0x${string}`
+  formatDecimals?: number
+}
 
-  useEffect(() => {}, [])
+const Erc20Balance = React.forwardRef<HTMLSpanElement, Erc20BalanceProps>(
+  ({ chainId, address, account, formatDecimals = 4, ...props }, ref) => {
+    const { address: currentAccount } = useAccount()
+    const selectedAccount = account ?? currentAccount
 
-  const { data: dataErc20Decimals, isSuccess: isSuccessErc20Decimals } =
-    useErc20Decimals({
-      chainId: chainId || chainIdDefault,
+    const {
+      data: decimals,
+      isLoading: isLoadingDecimals,
+      isError: isErrorDecimals,
+      error: errorDecimals,
+    } = useContractRead({
       address,
-      enabled: tokenNotInList,
+      abi: erc20DecimalsAbi,
+      functionName: "decimals",
+      chainId,
     })
 
-  useEffect(() => {
-    if (isSuccessErc20Decimals && dataErc20Decimals) {
-      setDecimals(dataErc20Decimals)
+    const {
+      data: balance,
+      isLoading: isLoadingBalance,
+      isError: isErrorBalance,
+      error: errorBalance,
+    } = useContractRead({
+      address,
+      abi: erc20BalanceOfAbi,
+      functionName: "balanceOf",
+      args: selectedAccount ? [selectedAccount] : undefined,
+      enabled: !!selectedAccount,
+      chainId,
+    })
+
+    if (isLoadingDecimals || isLoadingBalance) {
+      return <Skeleton className="h-6 w-16" {...props} />
     }
-  }, [dataErc20Decimals, isSuccessErc20Decimals])
 
-  const { data, isSuccess } = useErc20BalanceOf({
-    chainId: chainId || chainIdDefault,
-    address,
-    // @ts-ignore
-    args: account,
-    watch: true,
-    enabled: !!decimals,
-  })
+    if (isErrorDecimals || isErrorBalance) {
+      return <ErrorMessage error={errorDecimals ?? errorBalance} />
+    }
 
-  if (!data || !isSuccess || !decimals)
-    return <span className={className}>0</span>
+    if (balance === undefined || decimals === undefined) {
+      return null
+    }
 
-  return <div className={classes}>{formatUnits(data, decimals).toString()}</div>
-}
+    return (
+      <span ref={ref} {...props}>
+        {trimFormattedBalance(formatUnits(balance, decimals), formatDecimals)}
+      </span>
+    )
+  }
+)
+
+Erc20Balance.displayName = "Erc20Balance"
+
+export { Erc20Balance }

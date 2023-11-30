@@ -1,62 +1,69 @@
-import { useEffect, useState } from "react"
-import defaultTokenList from "@/data/uniswap-default.tokenlist.json"
-import { useChainId } from "wagmi"
+"use client"
+
+import * as React from "react"
+import { useContractRead } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
-import { useErc20Name } from "./erc20-wagmi"
-import { TokenList } from "./types"
-import { findTokenByAddressFromList } from "./utils/find-token-by-address-from-list"
+const erc20NameAbi = [
+  {
+    inputs: [],
+    name: "name",
+    outputs: [
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+] as const
 
-export type Erc20NameProps = React.HTMLAttributes<HTMLElement> & {
+const ErrorMessage = ({ error }: { error: Error | null }) => {
+  return (
+    <div className={cn("break-words text-sm font-medium text-red-500")}>
+      {error?.message ?? "Error while fetching ERC20 data"}
+    </div>
+  )
+}
+
+export type Erc20NameProps = React.HTMLAttributes<HTMLSpanElement> & {
   address: `0x${string}`
-  tokenList?: TokenList
   chainId?: number
-  unavailable?: any
 }
 
-export const Erc20Name = ({
-  className,
-  chainId,
-  address,
-  tokenList = defaultTokenList,
-  unavailable,
-}: Erc20NameProps) => {
-  const classes = cn(className)
-  const chainIdDefault = useChainId()
+const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
+  ({ chainId, address, ...props }, ref) => {
+    const { data, isLoading, isError, error } = useContractRead({
+      address,
+      abi: erc20NameAbi,
+      functionName: "name",
+      chainId,
+    })
 
-  const [tokenName, setTokenName] = useState<string | undefined>()
-  const [tokenNotInList, setTokenNotInList] = useState<boolean>()
-  useEffect(() => {
-    const token = findTokenByAddressFromList(tokenList, address)
-    if (!token) {
-      setTokenNotInList(true)
+    if (isLoading) {
+      return <Skeleton className="h-6 w-36" {...props} />
     }
-    if (token) {
-      setTokenName(token.name)
+
+    if (isError) {
+      return <ErrorMessage error={error} />
     }
-  }, [address, tokenList])
 
-  useEffect(() => {}, [])
-
-  const { data, isSuccess } = useErc20Name({
-    chainId: chainId || chainIdDefault,
-    address,
-    watch: true,
-    enabled: !!tokenNotInList,
-  })
-
-  useEffect(() => {
-    if (data && isSuccess) {
-      setTokenName(data)
+    if (data === undefined) {
+      return null
     }
-  }, [data, isSuccess])
 
-  if (!tokenName) {
-    const Comp = unavailable
-    if (!Comp) return null
-    return <Comp />
+    return (
+      <span ref={ref} {...props}>
+        {data}
+      </span>
+    )
   }
+)
 
-  return <span className={classes}>{tokenName}</span>
-}
+Erc20Name.displayName = "Erc20Name"
+
+export { Erc20Name }

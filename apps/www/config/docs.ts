@@ -70,16 +70,6 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/is-wallet-disconnected",
           items: [],
         },
-        {
-          title: "(WIP) Wallet Manage",
-          href: "/docs/components/wallet-manage",
-          items: [],
-        },
-        {
-          title: "(WIP) Network Manage",
-          href: "/docs/components/network-manage",
-          items: [],
-        },
       ],
     },
     {
@@ -91,8 +81,43 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "Balance",
+          href: "/docs/components/balance",
+          items: [],
+        },
+        {
           title: "Block Explorer Link",
           href: "/docs/components/block-explorer-link",
+          items: [],
+        },
+        {
+          title: "Block Number",
+          href: "/docs/components/block-number",
+          items: [],
+        },
+        {
+          title: "Nonce",
+          href: "/docs/components/nonce",
+          items: [],
+        },
+        {
+          title: "Transaction",
+          href: "/docs/components/transaction",
+          items: [],
+        },
+        {
+          title: "Transaction Status",
+          href: "/docs/components/transaction-status",
+          items: [],
+        },
+        {
+          title: "Fee Data",
+          href: "/docs/components/fee-data",
+          items: [],
+        },
+        {
+          title: "Sign Message Button",
+          href: "/docs/components/sign-message-button",
           items: [],
         },
         {
@@ -111,43 +136,13 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "ENS Address",
+          href: "/docs/components/ens-address",
+          items: [],
+        },
+        {
           title: "Image IPFS",
           href: "/docs/components/image-ipfs",
-          items: [],
-        },
-      ],
-    },
-    {
-      title: "Account",
-      items: [
-        {
-          title: "Account Address",
-          href: "/docs/components/account-address",
-          items: [],
-        },
-        {
-          title: "Account Balance",
-          href: "/docs/components/account-balance",
-          items: [],
-        },
-        {
-          title: "Account Blockie",
-          href: "/docs/components/account-blockie",
-          items: [],
-        },
-        {
-          title: "Account ENS Avatar",
-          href: "/docs/components/account-ens-avatar",
-          items: [],
-        },
-        {
-          title: "Account ENS Name",
-          href: "/docs/components/account-ens-name",
-          items: [],
-        },
-        {
-          title: "Account Nonce",
-          href: "/docs/components/account-nonce",
           items: [],
         },
       ],
@@ -161,8 +156,8 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "ERC20 Image",
-          href: "/docs/components/erc20-image",
+          title: "ERC20 Decimals",
+          href: "/docs/components/erc20-decimals",
           items: [],
         },
         {
@@ -176,13 +171,53 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "ERC20 Total Supply",
+          href: "/docs/components/erc20-total-supply",
+          items: [],
+        },
+        {
           title: "ERC20 Select",
           href: "/docs/components/erc20-select",
           items: [],
         },
         {
-          title: "ERC20 Select & Amount",
+          title: "ERC20 Select and Amount",
           href: "/docs/components/erc20-select-and-amount",
+          items: [],
+        },
+      ],
+    },
+    {
+      title: "ERC721",
+      items: [
+        {
+          title: "ERC721 Name",
+          href: "/docs/components/erc721-name",
+          items: [],
+        },
+        {
+          title: "ERC721 Symbol",
+          href: "/docs/components/erc721-symbol",
+          items: [],
+        },
+        {
+          title: "ERC721 Owner Of",
+          href: "/docs/components/erc721-owner-of",
+          items: [],
+        },
+        {
+          title: "ERC721 Total Supply",
+          href: "/docs/components/erc721-total-supply",
+          items: [],
+        },
+        {
+          title: "ERC721 Token URI",
+          href: "/docs/components/erc721-token-uri",
+          items: [],
+        },
+        {
+          title: "ERC721 Metadata",
+          href: "/docs/components/erc721-metadata",
           items: [],
         },
       ],

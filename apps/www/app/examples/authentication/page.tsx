@@ -1,11 +1,9 @@
 import { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { AccountAddress } from "@/registry/default/buidl/account-address"
-import { AccountBlockie } from "@/registry/default/buidl/account-blockie"
 import { Address } from "@/registry/default/buidl/address"
+import { Blockie } from "@/registry/default/buidl/blockie"
 import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
 import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
 import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
@@ -91,9 +89,9 @@ export default function AuthenticationPage() {
             </IsWalletDisconnected>
             <IsWalletConnected>
               <div className="flex items-center justify-center gap-x-2">
-                <AccountBlockie />
+                <Blockie />
                 <Button size={"sm"} className="rounded-full">
-                  <AccountAddress truncate linkEnabled />
+                  <Address truncate link />
                 </Button>
                 <WalletDisconnect variant={"ghost"} size={"sm"} />
               </div>

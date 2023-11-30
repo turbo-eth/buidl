@@ -1,0 +1,55 @@
+---
+title: ERC721 Owner Of
+description: Display the owner of an ERC721 token
+component: true
+---
+
+<ComponentPreview
+  name="erc721-owner-of-demo"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
+/>
+
+## Installation
+
+<Tabs defaultValue="manual">
+
+<TabsList>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+  <TabsTrigger disabled={true} value="cli">
+    CLI (Coming Soon)
+  </TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Coming soon...</Step>
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="erc721-owner-of" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Erc20owner } from "@/components/buidl/erc721-owner-of"
+```
+
+```tsx
+<Erc20owner address="0x0000000000000000000000000000000000000000" />
+```

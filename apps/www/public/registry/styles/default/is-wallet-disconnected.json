@@ -6,7 +6,7 @@
   "files": [
     {
       "name": "is-wallet-disconnected.tsx",
-      "content": "\"use client\"\n\nimport { type ReactNode } from \"react\"\nimport { useAccount } from \"wagmi\"\n\ninterface IsWalletDisconnectedProps {\n  children: ReactNode\n}\n\nexport const IsWalletDisconnected = ({\n  children,\n}: IsWalletDisconnectedProps) => {\n  const { address } = useAccount()\n\n  if (!address) return <>{children}</>\n\n  return null\n}\n"
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useAccount } from \"wagmi\"\n\nconst IsWalletDisconnected = ({ children }: { children: React.ReactNode }) => {\n  const { isDisconnected } = useAccount()\n\n  if (isDisconnected) return <>{children}</>\n\n  return null\n}\n\nexport { IsWalletDisconnected }\n"
     }
   ],
   "type": "components:buidl"

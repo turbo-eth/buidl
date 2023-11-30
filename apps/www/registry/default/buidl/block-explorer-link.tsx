@@ -1,41 +1,64 @@
-import { HTMLAttributes } from "react"
-import { Address, useNetwork } from "wagmi"
+"use client"
+
+import * as React from "react"
+import { Chain, useNetwork, type Address } from "wagmi"
+import { mainnet } from "wagmi/chains"
 
 import { cn } from "@/lib/utils"
 
-interface BlockExplorerLinkProps extends HTMLAttributes<HTMLSpanElement> {
-  address: Address | undefined
-  showExplorerName?: boolean
+interface BlockExplorerLinkProps
+  extends React.HTMLAttributes<HTMLAnchorElement> {
+  chain?: Chain
+  data: Address | undefined
+  showBlockExplorerName?: boolean
   type?: "address" | "tx"
 }
 
-export const BlockExplorerLink = ({
-  address,
-  children,
-  className,
-  showExplorerName,
-  type = "address",
-  ...props
-}: BlockExplorerLinkProps) => {
-  const { chain } = useNetwork()
-  const blockExplorer = chain?.blockExplorers?.default
+const BlockExplorerLink = React.forwardRef<
+  HTMLAnchorElement,
+  BlockExplorerLinkProps
+>(
+  (
+    {
+      chain: selectedChain,
+      data,
+      children,
+      className,
+      showBlockExplorerName,
+      type = "address",
+      ...props
+    },
+    ref
+  ) => {
+    const { chain: currentChain } = useNetwork()
 
-  if (!address) return null
+    // Use mainnet as default chain
+    const chain =
+      selectedChain ?? (currentChain && !currentChain.unsupported)
+        ? currentChain
+        : mainnet
+    const blockExplorer = chain?.blockExplorers?.default
 
-  return (
-    <span
-      className={cn("overflow-x-auto font-medium underline", className)}
-      {...props}
-    >
-      {blockExplorer && (
-        <a
-          href={`${blockExplorer.url}/${type}/${address}`}
-          rel="noreferrer"
-          target="_blank"
-        >
-          {showExplorerName ? blockExplorer.name : children ?? address}
-        </a>
-      )}
-    </span>
-  )
-}
+    if (!data || !blockExplorer) return null
+
+    return (
+      <a
+        ref={ref}
+        className={cn(
+          "overflow-x-auto font-medium underline-offset-2 hover:underline",
+          className
+        )}
+        href={`${blockExplorer.url}/${type}/${data}`}
+        rel="noreferrer"
+        target="_blank"
+        {...props}
+      >
+        {showBlockExplorerName ? blockExplorer.name : children ?? data}
+      </a>
+    )
+  }
+)
+
+BlockExplorerLink.displayName = "BlockExplorerLink"
+
+export { BlockExplorerLink }
