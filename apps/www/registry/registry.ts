@@ -98,12 +98,6 @@ const buidl: Registry = [
     files: ["buidl/is-wallet-disconnected.tsx"],
   },
   {
-    name: "network-manage",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/network-manage.tsx"],
-  },
-  {
     name: "wallet-connect",
     type: "components:buidl",
     dependencies: ["wagmi"],
@@ -116,12 +110,6 @@ const buidl: Registry = [
     files: ["buidl/wallet-disconnect.tsx"],
   },
   {
-    name: "wallet-manage",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/wallet-manage.tsx"],
-  },
-  {
     name: "erc20-balance",
     type: "components:buidl",
     folder: "erc20",
@@ -129,11 +117,11 @@ const buidl: Registry = [
     files: ["buidl/erc20/erc20-balance.tsx"],
   },
   {
-    name: "erc20-image",
+    name: "erc20-decimals",
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
-    files: ["buidl/erc20/erc20-image.tsx"],
+    files: ["buidl/erc20/erc20-decimals.tsx"],
   },
   {
     name: "erc20-name",
@@ -162,6 +150,55 @@ const buidl: Registry = [
     folder: "erc20",
     dependencies: ["wagmi"],
     files: ["buidl/erc20/erc20-symbol.tsx"],
+  },
+  {
+    name: "erc20-total-supply",
+    type: "components:buidl",
+    folder: "erc20",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc20/erc20-total-supply.tsx"],
+  },
+  {
+    name: "erc721-name",
+    type: "components:buidl",
+    folder: "erc721",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc721/erc721-name.tsx"],
+  },
+  {
+    name: "erc721-symbol",
+    type: "components:buidl",
+    folder: "erc721",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc721/erc721-symbol.tsx"],
+  },
+  {
+    name: "erc721-owner-of",
+    type: "components:buidl",
+    folder: "erc721",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc721/erc721-owner-of.tsx"],
+  },
+  {
+    name: "erc721-total-supply",
+    type: "components:buidl",
+    folder: "erc721",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc721/erc721-total-supply.tsx"],
+  },
+  {
+    name: "erc721-token-uri",
+    type: "components:buidl",
+    folder: "erc721",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc721/erc721-token-uri.tsx"],
+  },
+  {
+    name: "erc721-metadata",
+    type: "components:buidl",
+    folder: "erc721",
+    dependencies: ["wagmi"],
+    files: ["buidl/erc721/erc721-metadata.tsx"],
   },
 ]
 
@@ -263,12 +300,6 @@ const example: Registry = [
     files: ["example/is-wallet-disconnected-demo.tsx"],
   },
   {
-    name: "network-manage-demo",
-    type: "components:example",
-    registryDependencies: ["network-manage"],
-    files: ["example/network-manage-demo.tsx"],
-  },
-  {
     name: "wallet-connect-demo",
     type: "components:example",
     registryDependencies: ["wallet-connect"],
@@ -281,22 +312,16 @@ const example: Registry = [
     files: ["example/wallet-disconnect-demo.tsx"],
   },
   {
-    name: "wallet-manage-demo",
-    type: "components:example",
-    registryDependencies: ["wallet-manage"],
-    files: ["example/wallet-manage-demo.tsx"],
-  },
-  {
     name: "erc20-balance-demo",
     type: "components:example",
     registryDependencies: ["erc20-balance"],
     files: ["example/erc20-balance-demo.tsx"],
   },
   {
-    name: "erc20-image-demo",
+    name: "erc20-decimals-demo",
     type: "components:example",
-    registryDependencies: ["erc20-image"],
-    files: ["example/erc20-image-demo.tsx"],
+    registryDependencies: ["erc20-decimals"],
+    files: ["example/erc20-decimals-demo.tsx"],
   },
   {
     name: "erc20-name-demo",
@@ -321,6 +346,48 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["erc20-symbol"],
     files: ["example/erc20-symbol-demo.tsx"],
+  },
+  {
+    name: "erc20-total-supply-demo",
+    type: "components:example",
+    registryDependencies: ["erc20-total-supply"],
+    files: ["example/erc20-total-supply-demo.tsx"],
+  },
+  {
+    name: "erc721-name-demo",
+    type: "components:example",
+    registryDependencies: ["erc721-name"],
+    files: ["example/erc721-name-demo.tsx"],
+  },
+  {
+    name: "erc721-symbol-demo",
+    type: "components:example",
+    registryDependencies: ["erc721-symbol"],
+    files: ["example/erc721-symbol-demo.tsx"],
+  },
+  {
+    name: "erc721-owner-of-demo",
+    type: "components:example",
+    registryDependencies: ["erc721-owner-of"],
+    files: ["example/erc721-owner-of-demo.tsx"],
+  },
+  {
+    name: "erc721-total-supply-demo",
+    type: "components:example",
+    registryDependencies: ["erc721-total-supply"],
+    files: ["example/erc721-total-supply-demo.tsx"],
+  },
+  {
+    name: "erc721-token-uri-demo",
+    type: "components:example",
+    registryDependencies: ["erc721-total-token-uri"],
+    files: ["example/erc721-total-token-uri-demo.tsx"],
+  },
+  {
+    name: "erc721-metadata-demo",
+    type: "components:example",
+    registryDependencies: ["erc721-metadata"],
+    files: ["example/erc721-metadata-demo.tsx"],
   },
 ]
 

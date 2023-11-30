@@ -6,14 +6,14 @@ import { useContractRead } from "wagmi"
 import { cn } from "@/lib/utils"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
-const erc20NameAbi = [
+const erc721SymbolAbi = [
   {
     inputs: [],
-    name: "name",
+    name: "symbol",
     outputs: [
       {
         internalType: "string",
-        name: "name",
+        name: "",
         type: "string",
       },
     ],
@@ -25,27 +25,27 @@ const erc20NameAbi = [
 const ErrorMessage = ({ error }: { error: Error | null }) => {
   return (
     <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching ERC20 data"}
+      {error?.message ?? "Error while fetching ERC721 data"}
     </div>
   )
 }
 
-export type Erc20NameProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc721SymbolProps = React.HTMLAttributes<HTMLSpanElement> & {
   address: `0x${string}`
   chainId?: number
 }
 
-const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
+const Erc721Symbol = React.forwardRef<HTMLSpanElement, Erc721SymbolProps>(
   ({ chainId, address, ...props }, ref) => {
     const { data, isLoading, isError, error } = useContractRead({
       address,
-      abi: erc20NameAbi,
-      functionName: "name",
+      abi: erc721SymbolAbi,
+      functionName: "symbol",
       chainId,
     })
 
     if (isLoading) {
-      return <Skeleton className="h-6 w-36" {...props} />
+      return <Skeleton className="h-6 w-12" {...props} />
     }
 
     if (isError) {
@@ -64,6 +64,6 @@ const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
   }
 )
 
-Erc20Name.displayName = "Erc20Name"
+Erc721Symbol.displayName = "Erc721Symbol"
 
-export { Erc20Name }
+export { Erc721Symbol }

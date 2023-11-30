@@ -1,8 +1,6 @@
 {
   "name": "wallet-manage",
-  "dependencies": [
-    "wagmi"
-  ],
+  "dependencies": ["wagmi"],
   "files": [
     {
       "name": "wallet-manage.tsx",

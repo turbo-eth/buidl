@@ -160,16 +160,6 @@
     "type": "components:buidl"
   },
   {
-    "name": "network-manage",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/network-manage.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
     "name": "wallet-connect",
     "dependencies": [
       "wagmi"
@@ -190,16 +180,6 @@
     "type": "components:buidl"
   },
   {
-    "name": "wallet-manage",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/wallet-manage.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
     "name": "erc20-balance",
     "dependencies": [
       "wagmi"
@@ -211,12 +191,12 @@
     "type": "components:buidl"
   },
   {
-    "name": "erc20-image",
+    "name": "erc20-decimals",
     "dependencies": [
       "wagmi"
     ],
     "files": [
-      "buidl/erc20/erc20-image.tsx"
+      "buidl/erc20/erc20-decimals.tsx"
     ],
     "folder": "erc20",
     "type": "components:buidl"
@@ -263,6 +243,83 @@
       "buidl/erc20/erc20-symbol.tsx"
     ],
     "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc20-total-supply",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc20/erc20-total-supply.tsx"
+    ],
+    "folder": "erc20",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc721-name",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc721/erc721-name.tsx"
+    ],
+    "folder": "erc721",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc721-symbol",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc721/erc721-symbol.tsx"
+    ],
+    "folder": "erc721",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc721-owner-of",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc721/erc721-owner-of.tsx"
+    ],
+    "folder": "erc721",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc721-total-supply",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc721/erc721-total-supply.tsx"
+    ],
+    "folder": "erc721",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc721-token-uri",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc721/erc721-token-uri.tsx"
+    ],
+    "folder": "erc721",
+    "type": "components:buidl"
+  },
+  {
+    "name": "erc721-metadata",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/erc721/erc721-metadata.tsx"
+    ],
+    "folder": "erc721",
     "type": "components:buidl"
   }
 ]

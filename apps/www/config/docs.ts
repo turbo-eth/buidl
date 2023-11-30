@@ -70,16 +70,6 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/is-wallet-disconnected",
           items: [],
         },
-        {
-          title: "(WIP) Wallet Manage",
-          href: "/docs/components/wallet-manage",
-          items: [],
-        },
-        {
-          title: "(WIP) Network Manage",
-          href: "/docs/components/network-manage",
-          items: [],
-        },
       ],
     },
     {
@@ -166,8 +156,8 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "ERC20 Image",
-          href: "/docs/components/erc20-image",
+          title: "ERC20 Decimals",
+          href: "/docs/components/erc20-decimals",
           items: [],
         },
         {
@@ -181,13 +171,43 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "ERC20 Select",
-          href: "/docs/components/erc20-select",
+          title: "ERC20 Total Supply",
+          href: "/docs/components/erc20-total-supply",
+          items: [],
+        },
+      ],
+    },
+    {
+      title: "ERC721",
+      items: [
+        {
+          title: "ERC721 Name",
+          href: "/docs/components/erc721-name",
           items: [],
         },
         {
-          title: "ERC20 Select & Amount",
-          href: "/docs/components/erc20-select-and-amount",
+          title: "ERC721 Symbol",
+          href: "/docs/components/erc721-symbol",
+          items: [],
+        },
+        {
+          title: "ERC721 Owner Of",
+          href: "/docs/components/erc721-owner-of",
+          items: [],
+        },
+        {
+          title: "ERC721 Total Supply",
+          href: "/docs/components/erc721-total-supply",
+          items: [],
+        },
+        {
+          title: "ERC721 Token URI",
+          href: "/docs/components/erc721-token-uri",
+          items: [],
+        },
+        {
+          title: "ERC721 Metadata",
+          href: "/docs/components/erc721-metadata",
           items: [],
         },
       ],

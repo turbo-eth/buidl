@@ -6,14 +6,14 @@ import { useContractRead } from "wagmi"
 import { cn } from "@/lib/utils"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
-const erc20NameAbi = [
+const erc721NameAbi = [
   {
     inputs: [],
     name: "name",
     outputs: [
       {
         internalType: "string",
-        name: "name",
+        name: "",
         type: "string",
       },
     ],
@@ -25,21 +25,21 @@ const erc20NameAbi = [
 const ErrorMessage = ({ error }: { error: Error | null }) => {
   return (
     <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching ERC20 data"}
+      {error?.message ?? "Error while fetching ERC721 data"}
     </div>
   )
 }
 
-export type Erc20NameProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc721NameProps = React.HTMLAttributes<HTMLSpanElement> & {
   address: `0x${string}`
   chainId?: number
 }
 
-const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
+const Erc721Name = React.forwardRef<HTMLSpanElement, Erc721NameProps>(
   ({ chainId, address, ...props }, ref) => {
     const { data, isLoading, isError, error } = useContractRead({
       address,
-      abi: erc20NameAbi,
+      abi: erc721NameAbi,
       functionName: "name",
       chainId,
     })
@@ -64,6 +64,6 @@ const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
   }
 )
 
-Erc20Name.displayName = "Erc20Name"
+Erc721Name.displayName = "Erc721Name"
 
-export { Erc20Name }
+export { Erc721Name }

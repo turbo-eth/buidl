@@ -37,14 +37,14 @@ const GasPrice = React.forwardRef<HTMLDivElement, FeeDataProps>(
     })
 
     if (isLoading && displayLoading)
-      return <Skeleton className={cn("h-6 w-12", className)} {...props} />
+      return <Skeleton className={cn("h-6 w-16", className)} {...props} />
 
     if (isError && displayError) return <ErrorMessage error={error} />
 
     if (isSuccess) {
       return (
         <div ref={ref} className={className} {...props}>
-          {data?.gasPrice?.toString()}
+          {data?.formatted.gasPrice}
         </div>
       )
     }
@@ -71,7 +71,7 @@ const MaxPriorityFeePerGas = React.forwardRef<HTMLDivElement, FeeDataProps>(
     })
 
     if (isLoading && displayLoading)
-      return <Skeleton className={cn("h-6 w-12", className)} {...props} />
+      return <Skeleton className={cn("h-6 w-16", className)} {...props} />
 
     if (isError && displayError) return <ErrorMessage error={error} />
 
@@ -105,7 +105,7 @@ const MaxFeePerGas = React.forwardRef<HTMLDivElement, FeeDataProps>(
     })
 
     if (isLoading && displayLoading)
-      return <Skeleton className={cn("h-6 w-12", className)} {...props} />
+      return <Skeleton className={cn("h-6 w-16", className)} {...props} />
 
     if (isError && displayError) return <ErrorMessage error={error} />
 

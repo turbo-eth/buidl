@@ -1,13 +1,11 @@
 ---
-title: ERC20 Balance
-description: Display the balance of an ERC20 token for a given address.
+title: ERC721 Owner Of
+description: Display the owner of an ERC721 token
 component: true
-wagmi:
-  link: https://wagmi.sh/react/hooks/useContractRead
 ---
 
 <ComponentPreview
-  name="erc20-balance-demo"
+  name="erc721-owner-of-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -38,7 +36,7 @@ wagmi:
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="erc20-balance" />
+<ComponentSource name="erc721-owner-of" />
 
 </Steps>
 
@@ -49,12 +47,9 @@ wagmi:
 ## Usage
 
 ```tsx
-import { Erc20Balance } from "@/components/buidl/erc20-balance"
+import { Erc20owner } from "@/components/buidl/erc721-owner-of"
 ```
 
 ```tsx
-<Erc20Balance
-  address="0x0000000000000000000000000000000000000000"
-  account="0x0000000000000000000000000000000000000000"
-/>
+<Erc20owner address="0x0000000000000000000000000000000000000000" />
 ```

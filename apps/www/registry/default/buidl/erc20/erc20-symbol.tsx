@@ -1,62 +1,69 @@
-import { useEffect, useState } from "react"
-import defaultTokenList from "@/data/uniswap-default.tokenlist.json"
-import { useChainId } from "wagmi"
+"use client"
+
+import * as React from "react"
+import { useContractRead } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
-import { useErc20Symbol } from "./erc20-wagmi"
-import { TokenList } from "./types"
-import { findTokenByAddressFromList } from "./utils/find-token-by-address-from-list"
+const erc20SymbolAbi = [
+  {
+    inputs: [],
+    name: "symbol",
+    outputs: [
+      {
+        internalType: "string",
+        name: "symbol",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+] as const
 
-export type Erc20SymbolProps = React.HTMLAttributes<HTMLElement> & {
+const ErrorMessage = ({ error }: { error: Error | null }) => {
+  return (
+    <div className={cn("break-words text-sm font-medium text-red-500")}>
+      {error?.message ?? "Error while fetching ERC20 data"}
+    </div>
+  )
+}
+
+export type Erc20SymbolProps = React.HTMLAttributes<HTMLSpanElement> & {
   address: `0x${string}`
-  tokenList?: TokenList
   chainId?: number
-  unavailable?: any
 }
 
-export const Erc20Symbol = ({
-  className,
-  chainId,
-  address,
-  tokenList = defaultTokenList,
-  unavailable,
-}: Erc20SymbolProps) => {
-  const classes = cn(className)
-  const chainIdDefault = useChainId()
+const Erc20Symbol = React.forwardRef<HTMLSpanElement, Erc20SymbolProps>(
+  ({ chainId, address, ...props }, ref) => {
+    const { data, isLoading, isError, error } = useContractRead({
+      address,
+      abi: erc20SymbolAbi,
+      functionName: "symbol",
+      chainId,
+    })
 
-  const [tokenSymbol, setTokenSymbol] = useState<string | undefined>()
-  const [tokenNotInList, setTokenNotInList] = useState<boolean>()
-  useEffect(() => {
-    const token = findTokenByAddressFromList(tokenList, address)
-    if (!token) {
-      setTokenNotInList(true)
+    if (isLoading) {
+      return <Skeleton className="h-6 w-12" {...props} />
     }
-    if (token) {
-      setTokenSymbol(token.symbol)
+
+    if (isError) {
+      return <ErrorMessage error={error} />
     }
-  }, [address, tokenList])
 
-  useEffect(() => {}, [])
-
-  const { data, isSuccess } = useErc20Symbol({
-    chainId: chainId || chainIdDefault,
-    address,
-    watch: true,
-    enabled: !!tokenNotInList,
-  })
-
-  useEffect(() => {
-    if (data && isSuccess) {
-      setTokenSymbol(data)
+    if (data === undefined) {
+      return null
     }
-  }, [data, isSuccess])
 
-  if (!tokenSymbol) {
-    const Comp = unavailable
-    if (!Comp) return null
-    return <Comp />
+    return (
+      <span ref={ref} {...props}>
+        {data}
+      </span>
+    )
   }
+)
 
-  return <span className={classes}>{tokenSymbol}</span>
-}
+Erc20Symbol.displayName = "Erc20Symbol"
+
+export { Erc20Symbol }

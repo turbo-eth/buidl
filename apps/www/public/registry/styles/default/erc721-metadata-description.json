@@ -1,0 +1,12 @@
+{
+  "name": "erc721-metadata-description",
+  "dependencies": ["wagmi"],
+  "files": [
+    {
+      "name": "erc721-metadata-description.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useContractRead } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Skeleton } from \"@/registry/default/ui/skeleton\"\n\nconst erc721SymbolAbi = [\n  {\n    inputs: [],\n    name: \"symbol\",\n    outputs: [\n      {\n        internalType: \"string\",\n        name: \"\",\n        type: \"string\",\n      },\n    ],\n    stateMutability: \"view\",\n    type: \"function\",\n  },\n] as const\n\nconst ErrorMessage = ({ error }: { error: Error | null }) => {\n  return (\n    <div className={cn(\"break-words text-sm font-medium text-red-500\")}>\n      {error?.message ?? \"Error while fetching ERC721 data\"}\n    </div>\n  )\n}\n\nexport type Erc721SymbolProps = React.HTMLAttributes<HTMLSpanElement> & {\n  address: `0x${string}`\n  chainId?: number\n}\n\nconst Erc721Symbol = React.forwardRef<HTMLSpanElement, Erc721SymbolProps>(\n  (\n    { chainId, address, ...props },\n    ref\n  ) => {\n\n    const {data,isLoading,isError,error} = useContractRead({\n      address,\n      abi: erc721SymbolAbi,\n      functionName: \"symbol\",\n      chainId,\n    })\n\n    if (isLoading) {\n      return <Skeleton className=\"h-6 w-12\" {...props} />\n    }\n\n    if (isError) {\n      return <ErrorMessage error={error} />\n    }\n\n    if (data === undefined) {\n      return null\n    }\n\n    return (\n      <span ref={ref} {...props}>\n        {data}\n      </span>\n    )\n  }\n)\n\nErc721Symbol.displayName = \"Erc721Symbol\"\n\nexport { Erc721Symbol }\n"
+    }
+  ],
+  "folder": "erc721",
+  "type": "components:buidl"
+}

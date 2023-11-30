@@ -1,0 +1,12 @@
+{
+  "name": "erc721-owner",
+  "dependencies": ["wagmi"],
+  "files": [
+    {
+      "name": "erc721-owner.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useContractRead } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Skeleton } from \"@/registry/default/ui/skeleton\"\n\nconst erc721OwnerOfAbi = [\n  {\n    inputs: [\n      {\n        internalType: \"uint256\",\n        name: \"tokenId\",\n        type: \"uint256\",\n      },\n    ],\n    name: \"ownerOf\",\n    outputs: [\n      {\n        internalType: \"address\",\n        name: \"\",\n        type: \"address\",\n      },\n    ],\n    stateMutability: \"view\",\n    type: \"function\",\n  }\n] as const\n\n\nconst ErrorMessage = ({ error, className, ...props }: React.HTMLAttributes<HTMLDivElement> &{ error: Error | null } ) => {\n  return (\n    <div className={cn(\"break-words text-sm font-medium text-red-500\", className)} {...props}>\n      {error?.message ?? \"Error while fetching ERC721 data\"}\n    </div>\n  )\n}\n\nexport type Erc721OwnerProps = React.HTMLAttributes<HTMLSpanElement> & {\n  address: `0x${string}`\n  tokenId: number | string | bigint\n  chainId?: number\n}\n\nconst Erc721Owner = React.forwardRef<HTMLSpanElement, Erc721OwnerProps>(\n  (\n    { chainId, address, tokenId, ...props },\n    ref\n  ) => {\n\n    const {data,isLoading,isError,error} = useContractRead({\n      address,\n      abi: erc721OwnerOfAbi,\n      functionName: \"ownerOf\",\n      args: [BigInt(tokenId)],\n      chainId,\n    })\n\n    if (isLoading) {\n      return <Skeleton className=\"h-6 w-[420px]\" {...props} />\n    }\n\n    if (isError) {\n      return <ErrorMessage error={error} {...props} />\n    }\n\n    if (data === undefined) {\n      return null\n    }\n\n    return (\n    \n    \n      <span ref={ref} {...props}>\n        {data}\n      </span>\n    \n    )\n  }\n)\n\nErc721Owner.displayName = \"Erc721Owner\"\n\nexport { Erc721Owner }\n"
+    }
+  ],
+  "folder": "erc721",
+  "type": "components:buidl"
+}

@@ -1,11 +1,11 @@
 ---
-title: ERC20 Image
-description: Display the icon of an ERC20 token
+title: ERC721 Token URI
+description: Display the token uri of an ERC721 token
 component: true
 ---
 
 <ComponentPreview
-  name="erc20-image-demo"
+  name="erc721-token-uri-demo"
   className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
 />
 
@@ -36,7 +36,7 @@ component: true
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="erc20-image" />
+<ComponentSource name="erc721-token-uri" />
 
 </Steps>
 
@@ -47,9 +47,9 @@ component: true
 ## Usage
 
 ```tsx
-import { Erc20Name } from "@/components/buidl/erc20-image"
+import { Erc721Name } from "@/registry/default/buidl/erc721/erc721-token-uri"
 ```
 
 ```tsx
-<Erc20Name address="0x0000000000000000000000000000000000000000" />
+<Erc721Name address="0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB" chainId={1} />
 ```

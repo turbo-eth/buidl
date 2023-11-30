@@ -6,15 +6,15 @@ import { useContractRead } from "wagmi"
 import { cn } from "@/lib/utils"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
-const erc20NameAbi = [
+const erc20DecimalsAbi = [
   {
     inputs: [],
-    name: "name",
+    name: "decimals",
     outputs: [
       {
-        internalType: "string",
-        name: "name",
-        type: "string",
+        internalType: "uint8",
+        name: "",
+        type: "uint8",
       },
     ],
     stateMutability: "view",
@@ -30,22 +30,22 @@ const ErrorMessage = ({ error }: { error: Error | null }) => {
   )
 }
 
-export type Erc20NameProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc20DecimalsProps = React.HTMLAttributes<HTMLSpanElement> & {
   address: `0x${string}`
   chainId?: number
 }
 
-const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
+const Erc20Decimals = React.forwardRef<HTMLSpanElement, Erc20DecimalsProps>(
   ({ chainId, address, ...props }, ref) => {
     const { data, isLoading, isError, error } = useContractRead({
       address,
-      abi: erc20NameAbi,
-      functionName: "name",
+      abi: erc20DecimalsAbi,
+      functionName: "decimals",
       chainId,
     })
 
     if (isLoading) {
-      return <Skeleton className="h-6 w-36" {...props} />
+      return <Skeleton className="h-6 w-12" {...props} />
     }
 
     if (isError) {
@@ -64,6 +64,6 @@ const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
   }
 )
 
-Erc20Name.displayName = "Erc20Name"
+Erc20Decimals.displayName = "Erc20Decimals"
 
-export { Erc20Name }
+export { Erc20Decimals }
