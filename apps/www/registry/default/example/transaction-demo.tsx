@@ -17,20 +17,36 @@ export default function TransactionStatusDemo() {
       <h2 className="text-lg font-bold">Transaction</h2>
       <div>
         <h3 className="text-base font-bold">From:</h3>
-        <TransactionFrom chainId={chainId} className="mt-1" hash={hash} />
+        <TransactionFrom
+          chainId={chainId}
+          displayError={false}
+          className="mt-1"
+          hash={hash}
+        />
       </div>
       <div>
         <h3 className="text-base font-bold">To:</h3>
-        <TransactionTo chainId={chainId} className="mt-1" hash={hash} />
+        <TransactionTo
+          chainId={chainId}
+          displayError={false}
+          className="mt-1"
+          hash={hash}
+        />
       </div>
       <div>
         <h3 className="text-base font-bold">BlockHash:</h3>
-        <TransactionBlockHash chainId={chainId} className="mt-1" hash={hash} />
+        <TransactionBlockHash
+          chainId={chainId}
+          displayError={false}
+          className="mt-1"
+          hash={hash}
+        />
       </div>
       <div className="flex items-center gap-x-6">
         <div>
           <h3 className="text-base font-bold">BlockNumber:</h3>
           <TransactionBlockNumber
+            displayError={false}
             chainId={chainId}
             className="mt-1"
             hash={hash}
@@ -38,15 +54,30 @@ export default function TransactionStatusDemo() {
         </div>
         <div>
           <h3 className="text-base font-bold">Gas:</h3>
-          <TransactionGas chainId={chainId} className="mt-1" hash={hash} />
+          <TransactionGas
+            chainId={chainId}
+            displayError={false}
+            className="mt-1"
+            hash={hash}
+          />
         </div>
         <div>
           <h3 className="text-base font-bold">Gas Price:</h3>
-          <TransactionGasPrice chainId={chainId} className="mt-1" hash={hash} />
+          <TransactionGasPrice
+            chainId={chainId}
+            displayError={false}
+            className="mt-1"
+            hash={hash}
+          />
         </div>
         <div>
           <h3 className="text-base font-bold">Nonce:</h3>
-          <TransactionNonce chainId={chainId} className="mt-1" hash={hash} />
+          <TransactionNonce
+            chainId={chainId}
+            displayError={false}
+            className="mt-1"
+            hash={hash}
+          />
         </div>
       </div>
     </div>

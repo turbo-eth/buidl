@@ -19,14 +19,18 @@ interface EnsAddressProps extends Omit<AddressProps, "address"> {
   name: string
 }
 
-const EnsAddress = React.forwardRef<HTMLSpanElement, EnsAddressProps>(
+const EnsAddress = React.forwardRef<HTMLDivElement, EnsAddressProps>(
   ({ name, className, ...props }, ref) => {
     const { data, isLoading, isSuccess, isError, error } = useEnsAddress({
       chainId: 1,
       name,
     })
 
-    if (isLoading) {
+    if (isError) {
+      return <ErrorMessage error={error} />
+    }
+
+    if (isLoading || !data) {
       return (
         <Skeleton
           className={cn(
@@ -43,10 +47,6 @@ const EnsAddress = React.forwardRef<HTMLSpanElement, EnsAddressProps>(
       return (
         <Address ref={ref} address={data} className={className} {...props} />
       )
-    }
-
-    if (isError) {
-      return <ErrorMessage error={error} />
     }
 
     return null

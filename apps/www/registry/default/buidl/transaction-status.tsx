@@ -35,21 +35,15 @@ const TransactionStatus = React.forwardRef<
   if (isError) return <ErrorMessage error={error} />
 
   return (
-    <>
-      <div
-        ref={ref}
-        className={cn("flex flex-col items-center", className)}
-        {...props}
-      >
-        {(isLoading || isSuccess) && (
-          <>
-            {isLoading && "Processing transaction..."}
-            {isSuccess && "Transaction successful!"}
-            {children}
-          </>
-        )}
-      </div>
-    </>
+    <div
+      ref={ref}
+      className={cn("flex flex-col items-center", className)}
+      {...props}
+    >
+      {isLoading && "Processing transaction..."}
+      {isSuccess && "Transaction successful!"}
+      {children}
+    </div>
   )
 })
 

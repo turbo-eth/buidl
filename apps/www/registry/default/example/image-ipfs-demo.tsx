@@ -3,8 +3,7 @@ import { ImageIpfs } from "@/registry/default/buidl/image-ipfs"
 export default function ImageIpfsDemo() {
   return (
     <ImageIpfs
-      width="250"
-      height="250"
+      className="h-[250px] w-[250px]"
       src="ipfs://QmPbxeGcXhYQQNgsC6a36dDyYUcHgMLnGKnF8pVFmGsvqi"
       alt="ipfs"
     />

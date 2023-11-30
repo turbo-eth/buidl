@@ -5,14 +5,13 @@ import { useAccount, useEnsName } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { Address } from "@/registry/default/buidl/address"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
-import { Skeleton } from "../ui/skeleton"
-
-interface EnsNameProps extends React.HTMLAttributes<HTMLSpanElement> {
+interface EnsNameProps extends React.HTMLAttributes<HTMLDivElement> {
   address?: `0x${string}`
 }
 
-const EnsName = React.forwardRef<HTMLSpanElement, EnsNameProps>(
+const EnsName = React.forwardRef<HTMLDivElement, EnsNameProps>(
   ({ address, className, ...props }, ref) => {
     const { address: connectedAddress } = useAccount()
     const selectedAddress = address ?? connectedAddress
@@ -25,13 +24,13 @@ const EnsName = React.forwardRef<HTMLSpanElement, EnsNameProps>(
 
     if (isSuccess && data) {
       return (
-        <span ref={ref} className={className} {...props}>
+        <div ref={ref} className={className} {...props}>
           {data}
-        </span>
+        </div>
       )
     }
 
-    if (isLoading) {
+    if (isLoading || !selectedAddress) {
       return <Skeleton className={cn("h-6 w-32", className)} {...props} />
     }
 

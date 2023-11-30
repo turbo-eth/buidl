@@ -1,40 +1,59 @@
-import { useMemo } from "react"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
-type ImageIpfs = React.HTMLAttributes<HTMLElement> & {
+const ErrorMessage = ({ error }: { error: Error | null }) => {
+  return (
+    <div className={cn("break-words text-sm font-medium text-red-500")}>
+      {error?.message ?? "Error while fetching image"}
+    </div>
+  )
+}
+
+interface ImageIpfsProps extends React.HTMLAttributes<HTMLImageElement> {
+  ipfsGatewayUrl?: string
   src: string
   alt: string
-  width?: string
-  height?: string
 }
 
-export const ImageIpfs = ({
-  className,
-  src,
-  alt,
-  width,
-  height,
-}: ImageIpfs) => {
-  const classes = cn(className)
+const ImageIpfs = React.forwardRef<HTMLImageElement, ImageIpfsProps>(
+  (
+    { className, src, alt, ipfsGatewayUrl = "https://ipfs.io/ipfs/", ...props },
+    ref
+  ) => {
+    const [isLoading, setIsLoading] = React.useState(true)
+    const [isError, setIsError] = React.useState(false)
 
-  const imgSrc = useMemo(
-    () =>
-      src?.startsWith("ipfs://")
-        ? src.replace("ipfs://", "https://gateway.ipfs.io/ipfs/")
-        : src,
-    [src]
-  )
+    const imgSrc = React.useMemo(
+      () =>
+        src?.startsWith("ipfs://")
+          ? src.replace("ipfs://", ipfsGatewayUrl)
+          : src,
+      [src, ipfsGatewayUrl]
+    )
 
-  if (!imgSrc) return null
+    return (
+      <>
+        {isError ? (
+          <ErrorMessage error={null} />
+        ) : isLoading ? (
+          <Skeleton className={className} {...props} />
+        ) : null}
+        <img
+          ref={ref}
+          alt={alt}
+          src={imgSrc}
+          onLoad={() => setIsLoading(false)}
+          onError={() => setIsError(true)}
+          className={cn((isLoading || isError) && "hidden", className)}
+          {...props}
+        />
+      </>
+    )
+  }
+)
 
-  return (
-    <img
-      src={imgSrc}
-      width={width}
-      height={height}
-      alt={alt}
-      className={classes}
-    />
-  )
-}
+ImageIpfs.displayName = "ImageIpfs"
+
+export { ImageIpfs }

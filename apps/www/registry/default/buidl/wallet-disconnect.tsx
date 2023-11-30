@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useDisconnect } from "wagmi"
 
-import { Button, type ButtonProps } from "../ui/button"
+import { Button, type ButtonProps } from "@/registry/default/ui/button"
 
 const WalletDisconnect = React.forwardRef<
   HTMLButtonElement,

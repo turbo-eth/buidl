@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
-interface NonceProps extends React.HTMLAttributes<HTMLSpanElement> {
+interface NonceProps extends React.HTMLAttributes<HTMLDivElement> {
   address?: `0x${string}`
   chainId?: number
 }
@@ -32,8 +32,8 @@ const useNonce = ({
   })
 }
 
-const Nonce = React.forwardRef<HTMLSpanElement, NonceProps>(
-  ({ className, address, chainId, ...props }: NonceProps) => {
+const Nonce = React.forwardRef<HTMLDivElement, NonceProps>(
+  ({ className, address, chainId, ...props }, ref) => {
     const connectedChainId = useChainId()
     const selectedChainId = chainId ?? connectedChainId
 
@@ -54,9 +54,9 @@ const Nonce = React.forwardRef<HTMLSpanElement, NonceProps>(
     }
 
     return (
-      <span className={className} {...props}>
+      <div ref={ref} className={className} {...props}>
         {data}
-      </span>
+      </div>
     )
   }
 )

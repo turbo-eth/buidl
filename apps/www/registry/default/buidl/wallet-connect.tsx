@@ -4,15 +4,14 @@ import * as React from "react"
 import { useAccount, useConnect, type Connector } from "wagmi"
 
 import { cn } from "@/lib/utils"
-
-import { Button, ButtonProps } from "../ui/button"
+import { Button, ButtonProps } from "@/registry/default/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog"
+} from "@/registry/default/ui/dialog"
 
 const WalletConnect = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, className, ...props }, ref) => {
@@ -20,7 +19,7 @@ const WalletConnect = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const { connectors } = useConnect()
 
     if (address) {
-      return <span>{address}</span>
+      return <div className={className}>{address}</div>
     }
 
     return (

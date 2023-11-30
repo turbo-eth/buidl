@@ -40,7 +40,7 @@ const TransactionBlockHash = React.forwardRef<HTMLDivElement, TransactionProps>(
     })
 
     if (isLoading && displayLoading)
-      return <Skeleton className={cn("h-6 w-[630px]", className)} {...props} />
+      return <Skeleton className={cn("h-6 w-[620px]", className)} {...props} />
 
     if (isError && displayError) return <ErrorMessage error={error} />
 

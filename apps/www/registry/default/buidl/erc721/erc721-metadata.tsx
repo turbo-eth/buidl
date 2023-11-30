@@ -48,7 +48,7 @@ function useERC721Metadata({
   address,
   chainId,
   tokenId,
-  ipfsGatewayUrl = "https://ipfs.io/ipfs",
+  ipfsGatewayUrl = "https://ipfs.io/ipfs/",
 }: useERC721MetadataProps) {
   const { data, isLoading, isError, error } = useContractRead({
     address,
@@ -64,14 +64,14 @@ function useERC721Metadata({
       queryFn: async () => {
         if (!data) throw new Error("No tokenUri found")
         const uri = data.replace("ipfs://", "")
-        const response = await fetch(`${ipfsGatewayUrl}/${uri}`)
+        const response = await fetch(`${ipfsGatewayUrl}${uri}`)
         const json = (await response.json()) as IERC721Metadata
 
         if (!json.image) throw new Error("No image found in metadata")
         if (!json.attributes) throw new Error("No attributes found in metadata")
 
         json.image = json.image.startsWith("ipfs://")
-          ? json.image.replace("ipfs://", `${ipfsGatewayUrl}/`)
+          ? json.image.replace("ipfs://", `${ipfsGatewayUrl}`)
           : json.image
         return json
       },
@@ -112,8 +112,6 @@ const Erc721MetadataImage = React.forwardRef<
     tokenId: BigInt(tokenId),
     ipfsGatewayUrl,
   })
-
-  console.log(data)
 
   if (isLoading) {
     return <Skeleton className="h-6 w-12" {...props} />

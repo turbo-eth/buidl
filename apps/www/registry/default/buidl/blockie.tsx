@@ -6,6 +6,7 @@ import makeBlockie from "ethereum-blockies-base64"
 import { useAccount } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const blockieVariants = cva("inline-block", {
   variants: {
@@ -32,24 +33,36 @@ export type BlockieProps = React.HTMLAttributes<HTMLImageElement> &
     address?: `0x${string}`
   }
 
-export const Blockie = ({
-  className,
-  address,
-  variant,
-  size,
-  ...props
-}: BlockieProps) => {
-  const { address: connectedAddress } = useAccount()
-  const selectedAddress = address ?? connectedAddress
+const Blockie = React.forwardRef<HTMLImageElement, BlockieProps>(
+  ({ className, address, variant, size, ...props }, ref) => {
+    const [isLoading, setIsLoading] = React.useState(true)
+    const { address: connectedAddress, isConnecting } = useAccount()
+    const selectedAddress = address ?? connectedAddress ?? "0x0"
 
-  if (!selectedAddress) return null
+    return (
+      <>
+        {isLoading || isConnecting ? (
+          <Skeleton
+            className={cn(blockieVariants({ variant, size, className }))}
+            {...props}
+          />
+        ) : null}
+        <img
+          ref={ref}
+          alt={`${address} blockie`}
+          onLoad={() => setIsLoading(false)}
+          className={cn(
+            blockieVariants({ variant, size, className }),
+            (isLoading || isConnecting) && "hidden"
+          )}
+          src={makeBlockie(selectedAddress)}
+          {...props}
+        />
+      </>
+    )
+  }
+)
 
-  return (
-    <img
-      alt={`${address} blockie`}
-      className={cn(blockieVariants({ variant, size, className }))}
-      src={makeBlockie(selectedAddress)}
-      {...props}
-    />
-  )
-}
+Blockie.displayName = "Blockie"
+
+export { Blockie }

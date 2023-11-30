@@ -18,13 +18,13 @@ export interface AddressProps
 }
 
 const AddressCopy = React.forwardRef<
-  HTMLSpanElement,
-  React.HTMLAttributes<HTMLSpanElement> & {
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
     address: AddressType
   }
 >(({ address, className, children, ...props }, ref) => {
   return (
-    <span
+    <div
       ref={ref}
       className={cn("flex cursor-pointer items-center gap-x-2", className)}
       onClick={async () => {
@@ -39,15 +39,15 @@ const AddressCopy = React.forwardRef<
       {children ?? address}
       <span className="sr-only">Copy address</span>
       <Copy size={12} />
-    </span>
+    </div>
   )
 })
 
 AddressCopy.displayName = "AddressCopy"
 
 const AddressLink = React.forwardRef<
-  HTMLElement,
-  React.HTMLAttributes<HTMLElement> & {
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
     address: AddressType
   }
 >(({ address, className, children, ...props }, ref) => {
@@ -57,7 +57,7 @@ const AddressLink = React.forwardRef<
   const chain = currentChain ?? mainnet
 
   return (
-    <span
+    <div
       ref={ref}
       className={cn(
         "cursor-pointer underline-offset-2 hover:underline",
@@ -76,13 +76,13 @@ const AddressLink = React.forwardRef<
       ) : (
         <>{children ?? address}</>
       )}
-    </span>
+    </div>
   )
 })
 
 AddressLink.displayName = "AddressLink"
 
-const Address = React.forwardRef<HTMLElement, AddressProps>(
+const Address = React.forwardRef<HTMLDivElement, AddressProps>(
   (
     { address, className, truncate, truncateAmount = 4, link, copy, ...props },
     ref

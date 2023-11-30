@@ -6,7 +6,7 @@
   "files": [
     {
       "name": "wallet-disconnect.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useDisconnect } from \"wagmi\"\n\nimport { Button, type ButtonProps } from \"../ui/button\"\n\nconst WalletDisconnect = React.forwardRef<\n  HTMLButtonElement,\n  Omit<ButtonProps, \"onClick\">\n>(({ children, ...props }, ref) => {\n  const { disconnect } = useDisconnect()\n\n  return (\n    <Button\n      ref={ref}\n      onClick={() => {\n        disconnect()\n      }}\n      {...props}\n    >\n      {children ?? \"Disconnect\"}\n    </Button>\n  )\n})\n\nWalletDisconnect.displayName = \"WalletDisconnect\"\n\nexport { WalletDisconnect }\n"
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useDisconnect } from \"wagmi\"\n\nimport { Button, type ButtonProps } from \"@/registry/default/ui/button\"\n\nconst WalletDisconnect = React.forwardRef<\n  HTMLButtonElement,\n  Omit<ButtonProps, \"onClick\">\n>(({ children, ...props }, ref) => {\n  const { disconnect } = useDisconnect()\n\n  return (\n    <Button\n      ref={ref}\n      onClick={() => {\n        disconnect()\n      }}\n      {...props}\n    >\n      {children ?? \"Disconnect\"}\n    </Button>\n  )\n})\n\nWalletDisconnect.displayName = \"WalletDisconnect\"\n\nexport { WalletDisconnect }\n"
     }
   ],
   "type": "components:buidl"

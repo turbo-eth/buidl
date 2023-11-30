@@ -4,9 +4,9 @@ import * as React from "react"
 import { useAccount } from "wagmi"
 
 const IsWalletConnected = ({ children }: { children: React.ReactNode }) => {
-  const { isConnected } = useAccount()
+  const { isConnected, isConnecting } = useAccount()
 
-  if (isConnected) return <>{children}</>
+  if (isConnected || isConnecting) return <>{children}</>
 
   return null
 }

@@ -1,18 +1,17 @@
 "use client"
 
 import { useCallback, useMemo, useState } from "react"
-import Image from "next/image"
 
 import { cn } from "@/lib/utils"
-
+import { ImageIpfs } from "@/registry/default/buidl/image-ipfs"
 import {
   CommandDialog,
   CommandEmpty,
   CommandInput,
   CommandItem,
   CommandList,
-} from "../../ui/command"
-import { ImageIpfs } from "../image-ipfs"
+} from "@/registry/default/ui/command"
+
 import { Token, TokenList } from "./types"
 
 interface Erc20SelectorProps {
