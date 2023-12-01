@@ -1,18 +1,18 @@
-import { allDocs } from "contentlayer/generated"
 import { notFound } from "next/navigation"
+import { allDocs } from "contentlayer/generated"
 
 import "@/styles/mdx.css"
-import { ChevronRightIcon } from "@radix-ui/react-icons"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ChevronRightIcon } from "@radix-ui/react-icons"
 import Balancer from "react-wrap-balancer"
 
-import { Mdx } from "@/components/mdx-components"
-import { DocsPager } from "@/components/pager"
-import { DashboardTableOfContents } from "@/components/toc"
 import { siteConfig } from "@/config/site"
 import { getTableOfContents } from "@/lib/toc"
 import { absoluteUrl, cn } from "@/lib/utils"
+import { Mdx } from "@/components/mdx-components"
+import { DocsPager } from "@/components/pager"
+import { DashboardTableOfContents } from "@/components/toc"
 import { badgeVariants } from "@/registry/default/ui/badge"
 import { ScrollArea } from "@/registry/default/ui/scroll-area"
 

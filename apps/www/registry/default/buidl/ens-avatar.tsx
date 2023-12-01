@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { VariantProps, cva } from "class-variance-authority"
+import { normalize } from "viem/ens"
 import { useAccount, useEnsAvatar, useEnsName } from "wagmi"
 
 import { cn } from "@/lib/utils"
@@ -57,7 +58,9 @@ const EnsAvatar = React.forwardRef<HTMLImageElement, EnsAvatarProps>(
     const { data: dataEnsName, isLoading: isLoadingEnsName } = useEnsName({
       chainId: 1,
       address: selectedAddress,
-      enabled: !name && !!selectedAddress,
+      query: {
+        enabled: !name && !!selectedAddress,
+      },
     })
 
     const ensName = name ?? dataEnsName
@@ -65,8 +68,10 @@ const EnsAvatar = React.forwardRef<HTMLImageElement, EnsAvatarProps>(
     const { data: dataEnsAvatar, isLoading: isLoadingEnsAvatar } = useEnsAvatar(
       {
         chainId: 1,
-        name: ensName,
-        enabled: !!ensName,
+        name: ensName ? normalize(ensName) : undefined,
+        query: {
+          enabled: !!ensName,
+        },
       }
     )
 

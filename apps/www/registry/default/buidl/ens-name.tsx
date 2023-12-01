@@ -19,7 +19,9 @@ const EnsName = React.forwardRef<HTMLDivElement, EnsNameProps>(
     const { data, isLoading, isSuccess } = useEnsName({
       chainId: 1,
       address: selectedAddress,
-      enabled: !!selectedAddress,
+      query: {
+        enabled: !!selectedAddress,
+      },
     })
 
     if (isLoading || !selectedAddress) {

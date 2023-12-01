@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { formatUnits } from "viem"
-import { useContractRead } from "wagmi"
+import { useReadContract } from "wagmi"
 
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
@@ -72,7 +72,7 @@ const Erc20TotalSupply = React.forwardRef<
       isLoading: isLoadingTotalSupply,
       isError: isErrorTotalSupply,
       error: errorTotalSupply,
-    } = useContractRead({
+    } = useReadContract({
       address,
       abi: erc20TotalSupplyAbi,
       functionName: "totalSupply",
@@ -84,7 +84,7 @@ const Erc20TotalSupply = React.forwardRef<
       isLoading: isLoadingDecimals,
       isError: isErrorDecimals,
       error: errorDecimals,
-    } = useContractRead({
+    } = useReadContract({
       address,
       abi: erc20DecimalsAbi,
       functionName: "decimals",

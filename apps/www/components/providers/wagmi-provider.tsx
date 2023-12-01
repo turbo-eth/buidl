@@ -1,11 +1,7 @@
 "use client"
 
 import { ReactNode } from "react"
-import {
-  WagmiProvider as WagmiProviderNative,
-  createConfig, http
-} from "wagmi"
-
+import { WagmiProvider as WagmiProviderNative, createConfig, http } from "wagmi"
 import {
   arbitrum,
   base,
@@ -14,7 +10,6 @@ import {
   optimism,
   polygon,
 } from "wagmi/chains"
-
 
 const wagmiConfig = createConfig({
   chains: [mainnet, polygon, arbitrum, optimism, gnosis, base],
@@ -26,9 +21,11 @@ const wagmiConfig = createConfig({
     [optimism.id]: http(),
     [gnosis.id]: http(),
     [base.id]: http(),
-  }
+  },
 })
 
 export function WagmiProvider({ children }: { children: ReactNode }) {
-  return <WagmiProviderNative config={wagmiConfig}>{children}</WagmiProviderNative>
+  return (
+    <WagmiProviderNative config={wagmiConfig}>{children}</WagmiProviderNative>
+  )
 }

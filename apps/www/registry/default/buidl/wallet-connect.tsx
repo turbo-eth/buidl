@@ -53,7 +53,7 @@ const WalletPreview = React.forwardRef<
     connector: Connector
   }
 >(({ className, connector, ...props }, ref) => {
-  const { connect, isLoading, isError, error } = useConnect()
+  const { connect, isPending, isError, error } = useConnect()
 
   const handleConnect = () => {
     connect({ connector })
@@ -64,12 +64,12 @@ const WalletPreview = React.forwardRef<
       ref={ref}
       className={cn("flex h-16 w-full flex-col justify-center", className)}
       variant={"outline"}
-      disabled={isLoading}
+      disabled={isPending}
       onClick={handleConnect}
       {...props}
     >
       <h3 className="text-lg font-normal">{connector.name}</h3>
-      {isLoading && (
+      {isPending && (
         <p className="text-sm text-neutral-400">
           Accept the connection request in your wallet
         </p>

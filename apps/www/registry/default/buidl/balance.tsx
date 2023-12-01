@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useAccount, useBalance, type Address } from "wagmi"
+import { useAccount, useBalance } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
@@ -9,7 +9,7 @@ import { Skeleton } from "@/registry/default/ui/skeleton"
 
 interface BalanceProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
-  address?: Address
+  address?: `0x${string}}`
   chainId?: number
   decimals?: number
   displayLoading?: boolean

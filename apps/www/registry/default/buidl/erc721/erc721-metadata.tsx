@@ -1,8 +1,8 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query"
 import * as React from "react"
-import { useContractRead } from "wagmi"
+import { useQuery } from "@tanstack/react-query"
+import { useReadContract } from "wagmi"
 
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
@@ -51,7 +51,7 @@ function useERC721Metadata({
   tokenId,
   ipfsGatewayUrl = "https://ipfs.io/ipfs/",
 }: useERC721MetadataProps) {
-  const { data, isLoading, isError, error } = useContractRead({
+  const { data, isLoading, isError, error } = useReadContract({
     address,
     abi: erc721TokenUriAbi,
     functionName: "tokenURI",
@@ -59,26 +59,24 @@ function useERC721Metadata({
     chainId,
   })
 
-  const metadataQuery = useQuery(
-    {
-      queryKey: ["erc721-metadata", address, chainId, tokenId, data],
-      queryFn: async () => {
-        if (!data) throw new Error("No tokenUri found")
-        const uri = data.replace("ipfs://", "")
-        const response = await fetch(`${ipfsGatewayUrl}${uri}`)
-        const json = (await response.json()) as IERC721Metadata
+  const metadataQuery = useQuery({
+    queryKey: ["erc721-metadata", address, chainId, tokenId.toString(), data],
+    queryFn: async () => {
+      if (!data) throw new Error("No tokenUri found")
+      const uri = data.replace("ipfs://", "")
+      const response = await fetch(`${ipfsGatewayUrl}${uri}`)
+      const json = (await response.json()) as IERC721Metadata
 
-        if (!json.image) throw new Error("No image found in metadata")
-        if (!json.attributes) throw new Error("No attributes found in metadata")
+      if (!json.image) throw new Error("No image found in metadata")
+      if (!json.attributes) throw new Error("No attributes found in metadata")
 
-        json.image = json.image.startsWith("ipfs://")
-          ? json.image.replace("ipfs://", `${ipfsGatewayUrl}`)
-          : json.image
-        return json
-      },
-      enabled: !!data,
-    }
-  )
+      json.image = json.image.startsWith("ipfs://")
+        ? json.image.replace("ipfs://", `${ipfsGatewayUrl}`)
+        : json.image
+      return json
+    },
+    enabled: !!data,
+  })
 
   return {
     isLoading: isLoading || metadataQuery.isLoading,

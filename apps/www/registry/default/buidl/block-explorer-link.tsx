@@ -1,15 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { useNetwork, type Address, type Chain } from "wagmi"
-import { mainnet } from "wagmi/chains"
+import { useAccount } from "wagmi"
+import { mainnet, type Chain } from "wagmi/chains"
 
 import { cn } from "@/lib/utils"
 
 interface BlockExplorerLinkProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
   chain?: Chain
-  data: Address | undefined
+  data: `0x${string}` | undefined
   showBlockExplorerName?: boolean
   type?: "address" | "tx"
 }
@@ -30,13 +30,10 @@ const BlockExplorerLink = React.forwardRef<
     },
     ref
   ) => {
-    const { chain: currentChain } = useNetwork()
+    const { chain: currentChain } = useAccount()
 
     // Use mainnet as default chain
-    const chain =
-      selectedChain ?? (currentChain && !currentChain.unsupported)
-        ? currentChain
-        : mainnet
+    const chain = selectedChain ?? currentChain ?? mainnet
     const blockExplorer = chain?.blockExplorers?.default
 
     if (!data || !blockExplorer) return null

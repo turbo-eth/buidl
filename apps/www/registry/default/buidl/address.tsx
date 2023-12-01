@@ -1,7 +1,7 @@
 "use client"
 
-import { Copy } from "lucide-react"
 import * as React from "react"
+import { Copy } from "lucide-react"
 import { useAccount } from "wagmi"
 import { mainnet } from "wagmi/chains"
 
@@ -51,9 +51,7 @@ const AddressLink = React.forwardRef<
     address: string
   }
 >(({ address, className, children, ...props }, ref) => {
-  const { chain: currentChain } = useAccount({
-    
-  })
+  const { chain: currentChain } = useAccount({})
 
   // Use mainnet as default chain
   const chain = currentChain ?? mainnet

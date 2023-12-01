@@ -7,11 +7,4 @@ import {
   polygon,
 } from "wagmi/chains"
 
-export const chains = [
-  mainnet,
-  polygon,
-  arbitrum,
-  optimism,
-  gnosis,
-  base,
-]
+export const chains = [mainnet, polygon, arbitrum, optimism, gnosis, base]

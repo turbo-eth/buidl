@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useContractRead } from "wagmi"
+import { useReadContract } from "wagmi"
 
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
@@ -34,7 +34,7 @@ const Erc721Symbol = React.forwardRef<HTMLDivElement, Erc721SymbolProps>(
     { chainId, address, displayLoading = true, displayError = true, ...props },
     ref
   ) => {
-    const { data, isLoading, isError, error } = useContractRead({
+    const { data, isLoading, isError, error } = useReadContract({
       address,
       abi: erc721SymbolAbi,
       functionName: "symbol",

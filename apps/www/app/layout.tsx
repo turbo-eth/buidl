@@ -1,19 +1,19 @@
+import { siteConfig } from "@/config/site"
+import { fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/providers"
-import { WagmiProvider } from "@/components/providers/wagmi-provider"
+import { Web3Provider } from "@/components/providers/web3-provider"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeSwitcher } from "@/components/theme-switcher"
-import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
 import {
   Toaster as DefaultToaster,
   Toaster as NewYorkToaster,
 } from "@/registry/default/ui/toaster"
+
 import "@/styles/globals.css"
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -78,43 +78,37 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-const queryClient = new QueryClient() 
-
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <WagmiProvider>
-              <QueryClientProvider client={queryClient}>
-                <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
-                  <div className="flex-1">{children}</div>
-                  <SiteFooter />
-                </div>
-                </QueryClientProvider>
-            </WagmiProvider>
-            <TailwindIndicator />
-          </ThemeProvider>
-          <ThemeSwitcher />
-          <Analytics />
-          <NewYorkToaster />
-          <DefaultToaster />
-        </body>
-      </html>
-    </>
+          <Web3Provider>
+            <div className="relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+              <SiteFooter />
+            </div>
+          </Web3Provider>
+
+          <TailwindIndicator />
+        </ThemeProvider>
+        <ThemeSwitcher />
+        <Analytics />
+        <NewYorkToaster />
+        <DefaultToaster />
+      </body>
+    </html>
   )
 }

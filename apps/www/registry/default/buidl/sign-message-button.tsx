@@ -16,8 +16,9 @@ const SignMessageButton = React.forwardRef<
   SignMessageButtonProps
 >(({ message, onSuccess, className, children, disabled, ...props }, ref) => {
   const { isLoading, isError, error, signMessage } = useSignMessage({
-    message,
-    onSuccess,
+    mutation: {
+      onSuccess,
+    },
   })
 
   return (
@@ -25,7 +26,7 @@ const SignMessageButton = React.forwardRef<
       <Button
         ref={ref}
         disabled={disabled || isLoading || message.length === 0}
-        onClick={() => signMessage()}
+        onClick={() => signMessage({ message })}
         className={className}
         {...props}
       >

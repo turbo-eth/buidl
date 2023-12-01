@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useContractRead } from "wagmi"
+import { useReadContract } from "wagmi"
 
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
@@ -37,7 +37,7 @@ const Erc721TotalSupply = React.forwardRef<
     { chainId, address, displayLoading = true, displayError = true, ...props },
     ref
   ) => {
-    const { data, isLoading, isError, error } = useContractRead({
+    const { data, isLoading, isError, error } = useReadContract({
       address,
       abi: erc721TotalSupplyAbi,
       functionName: "totalSupply",

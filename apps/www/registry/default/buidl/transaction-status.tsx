@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useChainId, useWaitForTransaction } from "wagmi"
+import { useChainId, useWaitForTransactionReceipt } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
@@ -31,7 +31,7 @@ const TransactionStatus = React.forwardRef<
     const currentChainId = useChainId()
 
     const { isLoading, isSuccess, isError, error, isFetching } =
-      useWaitForTransaction({
+      useWaitForTransactionReceipt({
         hash: hash,
         chainId: selectedChainId ?? currentChainId,
       })

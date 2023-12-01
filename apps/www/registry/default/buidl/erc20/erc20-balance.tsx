@@ -1,6 +1,6 @@
 import * as React from "react"
 import { formatUnits } from "viem"
-import { useAccount, useContractRead } from "wagmi"
+import { useAccount, useReadContract } from "wagmi"
 
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
@@ -84,7 +84,7 @@ const Erc20Balance = React.forwardRef<HTMLDivElement, Erc20BalanceProps>(
       isLoading: isLoadingDecimals,
       isError: isErrorDecimals,
       error: errorDecimals,
-    } = useContractRead({
+    } = useReadContract({
       address,
       abi: erc20DecimalsAbi,
       functionName: "decimals",
@@ -96,12 +96,11 @@ const Erc20Balance = React.forwardRef<HTMLDivElement, Erc20BalanceProps>(
       isLoading: isLoadingBalance,
       isError: isErrorBalance,
       error: errorBalance,
-    } = useContractRead({
+    } = useReadContract({
       address,
       abi: erc20BalanceOfAbi,
       functionName: "balanceOf",
       args: selectedAccount ? [selectedAccount] : undefined,
-      enabled: !!selectedAccount,
       chainId,
     })
 
