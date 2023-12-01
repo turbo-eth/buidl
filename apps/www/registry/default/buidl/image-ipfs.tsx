@@ -1,40 +1,66 @@
-import { useMemo } from "react"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
-type ImageIpfs = React.HTMLAttributes<HTMLElement> & {
+interface ImageIpfsProps extends React.HTMLAttributes<HTMLImageElement> {
+  ipfsGatewayUrl?: string
   src: string
   alt: string
-  width?: string
-  height?: string
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
-export const ImageIpfs = ({
-  className,
-  src,
-  alt,
-  width,
-  height,
-}: ImageIpfs) => {
-  const classes = cn(className)
+const ImageIpfs = React.forwardRef<HTMLImageElement, ImageIpfsProps>(
+  (
+    {
+      className,
+      src,
+      alt,
+      ipfsGatewayUrl = "https://ipfs.io/ipfs/",
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
+    ref
+  ) => {
+    const [isLoading, setIsLoading] = React.useState(true)
+    const [isError, setIsError] = React.useState(false)
 
-  const imgSrc = useMemo(
-    () =>
-      src?.startsWith("ipfs://")
-        ? src.replace("ipfs://", "https://gateway.ipfs.io/ipfs/")
-        : src,
-    [src]
-  )
+    const imgSrc = React.useMemo(
+      () =>
+        src?.startsWith("ipfs://")
+          ? src.replace("ipfs://", ipfsGatewayUrl)
+          : src,
+      [src, ipfsGatewayUrl]
+    )
 
-  if (!imgSrc) return null
+    return (
+      <>
+        {displayError && isError ? (
+          <ErrorMessage
+            defaultErrorMessage="Error while fetching image"
+            error={null}
+            {...props}
+          />
+        ) : displayLoading && isLoading ? (
+          <Skeleton className={className} {...props} />
+        ) : null}
+        <img
+          ref={ref}
+          alt={alt}
+          src={imgSrc}
+          onLoad={() => setIsLoading(false)}
+          onError={() => setIsError(true)}
+          className={cn((isLoading || isError) && "hidden", className)}
+          {...props}
+        />
+      </>
+    )
+  }
+)
 
-  return (
-    <img
-      src={imgSrc}
-      width={width}
-      height={height}
-      alt={alt}
-      className={classes}
-    />
-  )
-}
+ImageIpfs.displayName = "ImageIpfs"
+
+export { ImageIpfs }

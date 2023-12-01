@@ -4,44 +4,63 @@ import * as React from "react"
 import { useChainId, useWaitForTransaction } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const TransactionStatus = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
     hash: `0x${string}`
     chainId?: number
+    displayLoading?: boolean
+    displayError?: boolean
   }
->(({ chainId: selectedChainId, children, className, hash, ...props }, ref) => {
-  const currentChainId = useChainId()
+>(
+  (
+    {
+      chainId: selectedChainId,
+      children,
+      className,
+      hash,
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
+    ref
+  ) => {
+    const currentChainId = useChainId()
 
-  const { isLoading, isSuccess, isError, error } = useWaitForTransaction({
-    hash: hash,
-    chainId: selectedChainId ?? currentChainId,
-  })
+    const { isLoading, isSuccess, isError, error, isFetching } =
+      useWaitForTransaction({
+        hash: hash,
+        chainId: selectedChainId ?? currentChainId,
+      })
 
-  return (
-    <>
+    if (displayLoading && isFetching)
+      return <Skeleton className={cn("h-6 w-52", className)} {...props} />
+
+    if (displayError && isError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction status data"
+          error={error}
+          {...props}
+        />
+      )
+
+    return (
       <div
         ref={ref}
         className={cn("flex flex-col items-center", className)}
         {...props}
       >
-        {(isLoading || isSuccess) && (
-          <>
-            {isLoading && "Processing transaction..."}
-            {isSuccess && "Transaction successful!"}
-            {children}
-          </>
-        )}
+        {isLoading && "Processing transaction..."}
+        {isSuccess && "Transaction successful!"}
+        {children}
       </div>
-      {isError && (
-        <div className="break-words font-medium text-red-500">
-          Error: {error?.message ?? "Error processing transaction"}
-        </div>
-      )}
-    </>
-  )
-})
+    )
+  }
+)
 
 TransactionStatus.displayName = "TransactionStatus"
 

@@ -4,6 +4,7 @@ import * as React from "react"
 import { useFeeData } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 interface FeeDataProps
@@ -11,14 +12,6 @@ interface FeeDataProps
   chainId?: number
   displayLoading?: boolean
   displayError?: boolean
-}
-
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching fee data"}
-    </div>
-  )
 }
 
 const GasPrice = React.forwardRef<HTMLDivElement, FeeDataProps>(
@@ -39,7 +32,14 @@ const GasPrice = React.forwardRef<HTMLDivElement, FeeDataProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-16", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          error={error}
+          defaultErrorMessage="Error while fetching fee data"
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (

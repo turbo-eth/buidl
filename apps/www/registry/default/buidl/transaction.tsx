@@ -4,6 +4,7 @@ import * as React from "react"
 import { useTransaction } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 interface TransactionProps
@@ -12,14 +13,6 @@ interface TransactionProps
   chainId?: number
   displayLoading?: boolean
   displayError?: boolean
-}
-
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching transaction data"}
-    </div>
-  )
 }
 
 const TransactionBlockHash = React.forwardRef<HTMLDivElement, TransactionProps>(
@@ -40,9 +33,16 @@ const TransactionBlockHash = React.forwardRef<HTMLDivElement, TransactionProps>(
     })
 
     if (isLoading && displayLoading)
-      return <Skeleton className={cn("h-6 w-[630px]", className)} {...props} />
+      return <Skeleton className={cn("h-6 w-[620px]", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (
@@ -81,7 +81,14 @@ const TransactionBlockNumber = React.forwardRef<
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-24", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (
@@ -117,7 +124,14 @@ const TransactionFrom = React.forwardRef<HTMLDivElement, TransactionProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-[400px]", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (
@@ -153,7 +167,14 @@ const TransactionTo = React.forwardRef<HTMLDivElement, TransactionProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-[400px]", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (
@@ -189,7 +210,14 @@ const TransactionGas = React.forwardRef<HTMLDivElement, TransactionProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-24", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (
@@ -225,7 +253,14 @@ const TransactionGasPrice = React.forwardRef<HTMLDivElement, TransactionProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-12", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (
@@ -261,7 +296,14 @@ const TransactionNonce = React.forwardRef<HTMLDivElement, TransactionProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-16", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching transaction data"
+          error={error}
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (

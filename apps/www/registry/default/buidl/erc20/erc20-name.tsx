@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useContractRead } from "wagmi"
 
-import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const erc20NameAbi = [
@@ -22,21 +22,18 @@ const erc20NameAbi = [
   },
 ] as const
 
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching ERC20 data"}
-    </div>
-  )
-}
-
-export type Erc20NameProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc20NameProps = React.HTMLAttributes<HTMLDivElement> & {
   address: `0x${string}`
   chainId?: number
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
-const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
-  ({ chainId, address, ...props }, ref) => {
+const Erc20Name = React.forwardRef<HTMLDivElement, Erc20NameProps>(
+  (
+    { chainId, address, displayLoading = true, displayError = true, ...props },
+    ref
+  ) => {
     const { data, isLoading, isError, error } = useContractRead({
       address,
       abi: erc20NameAbi,
@@ -44,12 +41,18 @@ const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
       chainId,
     })
 
-    if (isLoading) {
+    if (displayLoading && isLoading) {
       return <Skeleton className="h-6 w-36" {...props} />
     }
 
-    if (isError) {
-      return <ErrorMessage error={error} />
+    if (displayError && isError) {
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching ERC20 data"
+          error={error}
+          {...props}
+        />
+      )
     }
 
     if (data === undefined) {
@@ -57,9 +60,9 @@ const Erc20Name = React.forwardRef<HTMLSpanElement, Erc20NameProps>(
     }
 
     return (
-      <span ref={ref} {...props}>
+      <div ref={ref} {...props}>
         {data}
-      </span>
+      </div>
     )
   }
 )

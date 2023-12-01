@@ -4,6 +4,7 @@ import * as React from "react"
 import { useBlockNumber } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 interface BlockNumberProps
@@ -11,14 +12,6 @@ interface BlockNumberProps
   chainId?: number
   displayLoading?: boolean
   displayError?: boolean
-}
-
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching block number data"}
-    </div>
-  )
 }
 
 const BlockNumber = React.forwardRef<HTMLDivElement, BlockNumberProps>(
@@ -39,7 +32,13 @@ const BlockNumber = React.forwardRef<HTMLDivElement, BlockNumberProps>(
     if (isLoading && displayLoading)
       return <Skeleton className={cn("h-6 w-24", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching block number data"
+          error={error}
+        />
+      )
 
     if (isSuccess) {
       return (

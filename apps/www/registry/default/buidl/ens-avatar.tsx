@@ -49,6 +49,8 @@ const EnsAvatar = React.forwardRef<HTMLImageElement, EnsAvatarProps>(
     },
     ref
   ) => {
+    const [isLoadingImg, setIsLoadingImg] = React.useState(true)
+
     const { address: connectedAddress } = useAccount()
     const selectedAddress = address ?? connectedAddress
 
@@ -76,8 +78,7 @@ const EnsAvatar = React.forwardRef<HTMLImageElement, EnsAvatarProps>(
         <Skeleton
           className={cn(
             "h-10 w-10",
-            ensAvatarVariants({ variant, size }),
-            className
+            ensAvatarVariants({ variant, size, className })
           )}
         />
       )
@@ -85,13 +86,27 @@ const EnsAvatar = React.forwardRef<HTMLImageElement, EnsAvatarProps>(
 
     if (dataEnsAvatar) {
       return (
-        <img
-          ref={ref}
-          alt={`${selectedAddress} EnsAvatar`}
-          className={cn(ensAvatarVariants({ variant, size }), className)}
-          src={dataEnsAvatar}
-          {...props}
-        />
+        <>
+          {isLoadingImg ? (
+            <Skeleton
+              className={cn(ensAvatarVariants({ variant, size, className }))}
+              {...props}
+            />
+          ) : null}
+          <img
+            ref={ref}
+            alt={`${selectedAddress} EnsAvatar`}
+            className={cn(
+              ensAvatarVariants({ variant, size, className }),
+              isLoadingImg && "hidden"
+            )}
+            onLoad={() => {
+              setIsLoadingImg(false)
+            }}
+            src={dataEnsAvatar}
+            {...props}
+          />
+        </>
       )
     }
 

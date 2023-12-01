@@ -1,0 +1,13 @@
+{
+  "name": "error-message",
+  "dependencies": [
+    "wagmi"
+  ],
+  "files": [
+    {
+      "name": "error-message.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst ErrorMessage = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & {\n    error: Error | null\n    defaultErrorMessage?: string\n  }\n>(\n  (\n    { error, className, defaultErrorMessage = \"An error occurred\", ...props },\n    ref\n  ) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"break-words text-sm font-medium text-red-500\",\n          className\n        )}\n        {...props}\n      >\n        {error?.message ?? defaultErrorMessage}\n      </div>\n    )\n  }\n)\n\nErrorMessage.displayName = \"ErrorMessage\"\n\nexport { ErrorMessage }\n"
+    }
+  ],
+  "type": "components:buidl"
+}

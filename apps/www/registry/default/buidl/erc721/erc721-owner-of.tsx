@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useContractRead } from "wagmi"
 
-import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const erc721OwnerOfAbi = [
@@ -28,29 +28,26 @@ const erc721OwnerOfAbi = [
   },
 ] as const
 
-const ErrorMessage = ({
-  error,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { error: Error | null }) => {
-  return (
-    <div
-      className={cn("break-words text-sm font-medium text-red-500", className)}
-      {...props}
-    >
-      {error?.message ?? "Error while fetching ERC721 data"}
-    </div>
-  )
-}
-
-export type Erc721OwnerOfProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc721OwnerOfProps = React.HTMLAttributes<HTMLDivElement> & {
   address: `0x${string}`
   tokenId: number | string | bigint
   chainId?: number
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
-const Erc721OwnerOf = React.forwardRef<HTMLSpanElement, Erc721OwnerOfProps>(
-  ({ chainId, address, tokenId, ...props }, ref) => {
+const Erc721OwnerOf = React.forwardRef<HTMLDivElement, Erc721OwnerOfProps>(
+  (
+    {
+      chainId,
+      address,
+      tokenId,
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
+    ref
+  ) => {
     const { data, isLoading, isError, error } = useContractRead({
       address,
       abi: erc721OwnerOfAbi,
@@ -59,12 +56,18 @@ const Erc721OwnerOf = React.forwardRef<HTMLSpanElement, Erc721OwnerOfProps>(
       chainId,
     })
 
-    if (isLoading) {
+    if (displayLoading && isLoading) {
       return <Skeleton className="h-6 w-[420px]" {...props} />
     }
 
-    if (isError) {
-      return <ErrorMessage error={error} {...props} />
+    if (displayError && isError) {
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching ERC721 data"
+          error={error}
+          {...props}
+        />
+      )
     }
 
     if (data === undefined) {
@@ -72,9 +75,9 @@ const Erc721OwnerOf = React.forwardRef<HTMLSpanElement, Erc721OwnerOfProps>(
     }
 
     return (
-      <span ref={ref} {...props}>
+      <div ref={ref} {...props}>
         {data}
-      </span>
+      </div>
     )
   }
 )

@@ -1,6 +1,5 @@
+import { BlockExplorerLink } from "@/registry/default/buidl/block-explorer-link"
 import { TransactionStatus } from "@/registry/default/buidl/transaction-status"
-
-import { BlockExplorerLink } from "../buidl/block-explorer-link"
 
 export default function TransactionStatusDemo() {
   return (

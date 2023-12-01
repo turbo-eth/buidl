@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Chain, useNetwork, type Address } from "wagmi"
+import { useNetwork, type Address, type Chain } from "wagmi"
 import { mainnet } from "wagmi/chains"
 
 import { cn } from "@/lib/utils"

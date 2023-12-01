@@ -321,5 +321,15 @@
     ],
     "folder": "erc721",
     "type": "components:buidl"
+  },
+  {
+    "name": "error-message",
+    "dependencies": [
+      "wagmi"
+    ],
+    "files": [
+      "buidl/error-message.tsx"
+    ],
+    "type": "components:buidl"
   }
 ]

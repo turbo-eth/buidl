@@ -1,7 +1,5 @@
 import { EnsAvatar } from "@/registry/default/buidl/ens-avatar"
 import { IsWalletConnected } from "@/registry/default/buidl/is-wallet-connected"
-import { IsWalletDisconnected } from "@/registry/default/buidl/is-wallet-disconnected"
-import { WalletConnect } from "@/registry/default/buidl/wallet-connect"
 
 const ADDRESS_EXAMPLE = "0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31"
 
@@ -15,9 +13,9 @@ export default function EnsAvatarDemo() {
       <IsWalletConnected>
         <EnsAvatar />
       </IsWalletConnected>
-      <IsWalletDisconnected>
+      {/* <IsWalletDisconnected>
         <WalletConnect />
-      </IsWalletDisconnected>
+      </IsWalletDisconnected> */}
 
       <h3 className="text-lg font-bold">Input ENS name (vitalik.eth)</h3>
       <EnsAvatar name="vitalik.eth" />

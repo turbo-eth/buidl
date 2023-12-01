@@ -36,6 +36,14 @@ wagmi:
 
 <Steps>
 
+<Step>Install the following components:</Step>
+
+- [ErrorMessage](/docs/components/error-message)
+
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Skeleton](https://ui.shadcn.com/docs/components/skeleton)
+
 <Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="nonce" />
@@ -49,9 +57,11 @@ wagmi:
 ## Usage
 
 ```tsx
-import { AccountNonce } from "@/components/buidl/nonce"
+import { Nonce } from "@/registry/default/buidl/nonce"
 ```
 
 ```tsx
-<AccountNonce />
+<Nonce />
+<Nonce chainId={1} />
+<Nonce address="0x761d584f1C2d43cBc3F42ECd739701a36dFFAa31" />
 ```
