@@ -17,7 +17,7 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "GitHub",
-      href: "https://github.com/turboeth/buidl",
+      href: "https://github.com/turbo-eth/buidl/tree/wagmi-v2",
       external: true,
     },
     {

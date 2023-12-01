@@ -6,7 +6,7 @@ export const siteConfig = {
     "Collection of essential components for modern Web3 applications ⚡️ copy and paste in minutes.",
   links: {
     twitter: "https://twitter.com/districtfi",
-    github: "https://github.com/turbo-eth/buidl",
+    github: "https://github.com/turbo-eth/buidl/tree/wagmi-v2",
   },
 }
 
