@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { Copy } from "lucide-react"
-import { useAccount, useNetwork, type Address as AddressType } from "wagmi"
+import * as React from "react"
+import { useAccount } from "wagmi"
 import { mainnet } from "wagmi/chains"
 
 import { cn } from "@/lib/utils"
@@ -10,7 +10,7 @@ import { toast } from "@/registry/default/ui/use-toast"
 
 export interface AddressProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "children"> {
-  address?: AddressType
+  address?: string
   truncate?: boolean
   truncateAmount?: number
   link?: boolean
@@ -20,7 +20,7 @@ export interface AddressProps
 const AddressCopy = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
-    address: AddressType
+    address: string
   }
 >(({ address, className, children, ...props }, ref) => {
   return (
@@ -48,10 +48,12 @@ AddressCopy.displayName = "AddressCopy"
 const AddressLink = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
-    address: AddressType
+    address: string
   }
 >(({ address, className, children, ...props }, ref) => {
-  const { chain: currentChain } = useNetwork()
+  const { chain: currentChain } = useAccount({
+    
+  })
 
   // Use mainnet as default chain
   const chain = currentChain ?? mainnet

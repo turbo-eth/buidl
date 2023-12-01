@@ -1,21 +1,20 @@
-import "@/styles/globals.css"
-import { Metadata } from "next"
-
-import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/providers"
-import { RainbowKitInitializedProvider } from "@/components/providers/rainbow-kit-provider"
 import { WagmiProvider } from "@/components/providers/wagmi-provider"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { siteConfig } from "@/config/site"
+import { fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 import {
   Toaster as DefaultToaster,
   Toaster as NewYorkToaster,
 } from "@/registry/default/ui/toaster"
+import "@/styles/globals.css"
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: {
@@ -79,6 +78,9 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+const queryClient = new QueryClient() 
+
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
@@ -97,13 +99,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
             disableTransitionOnChange
           >
             <WagmiProvider>
-              <RainbowKitInitializedProvider>
+              <QueryClientProvider client={queryClient}>
                 <div className="relative flex min-h-screen flex-col">
                   <SiteHeader />
                   <div className="flex-1">{children}</div>
                   <SiteFooter />
                 </div>
-              </RainbowKitInitializedProvider>
+                </QueryClientProvider>
             </WagmiProvider>
             <TailwindIndicator />
           </ThemeProvider>

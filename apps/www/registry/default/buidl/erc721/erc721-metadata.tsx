@@ -1,7 +1,8 @@
 "use client"
 
+import { useQuery } from "@tanstack/react-query"
 import * as React from "react"
-import { useContractRead, useQuery, type Address } from "wagmi"
+import { useContractRead } from "wagmi"
 
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
@@ -31,7 +32,7 @@ const erc721TokenUriAbi = [
 interface useERC721MetadataProps {
   tokenId: bigint
   ipfsGatewayUrl?: string
-  address?: Address
+  address?: `0x${string}`
   chainId?: number
 }
 interface IERC721Metadata {
@@ -59,8 +60,8 @@ function useERC721Metadata({
   })
 
   const metadataQuery = useQuery(
-    ["erc721-metadata", address, chainId, tokenId, data],
     {
+      queryKey: ["erc721-metadata", address, chainId, tokenId, data],
       queryFn: async () => {
         if (!data) throw new Error("No tokenUri found")
         const uri = data.replace("ipfs://", "")

@@ -1,18 +1,34 @@
 "use client"
 
 import { ReactNode } from "react"
-import { WagmiConfig, createConfig } from "wagmi"
+import {
+  WagmiProvider as WagmiProviderNative,
+  createConfig, http
+} from "wagmi"
 
-import { connectors } from "@/config/connectors"
-import { publicClient, webSocketPublicClient } from "@/config/networks"
+import {
+  arbitrum,
+  base,
+  gnosis,
+  mainnet,
+  optimism,
+  polygon,
+} from "wagmi/chains"
+
 
 const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors: connectors,
-  publicClient,
-  webSocketPublicClient,
+  chains: [mainnet, polygon, arbitrum, optimism, gnosis, base],
+  ssr: true,
+  transports: {
+    [mainnet.id]: http(),
+    [polygon.id]: http(),
+    [arbitrum.id]: http(),
+    [optimism.id]: http(),
+    [gnosis.id]: http(),
+    [base.id]: http(),
+  }
 })
 
 export function WagmiProvider({ children }: { children: ReactNode }) {
-  return <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
+  return <WagmiProviderNative config={wagmiConfig}>{children}</WagmiProviderNative>
 }

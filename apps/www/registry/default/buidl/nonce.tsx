@@ -1,12 +1,12 @@
 "use client"
 
+import { useQuery } from "@tanstack/react-query"
 import * as React from "react"
+import type { PublicClient } from "viem"
 import {
   useAccount,
   useChainId,
   usePublicClient,
-  useQuery,
-  type PublicClient,
 } from "wagmi"
 
 import { cn } from "@/lib/utils"
@@ -24,7 +24,8 @@ const useNonce = ({
   address,
   publicClient,
 }: Pick<NonceProps, "address"> & { publicClient: PublicClient }) => {
-  return useQuery(["wallet-nonce", address, publicClient.chain.id], {
+  return useQuery({
+    queryKey:["wallet-nonce", address, publicClient?.chain?.id],
     queryFn: () => {
       if (!address) return
       return publicClient?.getTransactionCount({
@@ -34,6 +35,7 @@ const useNonce = ({
     enabled: !!address && !!publicClient,
   })
 }
+
 
 const Nonce = React.forwardRef<HTMLDivElement, NonceProps>(
   (
