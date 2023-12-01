@@ -222,5 +222,15 @@ export const docsConfig: DocsConfig = {
         },
       ],
     },
+    {
+      title: "Miscellaneous",
+      items: [
+        {
+          title: "Error Message",
+          href: "/docs/components/error-message",
+          items: [],
+        },
+      ],
+    },
   ],
 }

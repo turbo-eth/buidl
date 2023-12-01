@@ -222,6 +222,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/buidl/erc721/erc721-metadata")),
       files: ["registry/default/buidl/erc721/erc721-metadata.tsx"],
     },
+    "error-message": {
+      name: "error-message",
+      type: "components:buidl",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/buidl/error-message")),
+      files: ["registry/default/buidl/error-message.tsx"],
+    },
     "nonce-demo": {
       name: "nonce-demo",
       type: "components:example",
@@ -438,6 +445,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["erc721-metadata"],
       component: React.lazy(() => import("@/registry/default/example/erc721-metadata-demo")),
       files: ["registry/default/example/erc721-metadata-demo.tsx"],
+    },
+    "error-message-demo": {
+      name: "error-message-demo",
+      type: "components:example",
+      registryDependencies: ["error-message"],
+      component: React.lazy(() => import("@/registry/default/example/error-message-demo")),
+      files: ["registry/default/example/error-message-demo.tsx"],
     },
   },
 }

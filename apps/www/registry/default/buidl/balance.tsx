@@ -4,6 +4,7 @@ import * as React from "react"
 import { useAccount, useBalance, type Address } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 interface BalanceProps
@@ -24,14 +25,6 @@ function trimFormattedBalance(balance: string | undefined, decimals = 4) {
 
   const trimmedDecimal = decimal.slice(0, decimals)
   return `${integer}.${trimmedDecimal}`
-}
-
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching fee data"}
-    </div>
-  )
 }
 
 const Balance = React.forwardRef<HTMLDivElement, BalanceProps>(
@@ -59,7 +52,15 @@ const Balance = React.forwardRef<HTMLDivElement, BalanceProps>(
     if ((isLoading && displayLoading) || !selectedAddress)
       return <Skeleton className={cn("h-6 w-24", className)} {...props} />
 
-    if (isError && displayError) return <ErrorMessage error={error} />
+    if (isError && displayError)
+      return (
+        <ErrorMessage
+          ref={ref}
+          error={error}
+          defaultErrorMessage="Error while fetching fee data"
+          {...props}
+        />
+      )
 
     if (isSuccess) {
       return (

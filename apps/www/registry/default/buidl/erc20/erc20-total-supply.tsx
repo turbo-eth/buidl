@@ -4,7 +4,7 @@ import * as React from "react"
 import { formatUnits } from "viem"
 import { useContractRead } from "wagmi"
 
-import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const erc20TotalSupplyAbi = [
@@ -44,66 +44,81 @@ function trimFormattedBalance(balance: string | undefined, decimals = 4) {
   return `${integer}.${trimmedDecimal}`
 }
 
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching ERC20 data"}
-    </div>
-  )
-}
-
-export type Erc20TotalSupplyProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc20TotalSupplyProps = React.HTMLAttributes<HTMLDivElement> & {
   address: `0x${string}`
   chainId?: number
   formatDecimals?: number
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
 const Erc20TotalSupply = React.forwardRef<
-  HTMLSpanElement,
+  HTMLDivElement,
   Erc20TotalSupplyProps
->(({ chainId, address, formatDecimals = 4, ...props }, ref) => {
-  const {
-    data: totalSupply,
-    isLoading: isLoadingTotalSupply,
-    isError: isErrorTotalSupply,
-    error: errorTotalSupply,
-  } = useContractRead({
-    address,
-    abi: erc20TotalSupplyAbi,
-    functionName: "totalSupply",
-    chainId,
-  })
+>(
+  (
+    {
+      chainId,
+      address,
+      formatDecimals = 4,
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
+    ref
+  ) => {
+    const {
+      data: totalSupply,
+      isLoading: isLoadingTotalSupply,
+      isError: isErrorTotalSupply,
+      error: errorTotalSupply,
+    } = useContractRead({
+      address,
+      abi: erc20TotalSupplyAbi,
+      functionName: "totalSupply",
+      chainId,
+    })
 
-  const {
-    data: decimals,
-    isLoading: isLoadingDecimals,
-    isError: isErrorDecimals,
-    error: errorDecimals,
-  } = useContractRead({
-    address,
-    abi: erc20DecimalsAbi,
-    functionName: "decimals",
-    chainId,
-  })
+    const {
+      data: decimals,
+      isLoading: isLoadingDecimals,
+      isError: isErrorDecimals,
+      error: errorDecimals,
+    } = useContractRead({
+      address,
+      abi: erc20DecimalsAbi,
+      functionName: "decimals",
+      chainId,
+    })
 
-  if (isLoadingTotalSupply || isLoadingDecimals) {
-    return <Skeleton className="h-6 w-20" {...props} />
+    if (displayLoading && (isLoadingTotalSupply || isLoadingDecimals)) {
+      return <Skeleton className="h-6 w-24" {...props} />
+    }
+
+    if (displayError && (isErrorTotalSupply || isErrorDecimals)) {
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching ERC20 data"
+          error={errorTotalSupply ?? errorDecimals}
+          {...props}
+        />
+      )
+    }
+
+    if (totalSupply === undefined || decimals === undefined) {
+      return null
+    }
+
+    return (
+      <div ref={ref} {...props}>
+        {trimFormattedBalance(
+          formatUnits(totalSupply, decimals),
+          formatDecimals
+        )}
+      </div>
+    )
   }
-
-  if (isErrorTotalSupply || isErrorDecimals) {
-    return <ErrorMessage error={errorTotalSupply ?? errorDecimals} />
-  }
-
-  if (totalSupply === undefined || decimals === undefined) {
-    return null
-  }
-
-  return (
-    <span ref={ref} {...props}>
-      {trimFormattedBalance(formatUnits(totalSupply, decimals), formatDecimals)}
-    </span>
-  )
-})
+)
 
 Erc20TotalSupply.displayName = "Erc20TotalSupply"
 

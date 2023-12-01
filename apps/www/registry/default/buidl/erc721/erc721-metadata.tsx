@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useContractRead, useQuery, type Address } from "wagmi"
 
-import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const erc721TokenUriAbi = [
@@ -87,46 +87,61 @@ function useERC721Metadata({
   }
 }
 
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching ERC721 data"}
-    </div>
-  )
-}
-
 export type Erc721MetadataProps = React.HTMLAttributes<HTMLElement> & {
   address: `0x${string}`
   tokenId: number | string | bigint
   chainId?: number
   ipfsGatewayUrl?: string
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
 const Erc721MetadataImage = React.forwardRef<
   HTMLImageElement,
   Erc721MetadataProps
->(({ chainId, address, tokenId, ipfsGatewayUrl, ...props }, ref) => {
-  const { data, isLoading, isError, error } = useERC721Metadata({
-    address,
-    chainId,
-    tokenId: BigInt(tokenId),
-    ipfsGatewayUrl,
-  })
+>(
+  (
+    {
+      chainId,
+      address,
+      tokenId,
+      ipfsGatewayUrl,
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
+    ref
+  ) => {
+    const { data, isLoading, isError, error } = useERC721Metadata({
+      address,
+      chainId,
+      tokenId: BigInt(tokenId),
+      ipfsGatewayUrl,
+    })
 
-  if (isLoading) {
-    return <Skeleton className="h-6 w-12" {...props} />
+    if (displayLoading && isLoading) {
+      return <Skeleton className="h-6 w-12" {...props} />
+    }
+
+    if (displayError && isError) {
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching ERC721 data"
+          error={error as Error | null}
+          {...props}
+        />
+      )
+    }
+
+    if (data?.image === undefined) {
+      return null
+    }
+
+    return (
+      <img alt={`${tokenId} image`} ref={ref} {...props} src={data.image} />
+    )
   }
-
-  if (isError) {
-    return <ErrorMessage error={error as Error | null} />
-  }
-
-  if (data?.image === undefined) {
-    return null
-  }
-
-  return <img alt={`${tokenId} image`} ref={ref} {...props} src={data.image} />
-})
+)
 
 Erc721MetadataImage.displayName = "Erc721MetadataImage"
 

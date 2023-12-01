@@ -200,6 +200,12 @@ const buidl: Registry = [
     dependencies: ["wagmi"],
     files: ["buidl/erc721/erc721-metadata.tsx"],
   },
+  {
+    name: "error-message",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    files: ["buidl/error-message.tsx"],
+  },
 ]
 
 const example: Registry = [
@@ -388,6 +394,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["erc721-metadata"],
     files: ["example/erc721-metadata-demo.tsx"],
+  },
+  {
+    name: "error-message-demo",
+    type: "components:example",
+    registryDependencies: ["error-message"],
+    files: ["example/error-message-demo.tsx"],
   },
 ]
 

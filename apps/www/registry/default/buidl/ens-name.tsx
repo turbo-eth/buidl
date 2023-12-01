@@ -22,16 +22,16 @@ const EnsName = React.forwardRef<HTMLDivElement, EnsNameProps>(
       enabled: !!selectedAddress,
     })
 
+    if (isLoading || !selectedAddress) {
+      return <Skeleton className={cn("h-6 w-32", className)} {...props} />
+    }
+
     if (isSuccess && data) {
       return (
         <div ref={ref} className={className} {...props}>
           {data}
         </div>
       )
-    }
-
-    if (isLoading || !selectedAddress) {
-      return <Skeleton className={cn("h-6 w-32", className)} {...props} />
     }
 
     return (

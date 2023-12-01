@@ -2,7 +2,7 @@ import * as React from "react"
 import { formatUnits } from "viem"
 import { useAccount, useContractRead } from "wagmi"
 
-import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
 
 const erc20BalanceOfAbi = [
@@ -54,23 +54,28 @@ function trimFormattedBalance(balance: string | undefined, decimals = 4) {
   return `${integer}.${trimmedDecimal}`
 }
 
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching ERC20 data"}
-    </div>
-  )
-}
-
-export type Erc20BalanceProps = React.HTMLAttributes<HTMLSpanElement> & {
+export type Erc20BalanceProps = React.HTMLAttributes<HTMLDivElement> & {
   address: `0x${string}`
   chainId?: number
   account?: `0x${string}`
   formatDecimals?: number
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
-const Erc20Balance = React.forwardRef<HTMLSpanElement, Erc20BalanceProps>(
-  ({ chainId, address, account, formatDecimals = 4, ...props }, ref) => {
+const Erc20Balance = React.forwardRef<HTMLDivElement, Erc20BalanceProps>(
+  (
+    {
+      chainId,
+      address,
+      account,
+      formatDecimals = 4,
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
+    ref
+  ) => {
     const { address: currentAccount } = useAccount()
     const selectedAccount = account ?? currentAccount
 
@@ -100,12 +105,18 @@ const Erc20Balance = React.forwardRef<HTMLSpanElement, Erc20BalanceProps>(
       chainId,
     })
 
-    if (isLoadingDecimals || isLoadingBalance) {
+    if (displayLoading && (isLoadingDecimals || isLoadingBalance)) {
       return <Skeleton className="h-6 w-16" {...props} />
     }
 
-    if (isErrorDecimals || isErrorBalance) {
-      return <ErrorMessage error={errorDecimals ?? errorBalance} />
+    if (displayError && (isErrorDecimals || isErrorBalance)) {
+      return (
+        <ErrorMessage
+          defaultErrorMessage="Error while fetching ERC20 data"
+          error={errorDecimals ?? errorBalance}
+          {...props}
+        />
+      )
     }
 
     if (balance === undefined || decimals === undefined) {
@@ -113,9 +124,9 @@ const Erc20Balance = React.forwardRef<HTMLSpanElement, Erc20BalanceProps>(
     }
 
     return (
-      <span ref={ref} {...props}>
+      <div ref={ref} {...props}>
         {trimFormattedBalance(formatUnits(balance, decimals), formatDecimals)}
-      </span>
+      </div>
     )
   }
 )

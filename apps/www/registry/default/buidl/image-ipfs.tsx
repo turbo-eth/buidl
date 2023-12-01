@@ -1,25 +1,28 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { ErrorMessage } from "@/registry/default/buidl/error-message"
 import { Skeleton } from "@/registry/default/ui/skeleton"
-
-const ErrorMessage = ({ error }: { error: Error | null }) => {
-  return (
-    <div className={cn("break-words text-sm font-medium text-red-500")}>
-      {error?.message ?? "Error while fetching image"}
-    </div>
-  )
-}
 
 interface ImageIpfsProps extends React.HTMLAttributes<HTMLImageElement> {
   ipfsGatewayUrl?: string
   src: string
   alt: string
+  displayLoading?: boolean
+  displayError?: boolean
 }
 
 const ImageIpfs = React.forwardRef<HTMLImageElement, ImageIpfsProps>(
   (
-    { className, src, alt, ipfsGatewayUrl = "https://ipfs.io/ipfs/", ...props },
+    {
+      className,
+      src,
+      alt,
+      ipfsGatewayUrl = "https://ipfs.io/ipfs/",
+      displayLoading = true,
+      displayError = true,
+      ...props
+    },
     ref
   ) => {
     const [isLoading, setIsLoading] = React.useState(true)
@@ -35,9 +38,13 @@ const ImageIpfs = React.forwardRef<HTMLImageElement, ImageIpfsProps>(
 
     return (
       <>
-        {isError ? (
-          <ErrorMessage error={null} />
-        ) : isLoading ? (
+        {displayError && isError ? (
+          <ErrorMessage
+            defaultErrorMessage="Error while fetching image"
+            error={null}
+            {...props}
+          />
+        ) : displayLoading && isLoading ? (
           <Skeleton className={className} {...props} />
         ) : null}
         <img
