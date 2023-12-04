@@ -35,11 +35,56 @@ export const docsConfig: DocsConfig = {
           href: "/docs",
           items: [],
         },
+        {
+          title: "Installation",
+          href: "/docs/installation",
+          items: [],
+        },
+        {
+          title: "components.json",
+          href: "/docs/components-json",
+          items: [],
+        },
+        {
+          title: "CLI",
+          href: "/docs/cli",
+          items: [],
+        },
       ],
     },
     {
       title: "Installation",
       items: [
+        {
+          title: "Next.js",
+          href: "/docs/installation/next",
+          items: [],
+        },
+        {
+          title: "Vite",
+          href: "/docs/installation/vite",
+          items: [],
+        },
+        {
+          title: "Remix",
+          href: "/docs/installation/remix",
+          items: [],
+        },
+        {
+          title: "Gatsby",
+          href: "/docs/installation/gatsby",
+          items: [],
+        },
+        {
+          title: "Astro",
+          href: "/docs/installation/astro",
+          items: [],
+        },
+        {
+          title: "Laravel",
+          href: "/docs/installation/laravel",
+          items: [],
+        },
         {
           title: "Manual",
           href: "/docs/installation/manual",

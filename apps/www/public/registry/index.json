@@ -123,7 +123,8 @@
   {
     "name": "blockie",
     "dependencies": [
-      "wagmi"
+      "wagmi",
+      "ethereum-blockies-base64"
     ],
     "registryDependencies": [
       "skeleton"
@@ -441,6 +442,37 @@
     ],
     "files": [
       "ui/button.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "card",
+    "files": [
+      "ui/card.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "input",
+    "files": [
+      "ui/input.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "label",
+    "files": [
+      "ui/label.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "select",
+    "dependencies": [
+      "@radix-ui/react-select"
+    ],
+    "files": [
+      "ui/select.tsx"
     ],
     "type": "components:ui"
   },
