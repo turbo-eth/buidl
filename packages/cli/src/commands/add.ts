@@ -1,3 +1,5 @@
+import { existsSync, promises as fs } from "fs"
+import path from "path"
 import { getConfig } from "@/src/utils/get-config"
 import { getPackageManager } from "@/src/utils/get-package-manager"
 import { handleError } from "@/src/utils/handle-error"
@@ -13,9 +15,7 @@ import { transform } from "@/src/utils/transformers"
 import chalk from "chalk"
 import { Command } from "commander"
 import { execa } from "execa"
-import { existsSync, promises as fs } from "fs"
 import ora from "ora"
-import path from "path"
 import prompts from "prompts"
 import * as z from "zod"
 
@@ -77,13 +77,15 @@ export const add = new Command()
           message: "Which components would you like to add?",
           hint: "Space to select. A to toggle all. Enter to submit.",
           instructions: false,
-          choices: registryIndex.filter(({type})=>type === "components:buidl").map((entry) => ({
-            title: entry.name,
-            value: entry.name,
-            selected: options.all
-              ? true
-              : options.components?.includes(entry.name),
-          })),
+          choices: registryIndex
+            .filter(({ type }) => type === "components:buidl")
+            .map((entry) => ({
+              title: entry.name,
+              value: entry.name,
+              selected: options.all
+                ? true
+                : options.components?.includes(entry.name),
+            })),
         })
         selectedComponents = components
       }

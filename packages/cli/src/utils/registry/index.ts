@@ -1,3 +1,4 @@
+import path from "path"
 import { Config } from "@/src/utils/get-config"
 import {
   registryBaseColorSchema,
@@ -8,10 +9,10 @@ import {
 } from "@/src/utils/registry/schema"
 import { HttpsProxyAgent } from "https-proxy-agent"
 import fetch from "node-fetch"
-import path from "path"
 import * as z from "zod"
 
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://buidl.turboeth.xyz"
+const baseUrl =
+  process.env.COMPONENTS_REGISTRY_URL ?? "https://buidl.turboeth.xyz"
 const agent = process.env.https_proxy
   ? new HttpsProxyAgent(process.env.https_proxy)
   : undefined
@@ -92,7 +93,7 @@ export async function resolveTree(
       tree.push(...dependencies)
     }
   }
-  
+
   return tree.filter(
     (component, index, self) =>
       self.findIndex((c) => c.name === component.name) === index

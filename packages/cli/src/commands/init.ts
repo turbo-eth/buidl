@@ -1,3 +1,5 @@
+import { existsSync, promises as fs } from "fs"
+import path from "path"
 import {
   DEFAULT_COMPONENTS,
   DEFAULT_TAILWIND_CONFIG,
@@ -20,10 +22,8 @@ import * as templates from "@/src/utils/templates"
 import chalk from "chalk"
 import { Command } from "commander"
 import { execa } from "execa"
-import { existsSync, promises as fs } from "fs"
 import template from "lodash.template"
 import ora from "ora"
-import path from "path"
 import prompts from "prompts"
 import * as z from "zod"
 

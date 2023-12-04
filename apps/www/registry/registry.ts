@@ -1,7 +1,7 @@
 import { Registry } from "@/registry/schema"
 
-const ui : Registry =[
- {
+const ui: Registry = [
+  {
     name: "button",
     type: "components:ui",
     dependencies: ["@radix-ui/react-slot"],
@@ -13,7 +13,7 @@ const ui : Registry =[
     dependencies: ["@radix-ui/react-dialog"],
     files: ["ui/dialog.tsx"],
   },
-   {
+  {
     name: "toast",
     type: "components:ui",
     dependencies: ["@radix-ui/react-toast"],
@@ -23,11 +23,10 @@ const ui : Registry =[
     name: "skeleton",
     type: "components:ui",
     files: ["ui/skeleton.tsx"],
-  } 
+  },
 ]
 
 const buidl: Registry = [
-  
   {
     name: "address",
     type: "components:buidl",
@@ -101,21 +100,21 @@ const buidl: Registry = [
     name: "ens-avatar",
     type: "components:buidl",
     dependencies: ["wagmi"],
-    registryDependencies: ["blockie","skeleton"],
+    registryDependencies: ["blockie", "skeleton"],
     files: ["buidl/ens-avatar.tsx"],
   },
   {
     name: "ens-name",
     type: "components:buidl",
     dependencies: ["wagmi"],
-    registryDependencies: ["address","skeleton"],
+    registryDependencies: ["address", "skeleton"],
     files: ["buidl/ens-name.tsx"],
   },
   {
     name: "ens-address",
     type: "components:buidl",
     dependencies: ["wagmi"],
-    registryDependencies: ["address","skeleton", "error-message"],
+    registryDependencies: ["address", "skeleton", "error-message"],
     files: ["buidl/ens-address.tsx"],
   },
   {
@@ -456,6 +455,4 @@ const example: Registry = [
   },
 ]
 
-export const registry: Registry = [...buidl, 
-  ...ui,
-   ...example]
+export const registry: Registry = [...buidl, ...ui, ...example]
