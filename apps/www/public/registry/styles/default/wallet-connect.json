@@ -3,6 +3,10 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "button",
+    "dialog"
+  ],
   "files": [
     {
       "name": "wallet-connect.tsx",

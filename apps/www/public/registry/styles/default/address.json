@@ -3,6 +3,9 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "toast"
+  ],
   "files": [
     {
       "name": "address.tsx",

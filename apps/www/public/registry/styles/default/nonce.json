@@ -3,6 +3,10 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "skeleton",
+    "error-message"
+  ],
   "files": [
     {
       "name": "nonce.tsx",

@@ -3,6 +3,11 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "address",
+    "skeleton",
+    "error-message"
+  ],
   "files": [
     {
       "name": "ens-address.tsx",

@@ -4,6 +4,9 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "toast"
+    ],
     "files": [
       "buidl/address.tsx"
     ],
@@ -13,6 +16,10 @@
     "name": "balance",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/balance.tsx"
@@ -34,6 +41,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/block-number.tsx"
     ],
@@ -43,6 +54,10 @@
     "name": "nonce",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/nonce.tsx"
@@ -54,6 +69,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/transaction.tsx"
     ],
@@ -64,18 +83,12 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/transaction-status.tsx"
-    ],
-    "type": "components:buidl"
-  },
-  {
-    "name": "sign-message-button",
-    "dependencies": [
-      "wagmi"
-    ],
-    "files": [
-      "buidl/sign-message-button.tsx"
     ],
     "type": "components:buidl"
   },
@@ -84,8 +97,26 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/fee-data.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
+    "name": "sign-message-button",
+    "dependencies": [
+      "wagmi"
+    ],
+    "registryDependencies": [
+      "button",
+      "error-message"
+    ],
+    "files": [
+      "buidl/sign-message-button.tsx"
     ],
     "type": "components:buidl"
   },
@@ -93,6 +124,9 @@
     "name": "blockie",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton"
     ],
     "files": [
       "buidl/blockie.tsx"
@@ -104,6 +138,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "blockie",
+      "skeleton"
+    ],
     "files": [
       "buidl/ens-avatar.tsx"
     ],
@@ -113,6 +151,10 @@
     "name": "ens-name",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "address",
+      "skeleton"
     ],
     "files": [
       "buidl/ens-name.tsx"
@@ -124,6 +166,11 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "address",
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/ens-address.tsx"
     ],
@@ -133,6 +180,10 @@
     "name": "image-ipfs",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/image-ipfs.tsx"
@@ -164,6 +215,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "button",
+      "dialog"
+    ],
     "files": [
       "buidl/wallet-connect.tsx"
     ],
@@ -174,6 +229,9 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "button"
+    ],
     "files": [
       "buidl/wallet-disconnect.tsx"
     ],
@@ -183,6 +241,10 @@
     "name": "erc20-balance",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/erc20/erc20-balance.tsx"
@@ -195,6 +257,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/erc20/erc20-decimals.tsx"
     ],
@@ -205,6 +271,10 @@
     "name": "erc20-name",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/erc20/erc20-name.tsx"
@@ -239,6 +309,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/erc20/erc20-symbol.tsx"
     ],
@@ -249,6 +323,10 @@
     "name": "erc20-total-supply",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/erc20/erc20-total-supply.tsx"
@@ -261,6 +339,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/erc721/erc721-name.tsx"
     ],
@@ -271,6 +353,10 @@
     "name": "erc721-symbol",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/erc721/erc721-symbol.tsx"
@@ -283,6 +369,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/erc721/erc721-owner-of.tsx"
     ],
@@ -293,6 +383,10 @@
     "name": "erc721-total-supply",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/erc721/erc721-total-supply.tsx"
@@ -305,6 +399,10 @@
     "dependencies": [
       "wagmi"
     ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
+    ],
     "files": [
       "buidl/erc721/erc721-token-uri.tsx"
     ],
@@ -315,6 +413,10 @@
     "name": "erc721-metadata",
     "dependencies": [
       "wagmi"
+    ],
+    "registryDependencies": [
+      "skeleton",
+      "error-message"
     ],
     "files": [
       "buidl/erc721/erc721-metadata.tsx"
@@ -331,5 +433,44 @@
       "buidl/error-message.tsx"
     ],
     "type": "components:buidl"
+  },
+  {
+    "name": "button",
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      "ui/button.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "dialog",
+    "dependencies": [
+      "@radix-ui/react-dialog"
+    ],
+    "files": [
+      "ui/dialog.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "toast",
+    "dependencies": [
+      "@radix-ui/react-toast"
+    ],
+    "files": [
+      "ui/toast.tsx",
+      "ui/use-toast.ts",
+      "ui/toaster.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "skeleton",
+    "files": [
+      "ui/skeleton.tsx"
+    ],
+    "type": "components:ui"
   }
 ]
