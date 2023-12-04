@@ -44,6 +44,7 @@ const Balance = React.forwardRef<HTMLDivElement, BalanceProps>(
 
     const selectedAddress = address ? address : connectedAddress
 
+
     const { data, isLoading, isSuccess, isError, error } = useBalance({
       chainId,
       address: selectedAddress,

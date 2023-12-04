@@ -229,6 +229,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/buidl/error-message")),
       files: ["registry/default/buidl/error-message.tsx"],
     },
+    "simulate-deposit-eth": {
+      name: "simulate-deposit-eth",
+      type: "components:buidl",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/buidl/op-wagmi/simulate-deposit-eth")),
+      files: ["registry/default/buidl/op-wagmi/simulate-deposit-eth.tsx"],
+    },
     "nonce-demo": {
       name: "nonce-demo",
       type: "components:example",
@@ -452,6 +459,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["error-message"],
       component: React.lazy(() => import("@/registry/default/example/error-message-demo")),
       files: ["registry/default/example/error-message-demo.tsx"],
+    },
+    "simulate-deposit-eth-demo": {
+      name: "simulate-deposit-eth-demo",
+      type: "components:example",
+      registryDependencies: ["simulate-deposit-eth"],
+      component: React.lazy(() => import("@/registry/default/example/simulate-deposit-eth-demo")),
+      files: ["registry/default/example/simulate-deposit-eth-demo.tsx"],
     },
   },
 }

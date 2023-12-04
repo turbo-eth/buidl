@@ -331,5 +331,16 @@
       "buidl/error-message.tsx"
     ],
     "type": "components:buidl"
+  },
+  {
+    "name": "simulate-deposit-eth",
+    "dependencies": [
+      "op-wagmi"
+    ],
+    "files": [
+      "buidl/op-wagmi/simulate-deposit-eth.tsx"
+    ],
+    "folder": "op-wagmi",
+    "type": "components:buidl"
   }
 ]

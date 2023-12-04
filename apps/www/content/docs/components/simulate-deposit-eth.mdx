@@ -1,0 +1,68 @@
+---
+title: Simulate Deposit ETH
+description: Simulates a deposit of ETH to L2.
+component: true
+op-wagmi:
+  link: https://www.opwagmi.sh/docs/hooks/L1/useSimulateDepositETH.html
+---
+
+<ComponentPreview
+  name="simulate-deposit-eth-demo"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
+/>
+
+## Installation
+
+<Tabs defaultValue="manual">
+
+<TabsList>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+  <TabsTrigger disabled={true} value="cli">
+    CLI (Coming Soon)
+  </TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Coming soon...</Step>
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following components:</Step>
+
+- [ErrorMessage](/docs/components/error-message)
+
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Skeleton](https://ui.shadcn.com/docs/components/skeleton)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="simulate-deposit-eth" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Balance } from "@/registry/default/buidl/simulate-deposit-eth"
+```
+
+```tsx
+<Balance />
+<Balance
+  address="0x0000000000000000000000000000000000000000"
+/>
+```

@@ -206,6 +206,13 @@ const buidl: Registry = [
     dependencies: ["wagmi"],
     files: ["buidl/error-message.tsx"],
   },
+  {
+    name: "simulate-deposit-eth",
+    type: "components:buidl",
+    folder: "op-wagmi",
+    dependencies: ["op-wagmi"],
+    files: ["buidl/op-wagmi/simulate-deposit-eth.tsx"],
+  },
 ]
 
 const example: Registry = [
@@ -400,6 +407,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["error-message"],
     files: ["example/error-message-demo.tsx"],
+  },
+  {
+    name: "simulate-deposit-eth-demo",
+    type: "components:example",
+    registryDependencies: ["simulate-deposit-eth"],
+    files: ["example/simulate-deposit-eth-demo.tsx"],
   },
 ]
 

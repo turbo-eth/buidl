@@ -1,0 +1,14 @@
+{
+  "name": "simulate-deposit-eth",
+  "dependencies": [
+    "op-wagmi"
+  ],
+  "files": [
+    {
+      "name": "simulate-deposit-eth.tsx",
+      "content": "\"use client\"\n\nimport { useSimulateDepositETH } from \"op-wagmi\"\nimport * as React from \"react\"\n\n\n\ninterface BalanceProps\n  extends Omit<React.HTMLAttributes<HTMLDivElement>, \"children\"> {\n    to: `0x${string}`\n    amount: bigint\n    l2ChainId: number\n    displayLoading?: boolean\n    displayError?: boolean\n}\n\n\n\nconst SimulateDepositETH = React.forwardRef<HTMLDivElement, BalanceProps>(\n  (\n    {\n      className,\n      to,\n      amount,\n      l2ChainId,\n      displayLoading = true,\n      displayError = true,\n      ...props\n    },\n    ref\n  ) => {\nconst result = useSimulateDepositETH({\n  args:{\n    to,\n    amount,\n    \n},l2ChainId\n  })\n\n  \n   \n return <div {...props}>{result}</div>\n  }\n)\n\nSimulateDepositETH.displayName = \"SimulateDepositETH\"\n\nexport { SimulateDepositETH }\n"
+    }
+  ],
+  "folder": "op-wagmi",
+  "type": "components:buidl"
+}

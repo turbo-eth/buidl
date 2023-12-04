@@ -1,18 +1,18 @@
-import { notFound } from "next/navigation"
 import { allDocs } from "contentlayer/generated"
+import { notFound } from "next/navigation"
 
 import "@/styles/mdx.css"
+import { ChevronRightIcon } from "@radix-ui/react-icons"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRightIcon } from "@radix-ui/react-icons"
 import Balancer from "react-wrap-balancer"
 
-import { siteConfig } from "@/config/site"
-import { getTableOfContents } from "@/lib/toc"
-import { absoluteUrl, cn } from "@/lib/utils"
 import { Mdx } from "@/components/mdx-components"
 import { DocsPager } from "@/components/pager"
 import { DashboardTableOfContents } from "@/components/toc"
+import { siteConfig } from "@/config/site"
+import { getTableOfContents } from "@/lib/toc"
+import { absoluteUrl, cn } from "@/lib/utils"
 import { badgeVariants } from "@/registry/default/ui/badge"
 import { ScrollArea } from "@/registry/default/ui/scroll-area"
 
@@ -121,6 +121,31 @@ export default async function DocPage({ params }: DocPageProps) {
             {doc.wagmi?.api && (
               <Link
                 href={doc.wagmi.api}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(badgeVariants({ variant: "secondary" }))}
+              >
+                API Reference
+              </Link>
+            )}
+          </div>
+        ) : null}
+
+        {doc["op-wagmi"] ? (
+          <div className="flex items-center space-x-2 pt-4">
+            {doc["op-wagmi"]?.link && (
+              <Link
+                href={doc["op-wagmi"].link}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(badgeVariants({ variant: "secondary" }))}
+              >
+                WAGMI
+              </Link>
+            )}
+            {doc["op-wagmi"]?.api && (
+              <Link
+                href={doc["op-wagmi"].api}
                 target="_blank"
                 rel="noreferrer"
                 className={cn(badgeVariants({ variant: "secondary" }))}

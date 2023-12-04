@@ -223,6 +223,16 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
+      title: "OP Wagmi",
+      items: [
+        {
+          title: "Simulate Deposit ETH",
+          href: "/docs/components/simulate-deposit-eth",
+          items: [],
+        },
+      ],
+    },
+    {
       title: "Miscellaneous",
       items: [
         {
