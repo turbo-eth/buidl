@@ -1,16 +1,45 @@
 import { Registry } from "@/registry/schema"
 
+const ui : Registry =[
+ {
+    name: "button",
+    type: "components:ui",
+    dependencies: ["@radix-ui/react-slot"],
+    files: ["ui/button.tsx"],
+  },
+  {
+    name: "dialog",
+    type: "components:ui",
+    dependencies: ["@radix-ui/react-dialog"],
+    files: ["ui/dialog.tsx"],
+  },
+   {
+    name: "toast",
+    type: "components:ui",
+    dependencies: ["@radix-ui/react-toast"],
+    files: ["ui/toast.tsx", "ui/use-toast.ts", "ui/toaster.tsx"],
+  },
+  {
+    name: "skeleton",
+    type: "components:ui",
+    files: ["ui/skeleton.tsx"],
+  } 
+]
+
 const buidl: Registry = [
+  
   {
     name: "address",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["toast"],
     files: ["buidl/address.tsx"],
   },
   {
     name: "balance",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/balance.tsx"],
   },
   {
@@ -23,66 +52,77 @@ const buidl: Registry = [
     name: "block-number",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/block-number.tsx"],
   },
   {
     name: "nonce",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/nonce.tsx"],
   },
   {
     name: "transaction",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/transaction.tsx"],
   },
   {
     name: "transaction-status",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/transaction-status.tsx"],
-  },
-  {
-    name: "sign-message-button",
-    type: "components:buidl",
-    dependencies: ["wagmi"],
-    files: ["buidl/sign-message-button.tsx"],
   },
   {
     name: "fee-data",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/fee-data.tsx"],
+  },
+  {
+    name: "sign-message-button",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    registryDependencies: ["button", "error-message"],
+    files: ["buidl/sign-message-button.tsx"],
   },
   {
     name: "blockie",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton"],
     files: ["buidl/blockie.tsx"],
   },
   {
     name: "ens-avatar",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["blockie","skeleton"],
     files: ["buidl/ens-avatar.tsx"],
   },
   {
     name: "ens-name",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["address","skeleton"],
     files: ["buidl/ens-name.tsx"],
   },
   {
     name: "ens-address",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["address","skeleton", "error-message"],
     files: ["buidl/ens-address.tsx"],
   },
   {
     name: "image-ipfs",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/image-ipfs.tsx"],
   },
   {
@@ -101,12 +141,14 @@ const buidl: Registry = [
     name: "wallet-connect",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["button", "dialog"],
     files: ["buidl/wallet-connect.tsx"],
   },
   {
     name: "wallet-disconnect",
     type: "components:buidl",
     dependencies: ["wagmi"],
+    registryDependencies: ["button"],
     files: ["buidl/wallet-disconnect.tsx"],
   },
   {
@@ -114,6 +156,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc20/erc20-balance.tsx"],
   },
   {
@@ -121,6 +164,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc20/erc20-decimals.tsx"],
   },
   {
@@ -128,6 +172,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc20/erc20-name.tsx"],
   },
   {
@@ -149,6 +194,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc20/erc20-symbol.tsx"],
   },
   {
@@ -156,6 +202,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc20",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc20/erc20-total-supply.tsx"],
   },
   {
@@ -163,6 +210,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc721",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc721/erc721-name.tsx"],
   },
   {
@@ -170,6 +218,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc721",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc721/erc721-symbol.tsx"],
   },
   {
@@ -177,6 +226,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc721",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc721/erc721-owner-of.tsx"],
   },
   {
@@ -184,6 +234,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc721",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc721/erc721-total-supply.tsx"],
   },
   {
@@ -191,6 +242,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc721",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc721/erc721-token-uri.tsx"],
   },
   {
@@ -198,6 +250,7 @@ const buidl: Registry = [
     type: "components:buidl",
     folder: "erc721",
     dependencies: ["wagmi"],
+    registryDependencies: ["skeleton", "error-message"],
     files: ["buidl/erc721/erc721-metadata.tsx"],
   },
   {
@@ -403,4 +456,6 @@ const example: Registry = [
   },
 ]
 
-export const registry: Registry = [...buidl, ...example]
+export const registry: Registry = [...buidl, 
+  ...ui,
+   ...example]

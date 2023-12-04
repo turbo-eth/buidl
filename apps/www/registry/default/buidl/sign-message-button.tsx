@@ -8,13 +8,14 @@ import { Button, ButtonProps } from "@/registry/default/ui/button"
 
 interface SignMessageButtonProps extends Omit<ButtonProps, "onCick"> {
   message: string
+  displayError?: boolean
   onSuccess?: (signature: string) => void
 }
 
 const SignMessageButton = React.forwardRef<
   HTMLButtonElement,
   SignMessageButtonProps
->(({ message, onSuccess, className, children, disabled, ...props }, ref) => {
+>(({ message, onSuccess, className, children, disabled, displayError=true, ...props }, ref) => {
   const { isLoading, isError, error, signMessage } = useSignMessage({
     message,
     onSuccess,
@@ -31,7 +32,7 @@ const SignMessageButton = React.forwardRef<
       >
         {isLoading ? "Check Wallet" : children ?? "Sign Message"}
       </Button>
-      {isError && (
+      {isError && displayError && (
         <ErrorMessage
           error={error}
           defaultErrorMessage="Error while signing message"

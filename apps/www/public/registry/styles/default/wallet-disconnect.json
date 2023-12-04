@@ -3,6 +3,9 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "button"
+  ],
   "files": [
     {
       "name": "wallet-disconnect.tsx",

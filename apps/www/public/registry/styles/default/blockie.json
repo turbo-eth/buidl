@@ -3,6 +3,9 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "skeleton"
+  ],
   "files": [
     {
       "name": "blockie.tsx",

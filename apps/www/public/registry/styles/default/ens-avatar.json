@@ -3,6 +3,10 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "blockie",
+    "skeleton"
+  ],
   "files": [
     {
       "name": "ens-avatar.tsx",

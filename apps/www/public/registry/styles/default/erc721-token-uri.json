@@ -3,6 +3,10 @@
   "dependencies": [
     "wagmi"
   ],
+  "registryDependencies": [
+    "skeleton",
+    "error-message"
+  ],
   "files": [
     {
       "name": "erc721-token-uri.tsx",
