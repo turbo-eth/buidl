@@ -8,6 +8,27 @@ const ui: Registry = [
     files: ["ui/button.tsx"],
   },
   {
+    name: "card",
+    type: "components:ui",
+    files: ["ui/card.tsx"],
+  },
+  {
+    name: "input",
+    type: "components:ui",
+    files: ["ui/input.tsx"],
+  },
+  {
+    name: "label",
+    type: "components:ui",
+    files: ["ui/label.tsx"],
+  },
+  {
+    name: "select",
+    type: "components:ui",
+    dependencies: ["@radix-ui/react-select"],
+    files: ["ui/select.tsx"],
+  },
+  {
     name: "dialog",
     type: "components:ui",
     dependencies: ["@radix-ui/react-dialog"],
@@ -92,7 +113,7 @@ const buidl: Registry = [
   {
     name: "blockie",
     type: "components:buidl",
-    dependencies: ["wagmi"],
+    dependencies: ["wagmi", "ethereum-blockies-base64"],
     registryDependencies: ["skeleton"],
     files: ["buidl/blockie.tsx"],
   },
@@ -452,6 +473,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["error-message"],
     files: ["example/error-message-demo.tsx"],
+  },
+  {
+    name: "card-with-form",
+    type: "components:example",
+    registryDependencies: ["button", "card", "input", "label", "select"],
+    files: ["example/card-with-form.tsx"],
   },
 ]
 

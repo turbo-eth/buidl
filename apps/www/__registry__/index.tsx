@@ -236,6 +236,34 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/ui/button")),
       files: ["registry/default/ui/button.tsx"],
     },
+    "card": {
+      name: "card",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/card")),
+      files: ["registry/default/ui/card.tsx"],
+    },
+    "input": {
+      name: "input",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/input")),
+      files: ["registry/default/ui/input.tsx"],
+    },
+    "label": {
+      name: "label",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/label")),
+      files: ["registry/default/ui/label.tsx"],
+    },
+    "select": {
+      name: "select",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/select")),
+      files: ["registry/default/ui/select.tsx"],
+    },
     "dialog": {
       name: "dialog",
       type: "components:ui",
@@ -480,6 +508,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["error-message"],
       component: React.lazy(() => import("@/registry/default/example/error-message-demo")),
       files: ["registry/default/example/error-message-demo.tsx"],
+    },
+    "card-with-form": {
+      name: "card-with-form",
+      type: "components:example",
+      registryDependencies: ["button","card","input","label","select"],
+      component: React.lazy(() => import("@/registry/default/example/card-with-form")),
+      files: ["registry/default/example/card-with-form.tsx"],
     },
   },
 }
