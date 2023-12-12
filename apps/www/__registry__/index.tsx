@@ -5,6 +5,13 @@ import * as React from "react"
 
 export const Index: Record<string, any> = {
   "default": {
+    "account-input": {
+      name: "account-input",
+      type: "components:buidl",
+      registryDependencies: ["block-explorer-link"],
+      component: React.lazy(() => import("@/registry/default/buidl/account-input")),
+      files: ["registry/default/buidl/account-input.tsx"],
+    },
     "address": {
       name: "address",
       type: "components:buidl",
@@ -298,6 +305,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["address"],
       component: React.lazy(() => import("@/registry/default/example/address-demo")),
       files: ["registry/default/example/address-demo.tsx"],
+    },
+    "account-input-demo": {
+      name: "account-input-demo",
+      type: "components:example",
+      registryDependencies: ["account-input"],
+      component: React.lazy(() => import("@/registry/default/example/account-input-demo")),
+      files: ["registry/default/example/account-input-demo.tsx"],
     },
     "balance-demo": {
       name: "balance-demo",

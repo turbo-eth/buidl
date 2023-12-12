@@ -121,6 +121,11 @@ export const docsConfig: DocsConfig = {
       title: "Primitives",
       items: [
         {
+          title: "Account Input",
+          href: "/docs/components/account-input",
+          items: [],
+        },
+        {
           title: "Address",
           href: "/docs/components/address",
           items: [],
