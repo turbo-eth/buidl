@@ -1,0 +1,58 @@
+---
+title: Network Selection
+description: Select a network to connect to.
+component: true
+wagmi:
+  link: https://wagmi.sh/react/hooks/useSwitchNetwork
+---
+
+<ComponentPreview
+  name="network-selection-demo"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[70%]"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx buidl-cli@latest add network-selection
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following shadcn/ui components:</Step>
+
+- [Button](https://ui.shadcn.com/docs/components/button)
+- [DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="network-selection" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { NetworkSelection } from "@/registry/default/buidl/network-selection"
+```
+
+```tsx
+<NetworkSelection />
+```
