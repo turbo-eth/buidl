@@ -115,6 +115,11 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/is-wallet-disconnected",
           items: [],
         },
+        {
+          title: "Network Selection",
+          href: "/docs/components/network-selection",
+          items: [],
+        },
       ],
     },
     {

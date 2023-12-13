@@ -1,0 +1,16 @@
+{
+  "name": "network-selection",
+  "dependencies": [
+    "wagmi"
+  ],
+  "registryDependencies": [
+    "dropdown-menu"
+  ],
+  "files": [
+    {
+      "name": "network-selection.tsx",
+      "content": "import { useState, type HTMLAttributes } from \"react\"\nimport { ChevronDown } from \"lucide-react\"\nimport { Chain, useNetwork, useSwitchNetwork } from \"wagmi\"\nimport {\n  arbitrum,\n  base,\n  gnosis,\n  mainnet,\n  optimism,\n  polygon,\n} from \"wagmi/chains\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Button } from \"@/registry/default/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/registry/default/ui/dropdown-menu\"\n\nconst defaultChains = [arbitrum, base, gnosis, mainnet, optimism, polygon]\n\ninterface NetworkSelectionProps extends HTMLAttributes<HTMLElement> {\n  chainId?: number\n  useCurrentNetwork?: boolean\n  initialChainId?: number\n  selectNetworkLabel?: string\n  chains?: Chain[]\n  onValueChange?: (chainId: number) => void\n}\n\nexport const NetworkSelection = ({\n  className,\n  selectNetworkLabel = \"Select Network\",\n  useCurrentNetwork = true,\n  chains = defaultChains,\n  initialChainId,\n  onValueChange,\n  ...props\n}: NetworkSelectionProps) => {\n  const [selectedChain, setSelectedChain] = useState<Chain>(\n    chains.find((chain) => chain.id === initialChainId) || chains[0]\n  )\n  const { chain } = useNetwork()\n  const { switchNetwork } = useSwitchNetwork()\n\n  const handleSwitchNetwork = (chain: Chain) => {\n    if (useCurrentNetwork) {\n      switchNetwork?.(chain.id)\n    } else {\n      setSelectedChain(chain)\n    }\n    onValueChange?.(chain.id)\n  }\n\n  return (\n    <div className={cn(className)} {...props}>\n      <DropdownMenu>\n        <DropdownMenuTrigger asChild>\n          <Button className=\"gap-x-2\">\n            {useCurrentNetwork ? (\n              chain ? (\n                <span className=\"text-sm font-semibold\">{chain?.name}</span>\n              ) : (\n                <> {selectNetworkLabel}</>\n              )\n            ) : selectedChain ? (\n              <span className=\"text-sm font-semibold\">\n                {selectedChain?.name}\n              </span>\n            ) : (\n              <>{selectNetworkLabel}</>\n            )}\n            <ChevronDown className=\"text-gray-400\" />\n          </Button>\n        </DropdownMenuTrigger>\n        <DropdownMenuContent>\n          <DropdownMenuLabel>{selectNetworkLabel}</DropdownMenuLabel>\n          <DropdownMenuSeparator className=\"bg-neutral-200\" />\n          {chains.length > 0 &&\n            chains.map((chain) => (\n              <DropdownMenuItem\n                key={chain.id}\n                className=\"flex gap-x-2 focus:bg-neutral-300/80 dark:focus:bg-neutral-800\"\n                onClick={() => handleSwitchNetwork(chain)}\n              >\n                <span>\n                  {chain.name} (<span className=\"text-xs\">{chain.id}</span>)\n                </span>\n              </DropdownMenuItem>\n            ))}\n        </DropdownMenuContent>\n      </DropdownMenu>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "type": "components:buidl"
+}

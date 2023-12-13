@@ -436,6 +436,19 @@
     "type": "components:buidl"
   },
   {
+    "name": "network-selection",
+    "dependencies": [
+      "wagmi"
+    ],
+    "registryDependencies": [
+      "dropdown-menu"
+    ],
+    "files": [
+      "buidl/network-selection.tsx"
+    ],
+    "type": "components:buidl"
+  },
+  {
     "name": "button",
     "dependencies": [
       "@radix-ui/react-slot"
@@ -502,6 +515,13 @@
     "name": "skeleton",
     "files": [
       "ui/skeleton.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "dropdown-menu",
+    "files": [
+      "ui/dropdown-menu.tsx"
     ],
     "type": "components:ui"
   }

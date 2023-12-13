@@ -45,6 +45,11 @@ const ui: Registry = [
     type: "components:ui",
     files: ["ui/skeleton.tsx"],
   },
+  {
+    name: "dropdown-menu",
+    type: "components:ui",
+    files: ["ui/dropdown-menu.tsx"],
+  },
 ]
 
 const buidl: Registry = [
@@ -279,6 +284,13 @@ const buidl: Registry = [
     dependencies: ["wagmi"],
     files: ["buidl/error-message.tsx"],
   },
+  {
+    name: "network-selection",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    registryDependencies: ["dropdown-menu"],
+    files: ["buidl/network-selection.tsx"],
+  },
 ]
 
 const example: Registry = [
@@ -479,6 +491,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["button", "card", "input", "label", "select"],
     files: ["example/card-with-form.tsx"],
+  },
+  {
+    name: "network-selection-demo",
+    type: "components:example",
+    registryDependencies: ["button", "network-selection"],
+    files: ["example/network-selection-demo.tsx"],
   },
 ]
 

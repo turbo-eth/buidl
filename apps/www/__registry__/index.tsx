@@ -229,6 +229,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/buidl/error-message")),
       files: ["registry/default/buidl/error-message.tsx"],
     },
+    "network-selection": {
+      name: "network-selection",
+      type: "components:buidl",
+      registryDependencies: ["dropdown-menu"],
+      component: React.lazy(() => import("@/registry/default/buidl/network-selection")),
+      files: ["registry/default/buidl/network-selection.tsx"],
+    },
     "button": {
       name: "button",
       type: "components:ui",
@@ -284,6 +291,13 @@ export const Index: Record<string, any> = {
       registryDependencies: undefined,
       component: React.lazy(() => import("@/registry/default/ui/skeleton")),
       files: ["registry/default/ui/skeleton.tsx"],
+    },
+    "dropdown-menu": {
+      name: "dropdown-menu",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/dropdown-menu")),
+      files: ["registry/default/ui/dropdown-menu.tsx"],
     },
     "nonce-demo": {
       name: "nonce-demo",
@@ -515,6 +529,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["button","card","input","label","select"],
       component: React.lazy(() => import("@/registry/default/example/card-with-form")),
       files: ["registry/default/example/card-with-form.tsx"],
+    },
+    "network-selection-demo": {
+      name: "network-selection-demo",
+      type: "components:example",
+      registryDependencies: ["network-selection"],
+      component: React.lazy(() => import("@/registry/default/example/network-selection-demo")),
+      files: ["registry/default/example/network-selection-demo.tsx"],
     },
   },
 }
