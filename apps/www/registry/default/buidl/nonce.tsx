@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useQuery } from "@tanstack/react-query"
 import type { PublicClient } from "viem"
-import { useAccount, useChainId, usePublicClient } from "wagmi"
+import { useAccount, useChainId, useTransactionCount } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { ErrorMessage } from "@/registry/default/buidl/error-message"
@@ -14,22 +14,6 @@ interface NonceProps extends React.HTMLAttributes<HTMLDivElement> {
   chainId?: number
   displayLoading?: boolean
   displayError?: boolean
-}
-
-const useNonce = ({
-  address,
-  publicClient,
-}: Pick<NonceProps, "address"> & { publicClient: PublicClient }) => {
-  return useQuery({
-    queryKey: ["wallet-nonce", address, publicClient?.chain?.id],
-    queryFn: () => {
-      if (!address) return
-      return publicClient?.getTransactionCount({
-        address,
-      })
-    },
-    enabled: !!address && !!publicClient,
-  })
 }
 
 const Nonce = React.forwardRef<HTMLDivElement, NonceProps>(
@@ -44,20 +28,13 @@ const Nonce = React.forwardRef<HTMLDivElement, NonceProps>(
     },
     ref
   ) => {
-    const connectedChainId = useChainId()
-    const selectedChainId = chainId ?? connectedChainId
-
-    const publicClient = usePublicClient({
-      chainId: selectedChainId,
-    })
-
     const { address: connectedAddress } = useAccount()
     const selectedAddress = address ?? connectedAddress
-
-    const { data, isLoading, isError, error } = useNonce({
-      publicClient,
+     const {data, isLoading, isError, error} = useTransactionCount({
+      chainId,
       address: selectedAddress,
     })
+
 
     if (displayLoading && (isLoading || !selectedAddress)) {
       return <Skeleton className={cn("h-6 w-14", className)} {...props} />
