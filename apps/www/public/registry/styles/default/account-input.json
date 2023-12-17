@@ -1,0 +1,16 @@
+{
+  "name": "account-input",
+  "dependencies": [
+    "wagmi"
+  ],
+  "registryDependencies": [
+    "block-explorer-link"
+  ],
+  "files": [
+    {
+      "name": "account-input.tsx",
+      "content": "import { InputHTMLAttributes, forwardRef, useMemo } from \"react\"\nimport { isAddress, type Address } from \"viem\"\nimport { useEnsAddress, useEnsName } from \"wagmi\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { Input } from \"../ui/input\"\nimport { BlockExplorerLink } from \"./block-explorer-link\"\nimport { EnsAvatar } from \"./ens-avatar\"\n\ninterface AccountInputProps extends InputHTMLAttributes<HTMLInputElement> {\n  value?: string\n}\n\nconst AccountInput = forwardRef<HTMLInputElement, AccountInputProps>(\n  ({ value, className, ...props }, ref) => {\n    const isValidAddress = useMemo(\n      () => typeof value === \"string\" && isAddress(value),\n      [value]\n    )\n\n    const { data: ensAddress } = useEnsAddress({\n      name: value,\n      // Resolve ENS only on mainnet\n      chainId: 1,\n    })\n\n    const { data: ensName } = useEnsName({\n      address: value as Address | undefined,\n      chainId: 1,\n    })\n\n    return (\n      <div\n        className={cn(\n          \"relative flex w-full items-center justify-between rounded-full border border-stone-300\",\n          isValidAddress && \"border-r-0\",\n          className\n        )}\n      >\n        <Input\n          ref={ref}\n          className={cn(\n            \"h-16 w-full rounded-full border-none pl-5 pr-12  text-base focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:focus:ring-0 dark:focus:ring-offset-0\",\n            isValidAddress && \"pr-2\"\n          )}\n          {...props}\n        />\n        {(isValidAddress || ensAddress) && value && (\n          <div className=\"w-fit rounded-full border border-stone-300 p-0.5\">\n            <BlockExplorerLink\n              data={ensAddress ? ensAddress : (value as Address)}\n            >\n              <div className=\"relative h-14 w-14 rounded-full\">\n                <EnsAvatar\n                  className=\"h-14 w-14 rounded-full  object-cover\"\n                  name={ensAddress ? value : undefined}\n                  address={value as Address}\n                />\n              </div>\n            </BlockExplorerLink>\n          </div>\n        )}\n        {ensAddress && (\n          <span className=\"absolute bottom-1 left-6 text-xs font-light text-neutral-500\">\n            {ensAddress.slice(0, 8)}...{ensAddress.slice(-6)}\n          </span>\n        )}\n        {ensName && (\n          <span className=\"absolute bottom-1 left-6 text-xs font-light text-neutral-500\">\n            {ensName}\n          </span>\n        )}\n      </div>\n    )\n  }\n)\n\nAccountInput.displayName = \"AccountInput\"\nexport { AccountInput }\n"
+    }
+  ],
+  "type": "components:buidl"
+}

@@ -54,6 +54,13 @@ const ui: Registry = [
 
 const buidl: Registry = [
   {
+    name: "account-input",
+    type: "components:buidl",
+    dependencies: ["wagmi"],
+    registryDependencies: ["block-explorer-link"],
+    files: ["buidl/account-input.tsx"],
+  },
+  {
     name: "address",
     type: "components:buidl",
     dependencies: ["wagmi"],
@@ -305,6 +312,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["address"],
     files: ["example/address-demo.tsx"],
+  },
+  {
+    name: "account-input-demo",
+    type: "components:example",
+    registryDependencies: ["account-input"],
+    files: ["example/account-input-demo.tsx"],
   },
   {
     name: "balance-demo",
