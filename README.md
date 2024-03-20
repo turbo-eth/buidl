@@ -4,7 +4,7 @@ Collection of essential components for any modern Web3 applications. Save time a
 
 ## Documentation
 
-Visit http://buidl.turboeth/docs to view the documentation.
+Visit https://buidl.turboeth.xyz/docs to view the documentation.
 
 ## Contributing
 
